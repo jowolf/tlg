@@ -1,0 +1,131 @@
+5/29/15:
+
+category sidebar from Tshop is a toughie - but a good trail / example:
+
+.panel-collapse#collapseCategory ul.nav.nav-pills.nav-stacked.tree:
+  dzip:   # or just loop :)
+    repeat: li.dropdown-tree (or put selector first? just imply repeat?)
+    for: cat in Categories_objects.published
+    first:
+      addClass: open-tree
+    li a.dropdown-tree-a:
+      attr:
+        href: "{{ cat.url }}"
+        title: "{{ cat.title }}"
+      text: ...
+
+.panel-collapse#collapseCategory ul.nav.nav-pills.nav-stacked.tree:
+  dzip:                 # or just 'loop' :)
+    li.dropdown-tree:   # (or put selector first? just imply repeat?)
+      for: cat in Categories_objects.published
+      first:
+        addClass: open-tree
+      li a.dropdown-tree-a:
+        attr:
+          href: "{{ cat.url }}"
+          title: "{{ cat.title }}"
+      li a.dropdown-tree-a span.badge:
+        attr:
+          href: "{{ cat.url }}"
+          title: "{{ cat.title }}"
+
+      
+.panel-collapse#collapseCategory ul.nav.nav-pills.nav-stacked.tree:
+  loop:                 # or just 'loop' :)
+    for: cat in Categories_objects.published
+    repeat: li.dropdown-tree
+    first:
+        addClass: open-tree
+    first:
+        addClass: open-tree
+    li.dropdown-tree a.dropdown-tree-a:
+      attr:
+        href: "{{ cat.url }}"
+        title: "{{ cat.title }}"
+      html: "{{ cat.name }}"
+    li.dropdown-tree a.dropdown-tree-a span.badge: 
+      html: "{{ cat.products.published.count|default:42 }}"
+    li.dropdown-tree ul.category-level-2.dropdown-menu-tree:
+      html: "{{ cat.prods_as_lis }}"
+
+
+5/23/15:
+
+footer#footer:
+  row.children[1:3]:
+    dzip: 
+      - heading: h3
+        a: 
+          addclass: main
+
+..after run:
+
+top-right.nav:
+  dzip: 
+    repeat: li[text='Sign On']
+    replace:
+      <text>: <text>
+      - or - 
+      New Text:
+        merge:
+          a: 
+            attrs:
+              href: ..
+              title: ..
+      - or - 
+      merge-attrs-tag: a
+      - text: New Text
+        href: ..
+        title: .. 
+      - text: More New Text
+        href: ..
+        title: .. 
+    - or - 
+    replace:
+      - text1
+      - text2
+    - or - 
+    merge:
+      a: <tag body>
+        within: span (or other tag)
+        href: ..
+        title: ..
+    - or - 
+    tag:
+      a: <tag body>
+        href:
+        title:
+    map:
+      header: h3
+      text: <tag body text>
+      attrs: a (tag to map attrs to)
+
+
+5/17/15:
+
+(d)zip concept description May 2015 JJW:
+
+ul.breadcrumb li
+  ::first: zip a Home, href=/ title='eracks home page'
+  if breadcrumbs.real # (=True, None, or string-valued)
+    zip a $title class_=current href=# title=$title,$name
+  else:
+    loop bc in breadcrumbs:
+      zip a $bc.name href=$bc.url title=$bc.title
+
+Where zip:
+- modifies existing tag, replaces contents, ensures/adds attrs, leaves existing
+- ensures correct number of li tgs, removing/adding as needed
+
+This ensures little empty tags, hrs, divs, spans, etc which are within
+the li's, stay in place.
+
+For starters, it's not that tough to do it in shpaml / minaml, but does remove
+the extra tags, so to but them back requires a theme-specific addon.
+
+This example is especially difficult, becuase of the two special cases:
+1) fixed 'home', and
+2) boolean value indicating presence of single breadcrumb.
+
+It would be better to redo the breadcrumbs provided by the views, as a straight
+list, including the home, always.

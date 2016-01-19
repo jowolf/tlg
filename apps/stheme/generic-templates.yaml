@@ -1,0 +1,104 @@
+### CONFIG SECTION ###
+
+config:
+  theme_name: ''
+  theme_url: None
+  theme_downloaded_path: None
+  templates_path: $project_path/apps/stheme/templates/
+
+
+### GENERIC PARTIAL TEMPLATES - COMPILE SECTION - YAML OBDJECT CANDIDATES ###
+
+## from product app
+
+product.html:
+  compile: src/product.minaml
+
+
+## from customers app
+
+customers.html:
+  compile: src/customers.minaml
+
+#_product_detail.html:
+#  compile: src/_product_detail.minaml
+
+
+## for home app
+
+_search_menu_entry.html:
+  compile: src/_search_menu_entry.minaml
+
+_list_inline_social.html:
+  compile: src/_list_inline_social.minaml
+
+_category_sidebar.html:
+  compile: src/_category_sidebar.minaml
+
+_toast_messages.html:
+  minaml: |
+    % if messages
+      % for message in messages
+        div class="alert alert-{{ message.tags }} alert-dismissible" role=alert
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          =message
+
+#_featured_images.html:
+#  compile: src/_featured_images.jade
+
+_featured_images.html:
+  compile: src/_featured_images.minaml
+
+_bloglet_list.html:
+  minaml: |
+    %load cache
+    .clearfix ||
+    .eracks-news.section-block
+      h3.section-title
+        span style="text-transform:none;"
+          eRacks News
+        a.link.pull-right.carousel-nav#nextNews"
+          i.fa.fa-angle-right ||
+        a.link.pull-right.carousel-nav#prevNews"
+          i.fa.fa-angle-left ||
+
+      ul.owl-carousel.eracks-news-carousel.nojs-inline
+        %for post in Post_objects.published
+          li title="{{ post.pub_date|date:'M j Y' }}: {{ post.title }}"
+            =post.body|safe
+
+
+quickpages/base.html:
+  minaml: |
+    %extends "base.html"
+    %load render_as_template
+
+    %block content
+      ::comment
+        don't want prepended h1
+        really should obdjectify category sidebar w/assets
+        =block.super
+
+      .content.row
+        .col-md-9.col-md-push-3
+          ::comment
+            h1 title="{{category.title}}"
+              =category.name
+
+          %render_as_template content
+
+        .col-md-3.col-md-pull-9
+          %include "_category_sidebar.html"
+
+    % block js
+      script VERBATIM
+        /* Scripts for Category sidebar accordion arrows */
+
+        $('.collapseWill').on('click',function(e) {
+          $(this).toggleClass("pressed");
+          e.preventDefault();
+        });
+
+        $(".dropdown-tree-a").click(function() {
+          $(this).parent('.dropdown-tree').toggleClass("open-tree active");
+        });

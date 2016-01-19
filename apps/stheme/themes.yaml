@@ -1,0 +1,8 @@
+generic-declarations.yaml: Generic declarations for the site
+generic-templates.yaml: Generic site templates to compile
+list-inline-social.yaml: obdject for footer social icons - both merged styles and minaml together
+theme-assan.yaml: Theme-specific config, declarations, theme mods, and templates for Assan - also generic partials (first)
+theme-tshop.yaml: Theme-specific config, declarations, theme mods, and templates for TShop
+theme-legacy.yaml: Theme-specific templates and css for the original, legacy eRacks theme, circa 2012
+$apps_path/orders/templets.yaml: let's try a vertical one - this is all the converted templates for the orders app, plus new generic ones
+$apps_path/products/templets.yaml: another vertical one - this is most of the converted templates for the products app (some, like product.html, were already done earlier and moved to the stheme app), plus new generic ones

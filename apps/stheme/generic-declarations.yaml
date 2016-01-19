@@ -1,0 +1,1139 @@
+###### DECLARATION SECTION ######
+#
+# - basic hierarchical transformation declarations
+# - resuable on either themes or templates
+# - some can be a form of widgets (future: obdjects, with grouped assets, css, js)
+
+
+### GENERIC DECLARATIONS - PROLOG - HEAD & ASSETS ###
+
+head-meta-ensure-tags:  # 'ensure' assumes at least one of the selected tags is present
+  head meta:
+    ensure:
+      - name: description
+      - name: title
+      - name: author
+      - name: keywords
+      - name: google-site-verification
+      - name: msvalidate.01
+      - name: DC.title
+      - name: geo.region
+      - name: geo.placename
+      - name: geo.position
+      - name: ICBM
+      - name: robots
+
+head-meta-description:
+  head meta[name="description"]:
+    attr:
+      content: >
+        {% firstof meta_description description
+        "eRacks Open Source Systems -
+        Premium open source rackmounts, desktops, laptops, ultrabooks,
+        consulting, and service since 1999" %}
+
+head-meta-title:
+  head meta[name="title"]:
+    attr:
+      content: '{% firstof meta_title title "eRacks" %}'
+
+head-meta-author:
+  head meta[name="author"]:
+    attr:
+      content: '{% firstof meta_author author "eRacks" %}'  # 'web team' removed 9/21/15 JJW per Satish SEO
+
+head-meta-keywords:
+  head meta[name='keywords']:
+    attr:
+      content: >
+        {% firstof meta_keywords keywords
+        "rackmount, rack mount, cloud server, private cloud, hybrid cloud,
+        Open Source, Red Hat, Ubuntu, Linux Mint, Debian" %}
+
+head-meta-google-verification:
+  head meta[name='google-site-verification']:
+    attr:
+      content: "4QorVb8Z51YbHLZ5hPfk3TQJjblIY43ByE6qFw2-dLU"
+
+head-meta-bing-verification:
+  head meta[name='msvalidate.01']:
+    attr:
+      content: "E830B9E86F26F425F9F7800DA21086EC"
+
+head-meta-DC-title:
+  head meta[name='DC.title']:
+    attr:
+      content: "Line server, AMD opteron rack server, Storage servers, NAS server, Open source systems, Cloud server"
+
+head-meta-geo-region:
+  head meta[name='geo.region']:
+    attr:
+      content: US-CA
+
+head-meta-geo-placename:
+  head meta[name='geo.placename']:
+    attr:
+      content: "Los Gatos"
+
+head-meta-geo-position:
+  head meta[name='geo.position']:
+    attr:
+      content: "37.235808;-121.962375"
+
+head-meta-icbm:
+  head meta[name='ICBM']:
+    attr:
+      content: "37.235808, -121.962375"
+
+head-meta-robots:
+  head meta[name='robots']:
+    attr:
+      content: "noodp,noydir"
+
+link-asset-prefix:  # link[href^="assets_css_js_or_whatever/"]:
+  attr_prefix:
+    href: /$theme_name/
+
+link-assets-prefixes:   # still need to be smarter here, and below - look for non-http links
+  'head link[href$="style.css"]':            link-styles-css  # move this one to theme-specific TODO HERE
+  'head link[href^="assets/"]':              link-asset-prefix
+  'head link[href^="css/"]':                 link-asset-prefix
+  'head link[href^="bootstrap/css/"]':       link-asset-prefix
+  'head link[href^="font-awesome-4.3.0/"]':  link-asset-prefix
+  'head link[href^="rs-plugin/"]':           link-asset-prefix
+
+src-assets-prefixes:
+  #show_attr: src  # uncomment this for spelunking new theme
+  # script tags
+  '[src^="assets/"]':         asset-prefix
+  '[src^="js/"]':             asset-prefix
+  '[src^="bootstrap/js/"]':   asset-prefix
+  '[src^="rs-plugin/js/"]':   asset-prefix
+  # img tags
+  '[src^="images/"]':         asset-prefix
+  '[src^="img/"]':            asset-prefix
+  #show_attr: src  # this one doesn't work et the end, after the other selectors, because the self.context has been set to the last dselector..
+
+link-assets-ensure:
+  head link:
+    ensure:
+      - href: /tshop/assets/plugins/magnific/magnific-popup.css
+        type: text/css
+        rel: stylesheet
+      - href: /css/vendor/normalize.css
+        type: text/css
+        rel: stylesheet
+      - href: /css/gallery.prefixed.css
+        type: text/css
+        rel: stylesheet
+      - href: /css/gallery.theme.css
+        type: text/css
+        rel: stylesheet
+
+src-assets-ensure:
+  script:
+    ensure:
+      - src: /tshop/assets/plugins/magnific/jquery.magnific-popup.min.js
+
+asset-prefix:
+  attr_prefix:
+    src: /$theme_name/
+
+head-noscript:
+  head:
+    append: |
+      <noscript>
+        <style>
+          .jsonly {
+              display: none!important;
+          }
+          .nojs-inline {
+            display: inline;
+          }
+          .nojs-inline li {
+            padding: 10px;
+            display: inline-block;
+            max-width: 180px;
+          }
+        </style>
+      </noscript>
+
+head-styles:
+  merge_styles: |
+    {% block head_styles %} /* block head-styles */ {% endblock %}
+
+    /* Partner page only - fix until Quickpage edited and/or replaced with app */
+    .partner-div {
+      width:30%;
+    }
+    .partner-logo-div img {
+      max-width: 95%;
+      height: auto;
+    }
+    /* For products megamenu (until bin-packing ported from eRAccs )
+    .columns5 {
+      -webkit-column-count: 5;
+      -webkit-column-gap: 10px;
+      -webkit-column-fill: auto;
+      -moz-column-count: 5;
+      -moz-column-gap: 10px;
+      -moz-column-fill: auto;
+      column-count: 5;
+      column-gap: 15px;
+      column-fill: auto;
+    }
+    */
+    /* See http://getbootstrap.com.vn/examples/equal-height-columns/  */
+    .row-eq-height {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display:         flex;
+    }
+
+  head:
+    append: |
+      {{ css|default:'<!-- empty css variable-->' }}
+      {% block css %} <!-- block css --> {% endblock %}
+      {{ javascript|default:'<!-- empty javascript variable-->' }}
+      {% block javascripts %} <!-- block javascripts --> {% endblock %}
+      {% block extra_head %} <!-- block extra_head--> {% endblock %}
+
+# Remember, these can be nested - and call / refer to others - see above, and below :)
+
+
+## PROLOG - fomerly head-ops, img-ops, etc
+
+prolog:
+  head:
+    - head-styles         # generic, above
+    - theme-head-styles   # theme-specific, but almost always needed for theme-specific tweaks - defined in theme prolog
+
+    - head-meta-ensure-tags
+    - head-meta-description
+    - head-meta-title
+    - head-meta-author
+    - head-meta-keywords
+    - head-meta-google-verification
+    - head-meta-bing-verification
+    - head-meta-DC-title
+    - head-meta-geo-region
+    - head-meta-geo-placename
+    - head-meta-geo-position
+    - head-meta-icbm
+    - head-meta-robots
+    - link-assets-prefixes
+    - link-assets-ensure
+    - src-assets-ensure
+    - head-noscript
+
+  title:
+    innerHtml: '{% firstof page_title title "eRacks Open Source Systems" %}'
+
+  html:
+    - link-assets-prefixes
+    - src-assets-prefixes
+
+
+### GENERIC DECLARATIONS - (Some are OBDJECTS with styles / js) - TOP BAR ###
+
+top-bar-right:
+  #addClass: list-inline .top-social
+  merge_styles: |
+    /* .top-bar hover dropdowns, also does assan main menu hover */
+    .dropdown:hover .dropdown-menu {
+      display: block;
+      z-index:10000;
+      margin-top:-10px;
+    }
+    .userMenu li {
+      font-weight: normal;
+      text-transform: none;
+    }
+    .userMenu li a {
+      padding-right:7px;
+    }
+    .userMenu .dropdown-menu li a {
+      color: black;
+      padding: 0 20px;
+      line-height: calc(10/7);
+      font-size: inherit;
+    }
+    .userMenu .dropdown-menu li {
+      clear: both;
+    }
+    .userMenu i.glyphicon {
+      padding: 0 3px;
+    }
+  minaml: |
+    ul.userMenu.list-inline style=margin:0
+      %if user.is_authenticated
+        li
+          a href="{% url 'userena_profile_detail' user.username %}"
+            i.glyphicon.glyphicon-user ||
+            span.hidden-xs
+              {{ user.username }}'s Account
+        li
+          a href="{% url 'userena_signout' %}"
+            i.glyphicon.glyphicon-log-out ||
+            span.hidden-xs
+              Logout
+        %if request.user.is_staff
+          li.dropdown
+            a href=#
+              i.glyphicon.glyphicon-lock ||
+              span.hidden-xs
+                Admin
+            ul.dropdown-menu
+              li
+                a href=/admin/ | eRacks Admin
+              li
+                a href=/djide/ | Django IDE
+              li
+                a href=/admin/home/featuredimage/ | Featured Images
+              li
+                a href=?/admin/auth/user/{{ request.user.id }}/" | User: {{ request.user }}
+              %if product
+                li
+                  a href="/admin/products/product/{{ product.id }}/" | Edit Product: {{ product }}
+              %if category
+                li
+                  a href="/admin/products/categories/{{ category.id }}/" | Edit Category: {{ category }}
+              %if settings.ALOHA
+                li
+                  a href="?edit=1" | Edit in place
+              %if settings.DEBUG
+                li
+                  a href=/packages/ | Packages directory
+              li
+                a href=/utils/clearcache/ | Clear cache
+              li
+                a href="/utils/collect_static/" | Collect static files
+              li
+                a href=/utils/compile_themes/ | Compile themes
+              li
+                a href=/utils/urls/ | Show URL map
+              li
+                a href=/session/ | Show Session
+        %else
+        ::comment
+          li
+            a href="/accounts/signin/"
+              i.glyphicon.glyphicon-user ||
+              span.hidden-xs
+                Account
+        li
+          a.jsonly href=# id=show-login-dialog data-reveal-id=signin_signup_modal data-toggle=modal data-target=#ModalLogin
+            i.glyphicon.glyphicon-log-in ||
+            span.hidden-xs
+              Login / Register
+          noscript
+            a href="/accounts/signup/"
+              ::comment
+                // glyphicons-user-add not in halflings
+              i.glyphicon.glyphicon-user ||
+                span.hidden-xs
+                  Register
+            a href="/accounts/signin/"
+              i.glyphicon.glyphicon-log-in ||
+                span.hidden-xs
+                  Login
+        li
+          a href="{% url 'social:begin' 'twitter' %}" title="Login with your Twitter account"
+              > img src="/images/logos/login/twitter-xparent-30.png" height="16" width="16" alt="Twitter login"
+          a href="{% url 'social:begin' 'google-oauth2' %}" title="Login with Google"
+              > img src="/images/logos/login/google-plus-30.png" height="16" width="16" alt="Google+ login"
+          a href="{% url 'social:begin' 'github' %}" title="Login with your Github account"
+              > img src="/images/logos/login/github-30.png" height="16" width="16" alt="Github login"
+          a href="{% url 'social:begin' 'linkedin' %}" title="Login with LinkedIn"
+              > img src="/images/logos/login/linkedin.png" height="16" width="16" alt="LinkedIn login"
+          a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" title="Login with your Facebook account"
+              > img src="/images/logos/login/facebook.png" height="16" width="16" alt="Facebook login"
+          form style="display:flex;" method="post" action="/complete/persona/"
+            ::comment
+              from https://python-social-auth.readthedocs.org/en/latest/backends/persona.html?highlight=browserid
+            > input type="hidden" name="assertion" value=""
+            a.browserid-login rel="nofollow" id="persona" href="#" title="Login with Mozilla Persona / BrowserID" data-next="{% if request.path == '/accounts/signout/' %}{{ request.META.HTTP_REFERER }}{% elif request.REQUEST.next %}{{ request.REQUEST.next }}{% else %}{{request.path}}{% endif %}"
+              > img src="/images/logos/login/persona.png" height=16 width=16 alt="BrowserID / Persona login"
+      li
+        a href='/cart/' title='Your Cart'
+          i.glyphicon.glyphicon-shopping-cart ||
+          span.hidden-xs
+            %if cart_totqty
+              =cart_totqty
+              items ${{ cart_grandtot|floatformat:2 }}
+              %else
+              (Empty)
+      li.dropdown
+        a href=#
+          i.glyphicon.glyphicon-music ||
+          span.hidden-xs
+            Theme
+        ul.dropdown-menu style="margin-left:-75px"
+          li
+            a href=?theme=tshop | Tshop eRacks theme (Default)
+          li
+            a href=?theme=legacy | Legacy eRacks theme
+          li
+            a href=?theme=assan | Assan eRacks theme - BETA
+          ::comment
+            li
+              a href=?theme=unify | Unify theme - BETA
+  merge_scripts: |
+    src="https://login.persona.org/include.js"
+    // Setup click handler that retrieves Persona assertion code and sends POST data:
+    $(document).ready(function () {
+        $('#persona').click(function (e) {
+            e.preventDefault();
+            var self = $(this);
+
+            navigator.id.get(function (assertion) {
+                if (assertion) {
+                    self.parent('form')
+                            .find('input[type=hidden]')
+                                .attr('value', assertion)
+                                .end()
+                            .submit();
+                } else {
+                    alert('Mozilla Persona / BrowserID error occurred');
+                }
+            });
+        });
+    });
+
+modal-login-signup:
+  #attr:
+  #  role: tabpanel
+  merge_styles: |
+    /* tweak input forms - don't hug the label, btn alignment, tab-panel, etc */
+    .modal-content input[!btn] {
+      margin-left: 15px;
+    }
+    .tab-content {
+      padding: 0;
+      margin-top: -0;
+    }
+    /* Make tabs more obvious & unambiguous - this is really global, could move there, or to product */
+    /* inspired by http://jsfiddle.net/KyleMit/2VmmW/ */
+
+    /* Tab Navigation */
+    .nav-tabs {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+    .nav-tabs > li {
+      margin-botton: -2px;
+    }
+    .nav-tabs > li > a {
+        background: #6f76ff;  /* #DADADA; */
+        color: white;
+        border-radius: 7px 7px 0 0;
+        /* border-bottom: 2px solid gray; */
+        /* box-shadow: inset 0 -8px 7px -9px rgba(0,0,0,.4),-2px -2px 5px -2px rgba(0,0,0,.4); */
+    }
+    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus  {
+        background: #F5F5F5;
+        color: inherit !important;
+        border-radius: 10px 10px 0 0;
+        border-width: 1px 1px 0 1px;
+        border-color: lightgray;
+        border-style: solid;
+    }
+    /* .nav-tabs > li.active > a:hover { */
+    .nav-tabs > li > a:hover {
+        background: #66de97;  /* #F5F5F5; */
+        color: white;
+        border-radius: 7px 7px 0 0;
+        border-width: 1px 1px 0 1px;
+        border-color: lightgray;
+        border-style: solid;
+        /* box-shadow: inset 0 0 0 0 rgba(0,0,0,.4),-2px -3px 5px -2px rgba(0,0,0,.4); */
+    }
+
+    /* Tab Content */
+    .tab-pane {
+        background: #F5F5F5;
+        border: 1px solid lightgray;
+        /* box-shadow: 0 0 4px rgba(0,0,0,.4); */
+        /* border-radius: 0; */
+        text-align: center;
+        padding: 10px;
+        margin-top: -1px;
+    }
+
+  minaml: |
+    .modal-dialog#signin_signup_modal
+      .modal-content
+        .modal-header
+          button.close data-dismiss="modal" type="button" aria-hidden="true" | ×
+          > img.pull-left src=/images/logos/logo-cropped-45.png alt=eracks-logo" style="height:45px;margin:7px 0"
+          h3 style="margin: 21px 0 0 300px"
+            Login to eRacks
+        .modal-body role="tabpanel"
+          ul.nav.nav-tabs role=tablist
+            li.active role=presentation
+              a href=#signin role=tab data-toggle=tab aria-controls=signin | Signin
+            li role=presentation
+              a href=#signup role=tab data-toggle=tab aria-controls=signup | ... Or Signup
+          .tab-content
+            .tab-pane.active#signin
+              form method=post action="{% url 'userena_signin' %}"
+                {% csrf_token %}
+                table
+                  = signin_form.as_table
+                > input.btn.btn-block.btn-lg.btn-primary type=submit name=submit value="Signin"
+              .forgot-password
+                a href="{% url 'userena_password_reset' %}" title="Forgot your password?"
+                  Forgot your password?
+            .tab-pane#signup
+              form action="{% url 'userena_signup' %}" method="post"
+                {% csrf_token %}
+                table |= signup_form
+                > input.btn.btn-block.btn-lg.btn-primary type=submit name=submit value="Signup"
+
+
+### GENERIC DECLARATIONS - NAV BAR ###
+
+navbar-brand-logo:     # a.navbar-brand
+  attr:
+    href: /
+    title: eRacks Open Source Systems
+  #This transforms all the images, due to self.context bug:
+  #a.navbar-brand img:
+  #  attr:
+  #    src:   /images/logos/logo-cropped-45.png
+  #    alt:   eRacks-Logo
+  #    style: "height:45px;margin-top:-7px"
+  minaml: |
+    > img src=/images/logos/logo-cropped-45.png alt=eRacks-Logo style="height:45px;width:225px;margin-top:-12px"
+
+main-nav-megamenus:
+  merge_styles: |
+    .dropdown-menu li.megamenu-content a {
+      padding: 0;
+    ￼  font-size: small;
+      font-family: Helvetica, Arial, sans-serif;
+      font-stretch: condensed;
+    }
+    .dropdown-menu li.megamenu-content a.cat-title {
+      margin: 5px -10px;
+      padding: 10px 5px;
+      display: inline-block;
+      background-color: antiquewhite;  /* lightgray, lavender, gold, khaki, salmon, lightsalmon, darksalmon, moccasin, thistle, wheat, springgreen is pretty close to the tshop theme green */
+      border-radius: 5px;
+    }
+    .dropdown-menu li.megamenu-content a.cat-title:hover {
+      background-color: gray;
+      color: white;
+    }
+    .dropdown-menu li.megamenu-content a.cat-title img {
+      width:40px;
+      height:auto;
+    }
+    .product {
+      text-align: left;
+      padding: 0 6px;
+      overflow: hidden;
+      /* font-stretch: extra-condensed; */
+      /* font-size: xx-small; */
+    }
+  minaml: |
+    %load cache
+    %cache 36000 product_list
+      li.dropdown.megamenu-80width
+        a.dropdown-toggle data-toggle=dropdown href="/products/" title="eRacks Product Showroom"
+          Products
+          .caret ||
+        ul.dropdown-menu
+          li.megamenu-content
+            .row
+              .col-md-2.col-sm-3.col-xs-4.category
+                a.cat-title href="/products/" title="eRacks Product Showroom - Featured Categories"
+                  strong | eRacks Product Showroom
+                %for cat in Categories_objects.published
+                    a.cat-title href="{{ cat.url }}" title="{{ cat.title }}"
+                      .pull-right |= cat.image|safe
+                      strong |= cat.name
+                    %if not cat.name = "Legacy Systems"
+                      %for prod in cat.product_set.published
+                        .product
+                          a href='{{ prod.url }}' title='{{ prod.title_or_name }}'
+                            =prod.name
+                  %if forloop.counter|divisibleby:"3"
+                    </div><div class="col-md-2 col-sm-3 col-xs-4 category">
+
+          ::comment
+            old:
+            .columns5
+              %for cat in Categories_objects.published
+                a href="{{ cat.url }}" title="{{ cat.title }}"
+                  strong |= cat.name
+                =cat.prods_as_divs
+      li
+          a.main href="/services/" title="eRacks Services" | Services
+      li
+          a.main href="/customers/" title="eRacks Customers and Testimonials" | Customers
+      li
+          a.main href="/press/" title="News about eRacks, Press Releases" | Press
+      li
+          a.main href="http://blog.eracks.com/" title="eRacks Tech News and Blog" | Blog
+      li.dropdown
+        a.main.dropdown-toggle href="/corporate/" title="About eRacks" data-toggle=dropdown
+          About Us
+          <b class="caret"> </b>
+        ::comment
+          li
+            a.main href="/faq/" title="eRacks Frequently Asked Questions" | FAQ
+        ul class=dropdown-menu style="right:initial;margin-left:-20px;"
+          li
+            a.main href="/corporate/" title="eRacks Corporate" | Corporate
+          li
+            a.main href="/partners/" title="eRacks Partners" | Partners
+          li
+            a.main href="{% url 'contact' %}" title="Contact eRacks" | Contact Us
+      % include "_search_menu_entry.html"
+
+      ::comment
+        li
+          form#search class=nice action=/search/
+            Search
+            > input type=search class="small input-text" placeholder="Enter search text" name=q
+            > input type=submit class="nice small radius red button" value=GO
+
+
+
+### GENERIC DECLARATIONS - breadcrumbs, H1 title, misc page widgets ###
+
+breadcrumbs:
+  minaml: |
+    li
+      a href="/" title="eRacks Home Page" | Home
+    %if breadcrumbs.real
+      li
+        a.current href=# title='{{ title }}'
+          % firstof name title 'Page'
+      %else
+      %for bc in breadcrumbs
+        li
+          a href="{{ bc.url }}" title="{{ bc.title }}" | {{ bc.name }}
+      ::comment
+        %empty
+        h2.text-center.w100 | Open Source Systems since 1999
+
+page-title:
+  minaml: |
+    h1 style=font-size:xx-large;color:white;letter-spacing:4px;margin:0 title='{{ title }}' | {{ title }}
+
+tagline-well:
+  merge_styles: |
+    /* tagline well */
+    #tagline {
+      margin-top: 10px;
+    }
+    #tagline h2 {
+      padding-bottom: 0;
+      margin: 0;
+      font-size: 1.8em;
+      line-height: inherit;
+    }
+  minaml: |
+    .well.well-sm#tagline
+      =list_social_share
+      h2
+        em
+          eRacks Systems - Open Source experts since 1999
+
+
+### GENERIC DECLARATIONS - main content with messages ###
+
+base-content:
+  minaml: |
+    % include "_toast_messages.html"
+    % block content
+      % if title
+        h1 title="{{title}}"
+          =title
+      =content|safe
+
+
+
+### HOME PAGE ONLY - HEAD STYLES - obdject candidate ###
+
+owl-slider-styles:  # move to owl-slider obdject
+  merge_styles: |
+    /* Home page slider - good obdject candidate
+    Is this first one used?  I think not - JJW 10/29/15
+    #productShowCase .product-title {
+      font-family: oswald;
+      font-size: 24px;
+      font-weight: normal;
+      letter-spacing: 0.25px;
+      line-height: 36px;
+      margin-bottom: 0;
+    }
+    */
+    .product-slide h2 {
+      font-size: xx-large;
+      font-weight: normal;
+      text-transform: none;
+    }
+    .product-slide h3 {
+      font-size: x-large;
+      font-weight: normal;
+    }
+    .details-description {
+      font-size: large;
+    }
+    .product-price {
+      font-size:x-large;
+      margin-bottom:10px;
+    }
+    .ps-nav {
+      display: block;
+      font-size: 68px;
+      height: auto;
+      position: absolute;
+      text-align: center;
+      top: 38%;
+      width: auto;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    }
+    #ps-next {
+      right:0;
+    }
+    #ps-prev {
+      left:0;
+    }
+
+
+### HOME PAGE ONLY - MAIN CONTENT - obdject (with merged styles, could still merge in js for carousel) ###
+
+home-page-content:
+  merge_styles: |
+    /* eRacks news sidebar
+    .eracks-news {
+      padding: 2px;
+      line-height: initial;
+      text-align: center;
+    }
+    .eracks-news li {
+      list-style-type: none;
+      height: 100%;
+    }
+    .eracks-news ul {
+      padding: 0;
+    }
+    @media (max-width: 991px) {
+      .eracks-news ul li {
+        display: inline-block;
+        width:200px;
+      }
+    }
+    */
+  minaml: |
+    % include "_toast_messages.html"
+    % block content
+      % include "_featured_images.html"
+      %if home2
+        .row.row-eq-height.hidden-xs
+          %for snip in home2
+            .col-lg-6.col-md-6.col-sm-6.row-eq-height
+              .panel.panel-info
+                ::comment
+                  .panel-heading
+                .panel-body
+                  h2 |= snip.title
+                  =snip.body|safe
+        .row.hidden-md.hidden-lg.hidden-sm
+          %for snip in home2
+            .col-sm-12.col-xs-12
+              .panel.panel-info
+                .panel-body
+                  h2 |= snip.title
+                  =snip.body|safe
+      %if home3
+        .row.row-eq-height.hidden-xs
+          %for snip in home3
+            .col-lg-4.col-md-4.col-sm-4.row-eq-height
+              .panel.panel-info
+                .panel-body
+                  h2 |= snip.title
+                  =snip.body|safe
+        .row.hidden-md.hidden-lg.hidden-sm
+          %for snip in home3
+            .col-sm-12.col-xs-12
+              .panel.panel-info
+                .panel-body
+                  h2 |= snip.title
+                  =snip.body|safe
+      %if home4
+        .row.row-eq-height.hidden-xs
+          %for snip in home4
+            .col-lg-3.col-md-3.col-sm-6.row-eq-height
+              .panel.panel-info
+                .panel-body
+                  h2 |= snip.title
+                  =snip.body|safe
+        .row.hidden-sm.hidden-md.hidden-lg
+          %for snip in home4
+            .col-xs-12
+              .panel.panel-info
+                .panel-body
+                  h2 |= snip.title
+                  =snip.body|safe
+      %include "_bloglet_list.html"
+
+    ::comment
+      .col-lg-3.col-md-3.col-sm-12.col-xs-12
+        .panel.panel-info
+          .panel-heading
+            h3.panel-title
+              =new_home_page_text_1.object.title
+          .panel-body
+            =new_home_page_text_1
+      .col-lg-3.col-md-3.col-sm-12.col-xs-12
+        .panel.panel-info
+          .panel-heading
+            h3.panel-title
+              =new_home_page_text_2.object.title
+          .panel-body
+            =new_home_page_text_2
+      .col-lg-3.col-md-3.col-sm-12.col-xs-12
+        .panel.panel-info
+          .panel-heading
+            h3.panel-title
+              =new_home_page_text_3.object.title
+          .panel-body
+            =new_home_page_text_3
+      .col-lg-3.col-md-3.col-sm-12.col-xs-12
+        .panel.panel-info
+          .panel-heading
+            h3.panel-title
+              =twitter_widget.object.title
+          .panel-body
+            =twitter_widget
+      %include "_bloglet_list.html"
+
+    ::comment
+      .col-lg-2.col-md-2.hidden-xs.hidden-sm.eracks-news
+        %include "_bloglet_list.html"
+      .col-xs-12.hidden-md.hidden-lg.eracks-news.horizontal
+        %include "_bloglet_list.html"
+
+
+### HOME PAGE ONLY - BODY-BOTTOM - SCRIPT - ACTIVATE CAROUSEL - obdject candidate ##
+
+owl-slider-scripts:
+  merge_scripts: |
+    // Home page slider - featured images
+    $(document).ready(function () {
+      var pshowcase = $("#productShowCase");
+      pshowcase.owlCarousel({
+          autoPlay : 4000,
+          stopOnHover: true,
+          navigation: false,
+          paginationSpeed: 1000,
+          goToFirstSpeed: 2000,
+          singleItem: true,
+          //autoHeight: true
+      });
+
+      // Custom Navigation Events
+      $("#ps-next").click(function() {
+          pshowcase.trigger('owl.next');
+      })
+      $("#ps-prev").click(function() {
+          pshowcase.trigger('owl.prev');
+      })
+    });
+
+
+eracks-news-scripts:
+  merge_scripts: |
+    // eRacks News carousel owl scripts
+    $(document).ready(function () {
+      var news = $(".eracks-news-carousel");
+      news.owlCarousel ({
+          navigation:false,
+          pagination:false,
+          items:6,
+          itemsTablet:[768,4],
+          itemsMobile:[400,3]
+      });
+
+      $("#nextNews").click(function(){news.trigger('owl.next');})
+      $("#prevNews").click(function(){news.trigger('owl.prev');})
+    });
+
+
+### BRAND CAROUSEL ###
+
+brand-carousel:  # from tshop, to massage into a generic one
+  merge_scripts: |
+    // Brand carousel owl scripts
+    $(document).ready(function () {
+      var owl = $(".brand-carousel");
+      owl.owlCarousel ({
+          navigation:false,
+          pagination:false,
+          items:8,
+          itemsTablet:[768,6],
+          itemsMobile:[400,4]
+      });
+
+      $("#nextBrand").click(function(){owl.trigger('owl.next');})
+      $("#prevBrand").click(function(){owl.trigger('owl.prev');})
+    });
+
+  h3.section-title:    #innerHtml: Our Brands, Partners, and Supported Organizations
+    minaml: |
+      span style="text-transform:none;"
+        Our Brands, Partners, and Supported Organizations
+      a.link.pull-right.carousel-nav#nextBrand"
+        i.fa.fa-angle-right ||
+      a.link.pull-right.carousel-nav#prevBrand"
+        i.fa.fa-angle-left ||
+
+  .owl-carousel.brand-carousel:
+    addClass: nojs-inline
+    minaml: |
+      li
+        a href="http://www.ubuntu.com" target="new"
+          > img src="/images/logos/ubuntu.gif" height="46" width="40" alt="Ubuntu" title="Ubuntu"
+      li
+        a href="http://www.gentoo.org" target="new"
+          > img src="/images/logos/gentoo.jpg" alt="Gentoo" title="Gentoo" height="46" width="45"
+      li
+        a href="http://www.debian.org" target="new"
+          > img src="/images/logos/debian.gif" height="46" width="50" alt="Debian Linux"
+      li
+        a href="http://www.centos.org" target="new"
+          > img src="/images/logos/centos.gif" height="46" width="48" alt="CentOS Linux"
+      li
+        a href="http://www.netbsd.org" target="new"
+          > img src="/images/logos/netbsd_small.gif" height="46" width="46" alt="NetBSD"
+      li
+        a href="http://www.freebsd.org" target="new"
+          > img src="/images/logos/freebsd_small.gif" height="46" width="45" alt="FreeBSD"
+      li
+        a href="http://www.linux.org" target="new"
+          > img src="/images/logos/linux_small.gif" height="46" width="45" alt="Linux"
+      li
+        a href="http://www.openbsd.org" target="new"
+          > img src="/images/logos/openbsd_small.gif" height="46" width="55" alt="OpenBSD"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/openstack-46.png" alt="OpenStack"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/cloudstack-46.png" alt="CloudStack"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/WD-46.png" alt="Western Digital"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/HGST-46.png" alt="HGST"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/intel-46.png" alt="Intel"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/AMD-46.png" alt="AMD (Advanced Micro Devices)"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/supermicro-46.png" alt="Supermicro"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/ASUS-46.png" alt="ASUS"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/chenbro-46.png" alt="Chenbro"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/FreeNAS-46.png" alt="FreeNAS"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/Kingston-46.png" alt="Kingston"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/LSI-46.png" alt="LSI / Agavo"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/3ware-46.png" alt="3Ware / Avago"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/Samsung-46.png" alt="Samsung"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/SanDisk-46.png" alt="SanDisk"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/SansDigital-46.png" alt="SansDigital"
+      li
+        a href="/components-we-use/"
+          > img src="/images/logos/brands/46height/seagate-46.png" alt="Seagate"
+
+### GENERIC FOOTER DECLARATION - all bootstrap themes ###
+
+footer-main:
+  merge_styles: |
+    /* Footer fixup for Tshop & themes that SHOUT :-/ */
+    .footer-col h3 {
+      text-transform: none;
+      margin-bottom: 12px;
+    }
+    /* nope - nfg, too many tags intervening
+    .footer-col h3:nth-of-type(2) {
+      padding-top: 12px;
+    }
+    */
+    .footer-col h3.second {
+      padding-top: 12px;
+    }
+
+  minaml: |
+    .container
+      .row:
+        .col-md-3.col-sm-6.margin30
+          .footer-col
+            h3 title="eRacks - About" | eRacks - About
+            ul.list-unstyled
+              li
+                p
+                  eRacks Systems has been providing Open Source expertise, quality hardware with standard COTS components, no vendor-lock-in, and provisioning, DevOps, network, & architecture services since 1999.
+              li
+                h3.second title="eRacks Newsletter" | eRacks Newsletter
+                form action="/customers/save_email/" method="POST"
+                  .input-append.newsLetterBox.text-center
+                    > input.full.text-center type=email name=email placeholder="Your eMail address"
+                    button.btn.bg-gray type=submit
+                      Subscribe <i class="fa fa-long-arrow-right"> </i>
+                p style="padding-top: 10px"
+                  Join our newsletter today to keep up on the latest news, trends, and products from eRacks.
+        .col-md-3.col-sm-6.margin30
+          .footer-col
+            h3 title="eRacks Information" | eRacks Info
+            ul.list-unstyled
+              li | <a href="/rackmount-servers">Rackmount Server Basics</a>
+              li | <a href="/open-source-links/">Open source Links</a>
+              ::comment
+                li
+                  a.main href="/faq/" title="eRacks Frequently Asked Questions" | Frequently Asked Questions
+              li
+                  a.main href="/corporate/" title="About eRacks" | About Us
+              li
+                  a.main href="/contact/" title="Contact eRacks" | Contact Us
+              li
+                  a.main href="/jobs/" title="Positions at eRacks" | Gigs / Jobs
+              li
+                h3.second title="eRacks Miscellaneous" | eRacks Misc
+              li
+                  a.main href="http://blog.eracks.com/" title="eRacks Tech News and Blog" | Blog
+              li
+                  a.main href="http://accessories.eracks.com/" title="eRacks Computer parts and Accessories, notebooks, tablets, etc" | Accessories
+              li
+                  a.main href="http://studio.eracks.com/" title="eRacks Studio and Music-related Blog" | Studio / Music Blog
+              li
+                  a.main href="/policies/privacy-and-legal" | Privacy, Legal Policies
+              li
+                  a.main href="/policies/warranty-and-order" | Warranty & Order Policies
+        .col-md-3.col-sm-6.margin30
+          .footer-col
+            h3 title="eRacks Business" | eRacks Business
+            ul.list-unstyled
+              li
+                  a.main href="/showroom/" title="eRacks Product Showroom" | Products
+              li
+                  a.main href="/services/" title="eRacks Services" | Services
+              li
+                  a.main href="/partners/" title="eRacks Partners" | Partners
+              li
+                  a.main href="/customers/" title="eRacks Customers and Testimonials" | Customers
+              li
+                  a.main href="/press/" title="News about eRacks, Press Releases" | Press
+              li
+                h3.second title="eRacks Technology" | eRacks Technology
+              li
+                a.main href="/components-we-use/" title="eRacks Components" | Components we use
+              li
+                a.main href="#" title="Software RAID" | BIOS vs Linux RAID
+              li
+                a.main href="#" title="RAID - Inexpensive or Independent?" | RAID Disk types
+              li
+                a.main href="#" title="Flash storage vs caching controller" | "Flash" storage myths
+              li
+                a.main href="#" title="Latest memory types" | NVMe, M.2, RAM Flash
+        .col-md-3.col-sm-6.margin30
+          .footer-col
+            h3 title="eRacks Accreditations"
+              eRacks Accreditations
+            ul.list-unstyled
+              li
+                =bbb_horizontal
+                =trustwave_siteseal
+                =geotrust_seal
+              li
+                h3.second title="eRacks Social Media"
+                  eRacks Social
+              li#list-inline-social
+                replaced with list-inline-social obdject
+                ::comment
+                  % include "_list_inline_social.html"
+
+  li#list-inline-social: list-inline-social
+
+footer-copyright:
+  minaml: |
+    span.footer-copyright
+      a href=http://eracks.com title="Top-quality rackmount servers"
+        > img src=/images/logos/smalle.gif alt=small-e
+        eRacks Open Source Systems
+      © 1999-2016 all rights reserved.
+      Powered by <a href=http://eracks.com title="The best rackmount servers">eRacks</a>
+
+
+### EPILOG - INSERTS CONSOLIDATED ASSETS & WRAPS WITH COMPRESS ###
+
+epilog:
+  head:
+    #- prepend: |
+    #    {% load compress %}
+    - append: '{{ quick_styles|safe }}'
+    - append_styles
+
+  head link[rel=stylesheet], head style:
+    #wrap_command: compress css
+    wrap_command: block compress_css
+    #show_attr: href
+
+  html head:
+    - append: '{% block head_bottom %} <!-- block head_bottom (after compress) -->  {% endblock head_bottom %}'
+
+  head script:  # these need to be separate, otherwise one big block will eat the whole doc :)
+    wrap_command: block compress_js_head
+
+  body:
+    - prepend: '{{ google_analytics }}'
+    - append: |
+        {{ js|default:'<!-- empty js variable-->' }}
+        {{ quick_scripts|safe }}
+        {% block js %} <!-- block js --> {% endblock %}
+        {{ clicky }}
+    - append_scripts
+
+  body script:
+    wrap_command: block compress_js_bottom
+
+  html body:
+    - append: '{% block js_bottom %} <!-- block js_bottom (after compress) --> {% endblock js_bottom %}'
+
+comment:
+  home-page-ops:
+    head:
+      - head-styles
+      - home-page-styles
+
+    '#content': home-page-content
+    body: body-bottom-scripts
+    apply: epilog

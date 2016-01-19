@@ -1,0 +1,16 @@
+1/18/16
+rename generic-templates to smth like stheme-list or yaml-list - top-level hit-list
+rename generic-declarions also - 
+ - need smth like process-head, process-navbar, etc - or bnetter, prepare-head, prepare-navbar, etc
+
+
+8/19/15
+
+inverted-tree docs embedded in page for toplevel stheme items
+
+width: 100% for customers
+ - legacy-theme
+ - tshop?
+ - generic?
+
+d amadeus: templets.py too
