@@ -1,0 +1,7 @@
+Mezzanine==4.0.1
+
+# from JJW - where to put idem?
+html5lib
+oauthlib
+
+# also need to ./manage.py migrate somewhere
