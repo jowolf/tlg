@@ -1,0 +1,31 @@
+####### UNIFY THEME #######
+
+config:
+  theme_name: unify
+  theme_path: /home/joe/Unify-v1.9/HTML/
+  templates_path: $project_path/apps/stheme/templates/
+
+  title: The Libre Group
+
+  # meta tags, site info
+  metatitle: $title
+  dctitle: Line server, AMD opteron rack server, Storage servers, NAS server, Open source systems, Cloud server
+  author: $title
+  description: Open Source expertise, knowledge, business models, consulting, and services since 1999
+  keywords: Open Source, Red Hat, Ubuntu, Linux Mint, Debian, Black Duck, Ohloh, Open Core, Consulting, managed services
+  googlevfy: "4QorVb8Z51YbHLZ5hPfk3TQJjblIY43ByE6qFw2-dLU"
+  bingvfy: "E830B9E86F26F425F9F7800DA21086EC"
+  robots: noodp,noydir
+
+  #meta-geo:
+  region: US-CA
+  placename: Los Gatos
+  position: 37.235808;-121.962375
+  #icbm: 37.235808;-121.962375
+
+  preamble: |
+    <!doctype html>
+    <!--[if IE 8]> <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %} class="ie8"> <![endif]-->
+    <!--[if IE 9]> <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %} class="ie9"> <![endif]-->
+    <!--[if !IE]><!--> <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}> <!--<![endif]-->
+    {% load pages_tags mezzanine_tags i18n staticfiles %}

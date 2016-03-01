@@ -4,8 +4,10 @@ import cssutils
 from pyquery import PyQuery as pq
 from pprint import pprint
 from utils import ensure_dirs, ensure_local, my_slugify_url, dt, stylus_compile
+#from jade import jade2django move to utils, if necessary?
 from string import Template
 from html2shpaml import convert as convert_to_shpaml
+#from django_stylus.templatetags.stylus import compileit as stylus_compile
 
 # my ordered-dict solution, works, as well as line numbers:
 from yaml_ordered import ordered_load_all, lines as yaml_lines
@@ -50,6 +52,16 @@ config = Dict (
   project_path  = os.path.dirname (os.path.dirname (my_path)),  # twice for one-below 'apps'
 )
 
+#config.update (
+#  my_path       = my_path,
+#  theme_path    = theme_path,
+#  static_path   = static_path,
+#  ops_path      = ops_path,
+#  templates_path= templates_path,
+#  apps_path     = apps_path,
+#  project_path  = project_path,
+#)
+
 
 def update_config2 (kv):
   global config
@@ -63,22 +75,41 @@ def update_config2 (kv):
   if trace: print 'CONFIG:', ; pprint (config)
 
 
-# def linkstatic():
+def update_config (kv):
+  global config, templates_path
+
+  config.update (kv)
+  if trace: print 'Config keys:', config.keys(), kv
+
+  # could do inject_locals or inject_globals, here
+  theme_name            = config ['theme_name']
+  #theme_url            = config ['theme_url']
+  download              = config.get ('download', 0)  # optional
+  templates_path        = config ['templates_path']
+  theme_path            = config ['theme_path']
+
+  static_link           = os.path.join (static_path, theme_name) if theme_name else ''
+  templates_path        = Template (templates_path).safe_substitute (config)
+  theme_path            = Template (theme_path).safe_substitute (config)
+
+  config.update (
+    static_link         = static_link,
+    templates_path      = templates_path,
+    theme_path          = theme_path,
+  )
+
+  if trace: print 'Config:', ; pprint (config)
+
   # This should be moved to a linkstatic management command:
   # Also see the README in the stheme/static dir, and the theme's assets/css dirs
   # these links should be relative, not absolute, see test_relpath.py - or at least don't overwrite them if they are there already
-  #if theme_path and static_link and os.path.exists (static_link) and not os.path.islink (static_link):
-  #  os.symlink (theme_path, static_link)
+  if theme_path and static_link and os.path.exists (static_link) and not os.path.islink (static_link):
+    os.symlink (theme_path, static_link)
 
-#  if download:
-#    raise Exception ('Deprecated - use cached url instead')
-
-
-def django_present():
   try:
-    sys.path.append (config.project_path)
-    sys.path.append (config.apps_path)
-    os.environ.setdefault ('DJANGO_SETTINGS_MODULE', config.project_name + '.settings')  # 'eracks.settings')
+    sys.path.append (project_path)
+    sys.path.append (apps_path)
+    os.environ.setdefault ('DJANGO_SETTINGS_MODULE', 'eracks.settings')
     import django
     django.setup()
     from django.conf import settings as django_settings
@@ -86,9 +117,12 @@ def django_present():
     django_app_paths = [p for p in django_apps.get_app_paths()
                         if p.startswith (apps_path) and not p.startswith (my_path)]
     if trace: pprint (django_app_paths)
-    return True
+    django_present = 1
   except:
-    print 'Django not present.'
+    django_present = 0
+
+  if download:
+    raise Exception ('Deprecated - use cached url instead')
 
 
 class Operations (object):
@@ -373,21 +407,59 @@ class CssCompileOperations (HtmlTempletOperations):  # Compile from stylus, sass
 
 
 class HtmlPyqueryOperations (Operations):
-  notice = '''
-  WARNING: GENERATED FILE - EDITS WILL BE LOST
-  GENERATED FROM: %s at line %s on %s
-  '''
+  notice = '''\
 
+{#  WARNING: GENERATED FILE - EDITS WILL BE LOST  #}
+{#  GENERATED FROM: %s at line %s on %s  #}
+
+'''
   def load (self, context, fname):
     #self.read (context, fname)
     fname = Template (fname).safe_substitute (config)
-
     with open (fname) as f:
+      # JJW test 2/3/16:
       lxml_etree = html5lib.parse(f, treebuilder="lxml", namespaceHTMLElements=False)
       self.d = pq (lxml_etree.getroot())  # d => dollarsign-equiv, for jquery/pyquery css selector
 
+      #tree = html5lib.parse(f, namespaceHTMLElements=False)  # Empty - indexError
+      #tree = html5lib.parse(f, treebuilder="dom", namespaceHTMLElements=False)  #
+      #print tree
+      #from IPython import embed;embed()
+      #self.d = pq (tree) # .getroot())  # d => dollarsign-equiv, for jquery/pyquery css selector
+
+      #self.d = pq (filename=fname)  # nope, still has /-closed i-tags, aot
+      #self.d = pq ('file://' + fname)  # nope, not recognized as url
+      #self.d = pq (f.read(), parser='html')  # nope, still has /-closed i-tags, aot
+      #self.d = pq (f.read(), parser='lxml')  # nope, no such parser
+      #self.d = pq (f.read(), parser='html5', namespaces = None)  # namespaces still there
+      #self.d = pq (f.read(), parser='soup') # nope, still has /-closed i-tags, aot
+
+      #import lxml
+      #self.d = pq (lxml.etree.fromstring (f.read())) # sntx err on html in head
+      #self.d = pq (lxml.html.fromstring (f.read())) # sntx err on html in head
+      #from lxml.html import html5parser
+      #self.d = pq (html5parser.parse (fname).getroot()) # IndexError: list index out of range - empty
+
+      from lxml import etree
+      #tree = etree.parse(fname)
+      #self.d = pq (tree.getroot())  # sntx err on html in head - same
+
+      #parser = etree.XMLParser (ns_clean=True, recover=True)  # dtd_validation=True)
+      #tree = etree.parse(fname, parser)
+      #self.d = pq (tree.getroot())  # fubar - adds closing 'link' tags in head :-(
+
+      #parser = etree.HTMLParser()
+      #tree = etree.parse(fname, parser)
+      #self.d = pq (tree.getroot())  # nope, still has /-closed i-tags, aot
+
+      #parser = etree.XMLParser (ns_clean=True, recover=True, )# remove_blank_text=True)  # dtd_validation=True)
+      #tree = etree.parse(fname, parser)
+      #self.d = pq (tree.getroot())  # fubar - adds closing 'link' tags in head :-(
+
+      #print self.d
     self.scripts = ''  # cheapo init
     self.styles = ''
+    #self.fname = fname
 
   def remove (self, dselector, dummy):
     dselector.remove()
@@ -395,9 +467,15 @@ class HtmlPyqueryOperations (Operations):
   def remove_filtered (self, dselector, filtered):
     dselector.filter(lambda i, this: pq(this).text().strip().startswith(filtered)).remove()
 
-  #def remove_others (self, dselector, subselector):
-  #  "This does not work, as pyquery's d.not_ does not appear to work at all."
-  #  dselector.not_ (subselector).remove()
+  def remove_others (self, dselector, subselector):
+    "This does not work, as pyquery's d.not_ does not appear to work at all."
+    print 'DSELECTOR', dselector
+    print 'SUBSELECTOR', subselector
+    print 'DSELECTOR NOT', dselector.not_ (subselector) # this does not work
+    print 'SUBSELECTED', dselector (subselector) # this works
+    #print 'SUBSELECTED NOT', dselector (subselector).not_('') # fault
+    dselector.not_ (subselector).remove()
+    print 'DSELECTOR after remove', dselector
 
   def innerHtml (self, dselector, replacement):  # renamed from jquery/pyquery 'html', to avoid conflict with selector
     dselector.html (replacement)
@@ -405,6 +483,11 @@ class HtmlPyqueryOperations (Operations):
   def outerHtml (self, dselector, replacement):
     #dselector.outerHtml (replacement)
     dselector.replace_with(replacement)
+    #parent=dselector.parents()[0]
+    #dselector.remove()
+    #parent.append (pq (replacement))
+    #pq (replacement).append_to (parent)
+    #parent.extend (pq (replacement))
 
   def ensure (self, dselector, kwlist):
     "ensure: Takes list of attribute dictionaries and ensures they are in the tags selected"
@@ -564,6 +647,26 @@ class HtmlPyqueryOperations (Operations):
     "Empties the contents of the dselector node or nodes"
     dselector.empty()
 
+
+  #def wrap_compress_css (self, dselector, tags):
+  #  s = '{% compress css %}\n%s\n{% endcompress %}' % '\n'.join ([t.outerHtml() for t in tags])
+  #  dselector.append ()
+
+  # this works, kind of, needs work w/LFs -
+  #def wrap_command (self, dselector, cmd):  # assumes 2-part cmd, eg 'compress css' or 'block content'
+  #  s = '\n{%% %s %%}\n%s\n{%% end%s %%}' % (cmd,
+  #        '\n'.join ([t.after('\n').outerHtml() for t in dselector.items()]),
+  #        cmd.split()[0])
+  #  dselector.parent().append (s)
+
+  # nope
+  #def wrap_command (self, dselector, cmd):  # assumes 2-part cmd, eg 'compress css' or 'block content'
+  #  s = '\n{%% %s %%}\n%s\n{%% end%s %%}' % (cmd,
+  #        '\n'.join ([t.each (lambda e: e.tail('\n')).outerHtml() for t in dselector.items()]),
+  #        cmd.split()[0])
+  #  dselector.parent().append (s)
+
+  # or this leaves them in place :)
   def wrap_command (self, dselector, cmd):  # assumes 2-part cmd, eg 'compress css' or 'block content'
     l = [t for t in dselector.items()]
     if l:
@@ -701,17 +804,11 @@ class HtmlPyqueryOperations (Operations):
     #u''.join ([lxml.html.tostring (e, encoding=unicode) for e in self.d])
     self._save (self.notice % (map_file, self.map_line, dt()) + dselector.outerHtml(), fname)
 
-  def _build_notice (self):
-    return '{% spaceless %}{% comment %}\n' + \
-      self.notice % (map_file, self.map_line, dt()) + \
-      '\n{% endcomment %}{% endspaceless %}\n'
-
   def save_doc (self, dselector, fname):  # really should refactor to use %20 etc escapes, etc
     from html5lib import serialize
-    #s = u'<!DOCTYPE html>' + \
-    #    ie_shim + \
-    s = config.preamble + \
-        self._build_notice() + \
+    s = u'<!DOCTYPE html>' + \
+        ie_shim + \
+        self.notice % (map_file, self.map_line, dt()) + \
         '%s\n%s' % (serialize (self.d('head')[0], tree="lxml"), serialize (self.d('body')[0], tree="lxml")) + \
         '\n</html>\n'
     self.write (s, fname)

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{#  WARNING: GENERATED FILE - EDITS WILL BE LOST  #}
+{#  GENERATED FROM: templates.yaml at line 68 on 2016-02-02 at 17:56:54 PST(GMT-0800)  #}
+
+
+{% load render_as_template %}
+
+{% block content %}
+
+  <div class="content row">
+    <div class="col-md-9 col-md-push-3">
+
+      {% render_as_template content %}
+    </div>
+
+    <div class="col-md-3 col-md-pull-9">
+      {% include "_category_sidebar.html" %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  <script>
+    /* Scripts for Category sidebar accordion arrows */
+
+    $('.collapseWill').on('click',function(e) {
+      $(this).toggleClass("pressed");
+      e.preventDefault();
+    });
+
+    $(".dropdown-tree-a").click(function() {
+      $(this).parent('.dropdown-tree').toggleClass("open-tree active");
+    });
+  </script>
+{% endblock %}

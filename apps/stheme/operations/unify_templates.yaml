@@ -1,0 +1,419 @@
+####### UNIFY THEME #######
+
+comment:
+  config:
+    theme_name: unify
+    theme_path: /home/joe/Unify-v1.9/HTML/
+    templates_path: $project_path/apps/stheme/templates/
+
+
+  ### UNIFY-SPECIFIC declarations - script/link/image manipulation - adjust paths, head styles, misc
+
+  link-skin-css:  # link[href$="skin-1.css"]:
+    attr:
+      href: assets/css/skin.css
+
+  link-styles-css:  # link[href$="style.css"]:
+    attr:
+      href: assets/css/styles.css
+
+  link-ico-fix:  # link[href^="http://codepeoples.com/tanimdesign.net/thsop-v-1.3/gray/ico"]:
+    attr:
+      href: assets/ico/apple-touch-icon-57-precomposed.png
+
+  #theme-controll-remove:
+  #  .themeControll: remove
+
+  style-remove-themecontroll:
+    remove_filtered: .themeControll
+
+  #script-remove-swapStyleSheet:
+  #  script[src$="pace.min.js"]: remove
+
+  #script-remove-paceOptions:
+  #  remove_filtered: paceOptions
+
+  #script-remove-swapStyleSheet:
+  #  remove_filtered: function swapStyleSheet
+
+  unify-top-bar-left:
+    minaml: |
+      li
+        a href=mailto:info@eracks.com title="eRacks email"
+          <i class="glyphicon glyphicon-envelope">   </i>
+          span.hidden-xs
+            info@eracks.com
+      li
+        a href=callto:1-408-455-0010 title="eRacks phone"
+          <i class="glyphicon glyphicon-phone-alt">   </i>
+          span.hidden-xs
+            +1 408-455-0010
+
+  theme-head-styles:  # this gets picked up in generic head-ops (overwrites prev theme's declaration if present)
+    merge_styles: |
+      {# /* This comment style works - you can't use the // comment style in inline styles (!) */ #}
+      /* media fixups for TShop on sm or md */
+      @media (max-width: 991px) {
+        .navbar-top {
+          font-size: smaller;  # 9px;
+        }
+        .search-box input, .search-box button {
+          font-size: smaller;
+        }
+        .navbar-top li {
+          padding-right: 0;
+        }
+      }
+      @media (max-width: 1199px) {
+        .nav.navbar-nav li a {
+          text-transform: none;
+        }
+      }
+      /* Navbar fixups for Tshop */
+      .navbar-tshop .navbar-top {
+        background: linear-gradient(#5f7cd9,#5971bf);
+      }
+      .navbar-tshop.navbar-fixed-top {
+        /* background: linear-gradient(#8895f4,#606edc); */
+        /* background: linear-gradient(#9499e0,#6f75c5); */
+        background: linear-gradient(#ccf,#99f); /* JJW 10/29/15 */
+      }
+      .nav-tabs li a {
+        text-transform: none;
+        font-family: inherit;
+        font-weight: bold;
+      }
+      /* let's try leaving it white for now
+      .nav.navbar-nav li a {
+        color: rgb(52,73,94);  what you get on 3 of 5 from: inherit;
+      }
+      */
+      .navbar-nav > li > a {    /* only the first level */
+        /*
+        color: #FFF;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        */
+        font-family: Helvetica, Arial, sans-serif;
+        font-stretch: condensed;
+      }
+
+
+# TODO: Either:
+# - fixup all 5 favicon links, such as link[href$="favicon.ico"]:  link-favicon
+# - implement a 'copy' action, or
+# - implement a 'salt' action, to graft a salt state :)
+
+comment:
+ unify-prepare:
+  # tshop-specific fixups:
+  #link[href$="skin-1.css"]: link-skin-css
+  #link[href$="style.css"]:  link-styles-css
+
+  #link[href^="http://templatecycle.com/tshop/v-1.4/gray/ico"]: link-ico-fix
+  #.themeControll: remove
+  #style:  style-remove-themecontroll
+  #script[src$="pace.min.js"]: remove
+  #script[src$="js/script.js"]: remove
+  #img[src$="google_wallet.png"]: remove
+  #script:contains('paceOptions'): remove  # script-remove-paceOptions
+  #script:contains('function swapStyleSheet'): remove  # script-remove-swapStyleSheet
+  #script:contains('![CDATA'): remove  # CloudFlare, email-protector
+  #script:contains('mySwiper'): remove
+  #script[src$="swiper-2.1.min.js"]: remove
+
+  comment:
+    ### top nav, main header - Logo, login, etc
+    .navbar .navbar-top .container .row>div:nth-child(1): #.col-lg-6:
+      removeClass:
+        - col-xs-6
+        - col-sm-6
+        - col-lg-6
+        - col-md-6
+      addClass: [col-xs-4, col-sm-5, col-lg-5, col-md-5]
+    .navbar .navbar-top .container .row>div:nth-child(2):
+      removeClass: [col-xs-6, col-sm-6, col-lg-6, col-md-6]
+      addClass: [col-xs-8, col-sm-7, col-lg-7, col-md-7]
+    #.pull-left .userMenu: unify-top-bar-left
+    #.pull-right .userMenu: top-bar-right   # top-right replacement includes the ul, top-left does not
+    .navbar-top .pull-right: top-bar-right
+    a.navbar-brand: navbar-brand-logo
+    .nav.navbar-nav.navbar-right: remove
+    .navbar .navbar-cart: remove
+    .search-box.pull-right.hidden-lg.hidden-md.hidden-sm: remove
+    button.navbar-toggle[data-target=".navbar-cart"]: remove
+    ul.nav.navbar-nav:
+      addClass: navbar-right
+      apply: main-nav-megamenus
+    .navbar-brand img:
+      attr:
+        style: height:45px;width:225px;margin-top:-7px;margin-left:7px;
+    .modal#ModalSignup: remove
+    .modal#ModalLogin: modal-login-signup
+    #.modal#ModalLogin .modal-body: modal-login-signup
+    #.modal-header h3:
+    #  attr:
+    #    class: none
+    #  minaml: |
+    #    > img src=/images/logos/logo-update-green2-small.png alt=eracks-logo" height=50 style=height:50px
+    #    Login to eRacks
+    .modal-footer: remove
+
+    .container.headerOffset:
+      attr:
+        style: padding-top:95px
+
+    # breadcrumbs - should I do it this way:
+    #.breadcrumbDiv.breadcrumb: breadcrumbs
+    # or take this approach throughout?:
+    .breadcrumbDiv .breadcrumb:
+      attr:
+        id: breadcrumbs
+    '#breadcrumbs': breadcrumbs
+
+    .breadcrumbDiv:
+      prepend: "{{ list_social_share }}"
+
+  ### footer
+  footer .footer: footer-main
+  footer .footer-bottom .container p: footer-copyright
+
+  #.text-center#footer-btm: cut
+  #.text-center#footer-btm: remove
+  #.footer-bottom .container p: paste
+
+
+unify-home-prepare:
+  merge_styles: |
+    h5.parallaxSubtitle {
+      font-weight: initial;
+      background-color: rgba(0,0,0,0.2);
+    }
+    .parallax-section h1.xlarge {
+      text-transform:none;
+      background-color: rgba(0,0,0,0.2);
+    }
+
+  ## removals:
+  .container.headerOffset .row.featuredPostContainer: remove
+
+  .w100.sectionCategory:
+    remove: if you want to see this all-across-dark section, comment out this remove line :)
+    innerHtml: |
+      {% block content_row %}
+      {{ content|default:"Content row goes here!" }}
+      {% endblock content_row %}
+
+  .width100.section-block.text-center: remove
+  .container.main-container:not(.headerOffset) hr.no-margin-top: remove
+  .morePost.featuredPostContainer.style2: remove
+  #.container.main-container: remove
+
+  # extractions and tweaks:
+  #.home-intro h2:
+  #  innerHtml: Open Source Systems since 1999
+  #.home-intro:
+    #outerHtml: tagline-well
+    #remove: let's try this, as outerHtml doesn't follow declarations
+    #apply: tagline-well #nope
+  #'.home-intro:parent': tagline-well  # nope
+  #.container.headerOffset .row .col-lg-12.text-center: tagline-well
+
+  .container.main-container.headerOffset.globalPaddingBottom:
+    removeClass: globalPaddingBottom main-container
+
+  .container.main-container:not(.headerOffset):
+    removeClass: main-container
+
+comment:
+  .width100.section-block:
+    attr:
+      id: brand-carousel
+    apply: brand-carousel
+    #save_template_once: src/_brand_carousel.minaml
+
+  #.width100.section-block#brand-carousel
+
+  .parallax-content h1:
+    #attr:
+    #  style: text-transform:none
+    innerHtml: Finest rackmounts, hosting and services since 1999
+
+  h5.parallaxSubtitle:
+    innerHtml: Private / Hybrid Cloud Hosting, Dev Hosting, Professional services, DevOps / System / Network / Security Architecture
+
+  #.parallax-section:
+  #  save_template_once: src/_parallax_section.minaml
+
+
+
+###### Transformations - theme prep & inherited templates
+
+#### Styles
+
+comment:
+ $theme_name/skin.css:
+  read: $theme_path/assets/css/skin-1.css
+  ireplace:
+    #'#39c381': '#A35C00'
+    '#4ec67f': '#6F76FF'
+    '#4bb777': '#A35CFF'
+    # lame: no case-insensitive replace in python (added re 4/24 jjw)
+    #'#4EC67F': '#6F76FF'
+    #'#4BB777': '#A35CFF'
+
+    # 3rd color, menu hovers, borders, etc
+    '#27ae60': '#8864CD'
+
+    # from http://www.handprint.com/HP/WCL/color13.html
+    '#39c381': '#8864CD'
+    '#48C9B0': '#5D71C1'
+    #8864CD purple
+    #5D71C1 blue
+
+    newsLatterBox: newsLetterBox
+
+  symlink: $static_link/assets/css/skin.css
+
+
+# ToDo: enhance to not require manual name change - So don't forget to change the name below
+# Note the 's': style.css => styles.css  (could call it tshop-styles.css)
+comment:
+ $theme_name/css/custom.css:
+ #old: $theme_name/styles.css:
+  read: $theme_path/assets/css/style.css
+  replace:
+    #/images/parallax/people-collage.jpg: /images/data-center-raised-floor-space.jpg
+    ../../images/parallax/people-collage.jpg: /images/datacenter-technews24h.jpg
+    #/images/data-center-raised-floor-space.jpg: /images/datacenter-technews24h.jpg
+    newsLatterBox: newsLetterBox
+    'min-width: 979px': 'min-width: 992px'
+    'max-width: 979px': 'max-width: 991px'
+    'max-width: 1024px': 'max-width: 1199px'
+    http://fonts.google: //fonts.google
+
+  #symlink: $static_link/assets/css/styles.css
+
+#---
+
+##### Base page, Home page
+
+$theme_name/base.html:
+  load: $theme_path/feature_header_default_fixed.html
+
+  html:
+    - prolog
+    - epilog
+
+comment:
+    #- unify-prepare
+
+    #comment:
+    #  ### add content id
+    #  - .container.headerOffset > div:nth-child(2):  # or could use ::contains(My Account)
+    #      removeClass: row
+    #      attr:
+            id: content
+
+
+    #- '.container #content': base-content
+
+    #comment:
+    #    minaml: |
+    #      % block content
+    #        =content|safe
+
+
+comment:
+ $theme_name/home.html:
+  load: $theme_path/feature_header_default_fixed.html
+
+  apply:
+    #- unify-prepare
+    - unify-home-prepare
+
+    ### add content id
+    - .container.headerOffset > div:nth-child(3):
+        removeClass: row
+        attr:
+          id: content
+
+    - prolog
+
+    # owl slider, home page content - obdject-ify:
+    #- '.container #content': home-page-content
+    #- owl-slider-styles
+    #- owl-slider-scripts
+    #- eracks-news-scripts
+
+    - epilog
+
+
+### Save the static search-box from the appropriate TShop page
+
+comment:
+ $theme_path/index-static-search.html:
+  .search-box.static-search form:
+    attr:
+      action: /search/
+  .search-box.static-search:
+    save_template_once: src/_search_menu_entry.minaml
+
+
+
+### Save the category-list-sidebar from the category page:
+
+comment:
+ $theme_path/category-product-hover.html:
+  #.container.main-container.headerOffset .row > .col-lg-3:
+  #  save_template_once: src/_category_sidebar.minaml
+
+  #.panel-group#accordionNo: cut
+  .panel-group#accordionNo .panel.panel-default: cutOuter
+  .panel-group#accordionNo: paste
+
+
+  .panel-collapse#collapseCategory ul.nav.nav-pills.nav-stacked.tree:
+    #remove_others: li.dropdown-tree.open-tree # doesn't work, but selectors work anyway
+    #remove_others: li:first  # first works OK anyway
+    # could do: :first: cut, remove, paste
+
+    loop:                 # or 'dzip' :)
+      for: cat in Categories_objects.published
+      #li.dropdown-tree.open-tree: could use this instead of pq's :first selector
+      li:first a.dropdown-tree-a:
+        attr:
+          href: "{{ cat.url }}"
+          title: "{{ cat.title }}"
+          #data-toggle: collapse
+        #innerHtml: "{{ cat.name }}"
+        #addClass: collapseWill
+        innerHtml: |
+          <span class="collapseWill pull-left"><i class="fa fa-caret-right"></i></span>
+          {{ cat.name }}
+          <span class="badge pull-right">{{ cat.product_set.published.count|default:42 }}</span>
+      # nope - pyquery CANNOT deal with the tail
+      #li:first a.dropdown-tree-a span.badge:
+      #  innerHtml: "{{ cat.product_set.published.count|default:42 }}"
+      li:first ul.category-level-2.dropdown-menu-tree:
+        innerHtml: "{{ cat.prods_as_lis }}"
+      first: li:first
+      li:first:
+        removeClass: open-tree
+      li:first a.dropdown-tree-a span:
+        addClass: pressed
+      repeat: li:first
+
+  .container.main-container.headerOffset .row > .col-lg-3 .panel-group#accordionNo:
+    #before: |
+    prepend: |
+      <style>
+        #accordionNo .nav-stacked li a {
+          padding: 5px 15px;
+        }
+      </style>
+
+    #save: _category_sidebar.html
+    save_template_once: src/_category_sidebar.minaml
+

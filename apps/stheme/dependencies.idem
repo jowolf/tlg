@@ -1,0 +1,10 @@
+TODO:
+packages:
+  pip:
+    pyquery PyYaml html5lib cssutils pyjade>=3.1  #lxml
+    -e git+https://github.com/jowolf/Html2Shpaml.git#egg=html2shpaml
+
+superuser:
+  bash:
+  do:./manage.py createsuperuser --noinput --username joe --email joe@eracks.com
+  unless: ??

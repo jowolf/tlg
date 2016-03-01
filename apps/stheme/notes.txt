@@ -1,7 +1,190 @@
+2/29
+prepare, extract, compile
+
+2/28
+Synaptic is really in need -
+
+Startup idea: (Similar to Chuck White's & my OSS ideas, but more specific):
+- Web-based social synaptic replacement
+- date of last (meaningful) activity
+- activity rating, 1-10 or smth
+- reviews, ratings, comments - social!
+- alternatives, additional / complementary tools/projects
+- one-click installs
+- make / dev envo
+
+
+2/21
+d urls
+- utils app?
+
+p home page app?
+
+d resize logo
+footer mnu
+
+
+Modularize stheme configs/actions - config contains string substs for site / brand identity:
+TLG config
+Libre hosting config
+JW.VC config
+rcyl or reconcile config for hosted attic backups etc
+osdf config,
+
+Then theme actions:
+
+unify prepare - canonicalization
+unify extract - one time extractions
+unify compile - ongoing compilations with possible event triggers aka signals
+
+
+2/20
+Mezz:
+- missing some basic admin stuff
+- no filebrowser
+- basic stuff!
+- where to edit menus?
+
+
+2/13
+Andy(!)
+CVS
+Adventure
+eRacks dev, pull?
+
+2/10
+Fri 10am Michael Lee 333 w sclara st #610
+
+Lender fraud attorney
+lender malfeasance
+lender overreach
+lender revolving door
+
+
+2/5
+config - text substs
+decls - ops substs
+
+subdir for themne ops?
+config-mezzanine  # blocks, django templ repls
+config
+declarations-unify  # tweaks to decls
+declarations
+prepare-unify  # canonicalize - to /prepared
+extract-unify  # done once - extract bits to /src
+base or templates - save new templates
+compile-unify or templates-unify - save theme-specific tmplts
+
+accumulate body-top like styles, scripts
+
+... after run:
+
+python block - capture print, like i've done elsewhere
+
+ok to mix decls & config, just be sure to separate mezz & theme
+
+use selector sntx for selenium scripter / scraper
+PDF scraper - tabula, check CLI
+
+
+2/4
+=> sls or idem:
+./manage.py createsuperuser --noinput --username joe --email joe@eracks.com
+
+then
+./manage.py changepassword :)
+
+Possible load class:
+class OpsConstructor:
+  class_map = dict (
+    css=self.checkCssClasses,
+    html=self.checkHtmlClasses,
+    yaml=lambda x:y, YamlOperations,
+  )
+
+  def checkCssClasses (self, keys):
+    if keys [0] == 'read':
+      return FileOperations
+    elif keys [0] == 'load':
+      return CssOperations (k, v)
+    elif keys [0] == 'stylus':
+      return CssCompileOperations (k, v)
+  elif ext == 'html':
+    #if isinstance (v, (str, unicode)) or 'minaml' in v:
+    if k.startswith ('$theme_path'):
+      return HtmlPyqueryExtractOperations (k, v)  # extract only, no finalize / save
+    elif v.keys() [0] in ['minaml', 'compile']:
+      return HtmlTempletOperations (k, v)
+    elif v.keys() [0] == 'load':
+      return HtmlPyqueryOperations (k, v)
+    else:
+      raise Exception ('NYI')
+
+  etc
+
+  def construct (k,v):
+    return class_map [ext] (v.keys()) (k,v)
+
+  too convoluted, I like the linear function better..
+  only advantage is you can have if ext in OpsConstructor.class_map in unknown()
+
+
+1/30
+d fix config recursion (lose need for ---, load by line), overlay subsequent calls
+d simplify - just import config first
+doctype, preamble => config
+
+~ apply_templates (s, config) - support multiple templates
+
+
+1/29
+attr spouting &quot;
+a: change to sgl '
+long term: deal w/xml save routines
+
+file structure:
+- decarations-unify
+
+want meta-variables to replace for template template -
+
+need to define interface points, and app/site-specific replacements - eg,
+
+- head stuff (title, meta()desc, key, etc), identifiers (google, bing, etc)
+- navbar
+  - phone #, email
+  - login
+  - main menu
+  - other menus
+- footer
+- content (1, 2, 0 columns)
+- sidebar
+
+--- after run
+
+replacements:
+  title: ..
+  meta:
+    title: ..
+    author: ..
+    description: ..
+    Keywords: ..
+  verify:
+    google: ..
+    bing: ..
+
+
+1/26 tues
+made some good notes at St John's last night, too-
+
+
+1/25/16
+top-level file is already there, themes.yaml
+
+
 1/18/16
 rename generic-templates to smth like stheme-list or yaml-list - top-level hit-list
-rename generic-declarions also - 
- - need smth like process-head, process-navbar, etc - or bnetter, prepare-head, prepare-navbar, etc
+rename generic-declarions also -
+ - need smth like process-head, process-navbar, etc - or better, prepare-head, prepare-navbar, etc
 
 
 8/19/15

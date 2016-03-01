@@ -1,9 +1,10 @@
 ### CONFIG SECTION ###
 
-config:
+comment:
+ config:
   theme_name: ''
-  theme_url: None
-  theme_downloaded_path: None
+  theme_url: ''  # None doesn't work as expected, here, it assigns the string 'None' to the var
+  theme_path: ''
   templates_path: $project_path/apps/stheme/templates/
 
 
@@ -11,14 +12,14 @@ config:
 
 ## from product app
 
-product.html:
-  compile: src/product.minaml
+#product.html:
+#  compile: src/product.minaml
 
 
 ## from customers app
 
-customers.html:
-  compile: src/customers.minaml
+#customers.html:
+#  compile: src/customers.minaml
 
 #_product_detail.html:
 #  compile: src/_product_detail.minaml
@@ -26,14 +27,14 @@ customers.html:
 
 ## for home app
 
-_search_menu_entry.html:
-  compile: src/_search_menu_entry.minaml
+#_search_menu_entry.html:
+#  compile: src/_search_menu_entry.minaml
 
-_list_inline_social.html:
-  compile: src/_list_inline_social.minaml
+#_list_inline_social.html:
+#  compile: src/_list_inline_social.minaml
 
-_category_sidebar.html:
-  compile: src/_category_sidebar.minaml
+#_category_sidebar.html:
+#  compile: src/_category_sidebar.minaml
 
 _toast_messages.html:
   minaml: |
@@ -44,10 +45,7 @@ _toast_messages.html:
           =message
 
 #_featured_images.html:
-#  compile: src/_featured_images.jade
-
-_featured_images.html:
-  compile: src/_featured_images.minaml
+#  compile: src/_featured_images.minaml
 
 _bloglet_list.html:
   minaml: |

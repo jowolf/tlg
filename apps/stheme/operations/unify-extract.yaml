@@ -1,0 +1,66 @@
+####### UNIFY THEME #######
+
+$theme_name/base.html:
+  load: $theme_path/feature_header_default_fixed.html
+
+  html:
+    - prolog
+    - epilog
+
+    - block-body-id
+
+  .style-switcher-btn: remove
+  .style-switcher: remove
+
+  .header .container .logo:
+    addClass: navbar-brand
+    innerHtml: '{{ settings.SITE_TITLE|safe }}{% if settings.SITE_TAGLINE %}<span class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</span>{% endif %}'
+    #after: '{% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}'
+    wrap_command: block navbar_title
+
+    #mezz-logo-tagline
+  .header .navbar-nav: mezz-navbar-and-search
+
+$theme_name/prepared.html:
+  load:
+  ...
+
+$theme_path/page_contact2.html:
+  breadcrumbs
+
+  
+
+breadcrumbs-title or breadcrumbs-row
+navbar-main
+
+content-row
+  optional sidebar
+  content
+  optional sidebar
+
+scrolling clients - pre-footer
+footer
+copyright
+
+
+
+
+comment:
+    #- unify-prepare
+
+    #comment:
+    #  ### add content id
+    #  - .container.headerOffset > div:nth-child(2):  # or could use ::contains(My Account)
+    #      removeClass: row
+    #      attr:
+            id: content
+
+
+    #- '.container #content': base-content
+
+    #comment:
+    #    minaml: |
+    #      % block content
+    #        =content|safe
+
+

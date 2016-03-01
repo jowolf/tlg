@@ -1,0 +1,13 @@
+pyquery
+PyYaml
+html5lib
+cssutils
+#lxml
+
+django-shpaml
+
+#pyjade
+#>=3.1
+
+# depends on lxml - grr:
+-e git+https://github.com/jowolf/Html2Shpaml.git#egg=html2shpaml

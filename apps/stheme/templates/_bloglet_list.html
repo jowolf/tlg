@@ -1,0 +1,28 @@
+{% load cache %}
+
+{#  WARNING: GENERATED FILE - EDITS WILL BE LOST  #}
+{#  GENERATED FROM: templates.yaml at line 49 on 2016-02-02 at 17:56:54 PST(GMT-0800)  #}
+
+
+<div class="clearfix"></div>
+<div class="eracks-news section-block">
+  <h3 class="section-title">
+    <span style="text-transform:none;">
+      eRacks News
+    </span>
+    <a class="link pull-right carousel-nav" id="nextNews"">
+      <i class="fa fa-angle-right"></i>
+    </a>
+    <a class="link pull-right carousel-nav" id="prevNews"">
+      <i class="fa fa-angle-left"></i>
+    </a>
+  </h3>
+
+  <ul class="owl-carousel eracks-news-carousel nojs-inline">
+    {% for post in Post_objects.published %}
+      <li title="{{ post.pub_date|date:'M j Y' }}: {{ post.title }}">
+        {{ post.body|safe }}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

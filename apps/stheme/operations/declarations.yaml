@@ -26,95 +26,89 @@ head-meta-ensure-tags:  # 'ensure' assumes at least one of the selected tags is 
 head-meta-description:
   head meta[name="description"]:
     attr:
-      content: >
-        {% firstof meta_description description
-        "eRacks Open Source Systems -
-        Premium open source rackmounts, desktops, laptops, ultrabooks,
-        consulting, and service since 1999" %}
+      content: "{% firstof meta_description description '$description' %}"
 
 head-meta-title:
   head meta[name="title"]:
     attr:
-      content: '{% firstof meta_title title "eRacks" %}'
+      content: "{% firstof meta_title title '$metatitle' %}"
 
 head-meta-author:
   head meta[name="author"]:
     attr:
-      content: '{% firstof meta_author author "eRacks" %}'  # 'web team' removed 9/21/15 JJW per Satish SEO
+      content: "{% firstof meta_author author '$author' %}"
 
 head-meta-keywords:
   head meta[name='keywords']:
     attr:
-      content: >
-        {% firstof meta_keywords keywords
-        "rackmount, rack mount, cloud server, private cloud, hybrid cloud,
-        Open Source, Red Hat, Ubuntu, Linux Mint, Debian" %}
+      content: "{% firstof meta_keywords keywords '$keywords' %}"
 
 head-meta-google-verification:
   head meta[name='google-site-verification']:
     attr:
-      content: "4QorVb8Z51YbHLZ5hPfk3TQJjblIY43ByE6qFw2-dLU"
+      content: $googlevfy
 
 head-meta-bing-verification:
   head meta[name='msvalidate.01']:
     attr:
-      content: "E830B9E86F26F425F9F7800DA21086EC"
+      content: $bingvfy
 
 head-meta-DC-title:
   head meta[name='DC.title']:
     attr:
-      content: "Line server, AMD opteron rack server, Storage servers, NAS server, Open source systems, Cloud server"
+      content: $dctitle
 
 head-meta-geo-region:
   head meta[name='geo.region']:
     attr:
-      content: US-CA
+      content: $region
 
 head-meta-geo-placename:
   head meta[name='geo.placename']:
     attr:
-      content: "Los Gatos"
+      content: $placename
 
 head-meta-geo-position:
   head meta[name='geo.position']:
     attr:
-      content: "37.235808;-121.962375"
+      content: $position
 
 head-meta-icbm:
   head meta[name='ICBM']:
     attr:
-      content: "37.235808, -121.962375"
+      content: $position
 
 head-meta-robots:
   head meta[name='robots']:
     attr:
-      content: "noodp,noydir"
+      content: $robots
 
 link-asset-prefix:  # link[href^="assets_css_js_or_whatever/"]:
   attr_prefix:
     href: /$theme_name/
 
 link-assets-prefixes:   # still need to be smarter here, and below - look for non-http links
-  'head link[href$="style.css"]':            link-styles-css  # move this one to theme-specific TODO HERE
+  #'head link[href$="style.css"]':            link-styles-css  # move this one to theme-specific TODO HERE
   'head link[href^="assets/"]':              link-asset-prefix
-  'head link[href^="css/"]':                 link-asset-prefix
-  'head link[href^="bootstrap/css/"]':       link-asset-prefix
-  'head link[href^="font-awesome-4.3.0/"]':  link-asset-prefix
-  'head link[href^="rs-plugin/"]':           link-asset-prefix
+  #'head link[href^="css/"]':                 link-asset-prefix
+  #'head link[href^="bootstrap/css/"]':       link-asset-prefix
+  #'head link[href^="font-awesome-4.3.0/"]':  link-asset-prefix
+  #'head link[href^="rs-plugin/"]':           link-asset-prefix
 
 src-assets-prefixes:
   #show_attr: src  # uncomment this for spelunking new theme
   # script tags
   '[src^="assets/"]':         asset-prefix
-  '[src^="js/"]':             asset-prefix
-  '[src^="bootstrap/js/"]':   asset-prefix
-  '[src^="rs-plugin/js/"]':   asset-prefix
+  #'[src^="js/"]':             asset-prefix
+  #'[src^="bootstrap/js/"]':   asset-prefix
+  #'[src^="rs-plugin/js/"]':   asset-prefix
   # img tags
   '[src^="images/"]':         asset-prefix
   '[src^="img/"]':            asset-prefix
   #show_attr: src  # this one doesn't work et the end, after the other selectors, because the self.context has been set to the last dselector..
 
-link-assets-ensure:
+comment:
+ link-assets-ensure:
   head link:
     ensure:
       - href: /tshop/assets/plugins/magnific/magnific-popup.css
@@ -130,7 +124,7 @@ link-assets-ensure:
         type: text/css
         rel: stylesheet
 
-src-assets-ensure:
+ src-assets-ensure:
   script:
     ensure:
       - src: /tshop/assets/plugins/magnific/jquery.magnific-popup.min.js
@@ -139,7 +133,8 @@ asset-prefix:
   attr_prefix:
     src: /$theme_name/
 
-head-noscript:
+comment:
+ head-noscript:
   head:
     append: |
       <noscript>
@@ -158,7 +153,8 @@ head-noscript:
         </style>
       </noscript>
 
-head-styles:
+comment:
+ head-styles:
   merge_styles: |
     {% block head_styles %} /* block head-styles */ {% endblock %}
 
@@ -193,8 +189,8 @@ head-styles:
 
   head:
     append: |
-      {{ css|default:'<!-- empty css variable-->' }}
       {% block css %} <!-- block css --> {% endblock %}
+      {{ css|default:'<!-- empty css variable-->' }}
       {{ javascript|default:'<!-- empty javascript variable-->' }}
       {% block javascripts %} <!-- block javascripts --> {% endblock %}
       {% block extra_head %} <!-- block extra_head--> {% endblock %}
@@ -206,8 +202,8 @@ head-styles:
 
 prolog:
   head:
-    - head-styles         # generic, above
-    - theme-head-styles   # theme-specific, but almost always needed for theme-specific tweaks - defined in theme prolog
+    #- head-styles         # generic, above
+    #- theme-head-styles   # theme-specific, but almost always needed for theme-specific tweaks - defined in theme prolog
 
     - head-meta-ensure-tags
     - head-meta-description
@@ -223,9 +219,9 @@ prolog:
     - head-meta-icbm
     - head-meta-robots
     - link-assets-prefixes
-    - link-assets-ensure
-    - src-assets-ensure
-    - head-noscript
+    #- link-assets-ensure
+    #- src-assets-ensure
+    #- head-noscript
 
   title:
     innerHtml: '{% firstof page_title title "eRacks Open Source Systems" %}'
@@ -237,7 +233,8 @@ prolog:
 
 ### GENERIC DECLARATIONS - (Some are OBDJECTS with styles / js) - TOP BAR ###
 
-top-bar-right:
+comment:
+ top-bar-right:
   #addClass: list-inline .top-social
   merge_styles: |
     /* .top-bar hover dropdowns, also does assan main menu hover */
@@ -401,7 +398,7 @@ top-bar-right:
         });
     });
 
-modal-login-signup:
+ modal-login-signup:
   #attr:
   #  role: tabpanel
   merge_styles: |
@@ -495,7 +492,7 @@ modal-login-signup:
 
 ### GENERIC DECLARATIONS - NAV BAR ###
 
-navbar-brand-logo:     # a.navbar-brand
+ navbar-brand-logo:     # a.navbar-brand
   attr:
     href: /
     title: eRacks Open Source Systems
@@ -508,7 +505,7 @@ navbar-brand-logo:     # a.navbar-brand
   minaml: |
     > img src=/images/logos/logo-cropped-45.png alt=eRacks-Logo style="height:45px;width:225px;margin-top:-12px"
 
-main-nav-megamenus:
+ main-nav-megamenus:
   merge_styles: |
     .dropdown-menu li.megamenu-content a {
       padding: 0;
@@ -590,9 +587,11 @@ main-nav-megamenus:
             a.main href="/corporate/" title="eRacks Corporate" | Corporate
           li
             a.main href="/partners/" title="eRacks Partners" | Partners
-          li
-            a.main href="{% url 'contact' %}" title="Contact eRacks" | Contact Us
-      % include "_search_menu_entry.html"
+          ::comment
+            li
+              a.main href="{% url 'contact' %}" title="Contact eRacks" | Contact Us
+      ::comment
+        % include "_search_menu_entry.html"
 
       ::comment
         li
@@ -625,7 +624,8 @@ page-title:
   minaml: |
     h1 style=font-size:xx-large;color:white;letter-spacing:4px;margin:0 title='{{ title }}' | {{ title }}
 
-tagline-well:
+comment:
+ tagline-well:
   merge_styles: |
     /* tagline well */
     #tagline {
@@ -660,7 +660,8 @@ base-content:
 
 ### HOME PAGE ONLY - HEAD STYLES - obdject candidate ###
 
-owl-slider-styles:  # move to owl-slider obdject
+comment:
+ owl-slider-styles:  # move to owl-slider obdject
   merge_styles: |
     /* Home page slider - good obdject candidate
     Is this first one used?  I think not - JJW 10/29/15
@@ -709,7 +710,8 @@ owl-slider-styles:  # move to owl-slider obdject
 
 ### HOME PAGE ONLY - MAIN CONTENT - obdject (with merged styles, could still merge in js for carousel) ###
 
-home-page-content:
+comment:
+ home-page-content:
   merge_styles: |
     /* eRacks news sidebar
     .eracks-news {
@@ -824,7 +826,7 @@ home-page-content:
 
 ### HOME PAGE ONLY - BODY-BOTTOM - SCRIPT - ACTIVATE CAROUSEL - obdject candidate ##
 
-owl-slider-scripts:
+ owl-slider-scripts:
   merge_scripts: |
     // Home page slider - featured images
     $(document).ready(function () {
@@ -849,7 +851,7 @@ owl-slider-scripts:
     });
 
 
-eracks-news-scripts:
+ eracks-news-scripts:
   merge_scripts: |
     // eRacks News carousel owl scripts
     $(document).ready(function () {
@@ -869,7 +871,7 @@ eracks-news-scripts:
 
 ### BRAND CAROUSEL ###
 
-brand-carousel:  # from tshop, to massage into a generic one
+ brand-carousel:  # from tshop, to massage into a generic one
   merge_scripts: |
     // Brand carousel owl scripts
     $(document).ready(function () {
@@ -976,7 +978,8 @@ brand-carousel:  # from tshop, to massage into a generic one
 
 ### GENERIC FOOTER DECLARATION - all bootstrap themes ###
 
-footer-main:
+comment:
+ footer-main:
   merge_styles: |
     /* Footer fixup for Tshop & themes that SHOUT :-/ */
     .footer-col h3 {
@@ -1081,9 +1084,9 @@ footer-main:
                 ::comment
                   % include "_list_inline_social.html"
 
-  li#list-inline-social: list-inline-social
+  #li#list-inline-social: list-inline-social
 
-footer-copyright:
+ footer-copyright:
   minaml: |
     span.footer-copyright
       a href=http://eracks.com title="Top-quality rackmount servers"
@@ -1099,7 +1102,7 @@ epilog:
   head:
     #- prepend: |
     #    {% load compress %}
-    - append: '{{ quick_styles|safe }}'
+    #- append: '{{ quick_styles|safe }}'
     - append_styles
 
   head link[rel=stylesheet], head style:

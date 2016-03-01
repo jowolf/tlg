@@ -1,7 +1,12 @@
-Mezzanine==4.0.1
+Mezzanine>=4.1
 
 # from JJW - where to put idem?
 html5lib
 oauthlib
+
+# Optional mezz apps, imported if present:
+django-debug-toolbar
+django_extensions
+django-compressor
 
 # also need to ./manage.py migrate somewhere
