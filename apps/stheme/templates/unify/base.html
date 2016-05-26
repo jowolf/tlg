@@ -6,8 +6,8 @@
 {% spaceless %}{% comment %}
 
   WARNING: GENERATED FILE - EDITS WILL BE LOST
-  GENERATED FROM: prepare-unify.yaml at line 2 on 2016-02-05 at 19:25:01 PST(GMT-0800)
-  
+  GENERATED FROM: prepare-unify.yaml at line 0 on 2016-05-04 at 15:26:26 PDT(GMT-0700)
+
 {% endcomment %}{% endspaceless %}
 <head>
 	<title>{% firstof page_title title "eRacks Open Source Systems" %}</title><!-- Meta -->
@@ -30,7 +30,7 @@
 	<link href=favicon.ico rel="shortcut icon">
 
 	<!-- Web Fonts -->
-	
+
 {% block compress_css %}
 <link type=text/css href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin" rel=stylesheet>
 
@@ -50,7 +50,7 @@
 	<link href=/unify/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css rel=stylesheet>
 
 	<!-- CSS Theme -->
-	<link href=/unify/assets/css/theme-colors/default.css rel=stylesheet id=style_color>
+	<link href=/unify/assets/css/theme-colors/{{ settings.ORG_THEME_COLOR }}.css rel=stylesheet id=style_color>
 	<link href=/unify/assets/css/theme-skins/dark.css rel=stylesheet>
 
 	<!-- CSS Customization -->
@@ -71,7 +71,7 @@
 {{ google_analytics }}
 
 <!--=== Style Switcher ===-->
- 
+
 <!--/style-switcher-->
 <!--=== End Style Switcher ===-->
 
@@ -80,7 +80,7 @@
 	<div class="header header-sticky">
 		<div class=container>
 			<!-- Logo -->
-			
+
 {% block navbar_title %}
 <a href=index.html class="logo navbar-brand">{{ settings.SITE_TITLE|safe }}{% if settings.SITE_TAGLINE %}<span class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</span>{% endif %}</a>
 {% endblock %}
@@ -541,4 +541,5 @@
 
 {% block js_bottom %} <!-- block js_bottom (after compress) --> {% endblock js_bottom %}
 
+</body>
 </html>

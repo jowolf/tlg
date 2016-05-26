@@ -1,12 +1,14 @@
 Overview
 ========
 
+Nov 1, 2015
+
 In web development, it's usually tough to maintain an object-oriented perspective of the various bits and pieces that one uses to assemble a website.
 
-One of these major challenges, is the fiddly and annoying task of keeping track of all the bits and pieces that go together, and their dependencies. 
+One of these major challenges, is the fiddly and annoying task of keeping track of all the bits and pieces that go together, and their dependencies.
 
 - Which CSS and which JavaScripts are required for a given HTML snippet or widget to work?
-- Which other assets and images go with those widgets? 
+- Which other assets and images go with those widgets?
 - Which database objects (and the corresponding lists thereof) are going to be displayed by the given widget?
 - Which widgets require other widgets, frameworks, foundations, etc?
 
@@ -18,7 +20,7 @@ Even though caching practices on the client may minimize the additional burden, 
 page load time, debugging, modularity, and so forth.
 
 And furthermore, templating languages, such as Django's template language, (or the closely related Jinja template language), don't make it easy to keep these things grouped together by CSS,
-JS, HTML, or images. 
+JS, HTML, or images.
 
 These templating languages require separate sections for each one, with no standardization of block naming, support for dependencies, inheritance, etc - this is ripe for on automation, or for a better player which helps
 organize these things.
@@ -50,7 +52,7 @@ Here is a (likely incomplete) list of legacy eracks partials / snippets / templa
 app | template | description | legacy location | new theme usage
 ----|----------|-------------|-----------------|----------------
 bloglets ||||
- | _bloglet_list.html | enumerate Bloglet DB table | now in theme-legacy.yaml at line 19 | lower-right home page 
+ | _bloglet_list.html | enumerate Bloglet DB table | now in theme-legacy.yaml at line 19 | lower-right home page
 home |||
  | site.css | Site-specific CSS | now in theme-legacy.yaml at 82 | not used in new themes (they each have their own, called something else)
  | _nav_login.html | Social login icons | now in theme-legacy.yaml at 687 | refactored in new themes, togo in popup?
@@ -97,3 +99,21 @@ orders |||
   - nav_login
   - nav_small
 
+
+TODO
+====
+
+May 9, 2016
+
+List of transformations applied directly to home/templates/base that can be moved to stheme at some point:
+
+footer about1&2
+footer contact
+footer column for blog powsts (tweets?)
+footer column for mezz menu
+
+title (browser page/tab) w/org_title
+
+on_home breadcrumbs vs slider, w/css
+
+logo / tagline tweaks

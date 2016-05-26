@@ -6,7 +6,6 @@ $theme_name/base.html:
   html:
     - prolog
     - epilog
-
     - block-body-id
 
   .style-switcher-btn: remove
@@ -21,20 +20,45 @@ $theme_name/base.html:
     #mezz-logo-tagline
   .header .navbar-nav: mezz-navbar-and-search
 
-
-breadcrumbs-title or breadcrumbs-row
-navbar-main
-
-content-row
-  optional sidebar
-  content
-  optional sidebar
-
-scrolling clients - pre-footer
-footer
-copyright
+  #.footer-v1:
+  #  outerHtml: "{% include 'src/unify/footer.html' %}"  # footer-v1
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+comment:
+  breadcrumbs-title or breadcrumbs-row
+  navbar-main
+
+  content-row
+    optional sidebar
+    content
+    optional sidebar
+
+  scrolling clients - pre-footer
+  footer
+  copyright
 
 
 comment:

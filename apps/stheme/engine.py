@@ -2,7 +2,7 @@ import pyquery, os, sys, argparse, yaml, html5lib, re # lxml,
 import cssutils
 
 from pyquery import PyQuery as pq
-from pprint import pprint
+from pprint import pprint, pformat
 from utils import ensure_dirs, ensure_local, my_slugify_url, dt, stylus_compile
 from string import Template
 from html2shpaml import convert as convert_to_shpaml
@@ -18,13 +18,15 @@ except:
 
 trace = 1
 
+# TODO: see if this is still used:
 ie_shim = '''
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
 '''
 
-# => utils
+#### Utils - move => utils
+
 class Dict (dict):
   def __getattr__ (self, attr):
     return self [attr]
@@ -32,8 +34,21 @@ class Dict (dict):
   def __setattr__ (self, attr, value):
     self [attr] = value
 
+# See http://stackoverflow.com/questions/3906232/python-get-the-print-output-in-an-exec-statement/3906390#3906390
+import StringIO
+import contextlib
 
-#config, declarations, transformations = [d for d in ordered_load_all (open(map_file))] [:3]  # >3 are cmnts
+@contextlib.contextmanager
+def tmpstdout(stdout=None):
+    old = sys.stdout
+    if stdout is None:
+        stdout = StringIO.StringIO()
+    sys.stdout = stdout
+    yield stdout
+    sys.stdout = old
+
+
+#### Config stuff
 
 declarations = {}
 
@@ -48,9 +63,11 @@ config = Dict (
 
   apps_path     = os.path.dirname (my_path),  # once for 'apps'
   project_path  = os.path.dirname (os.path.dirname (my_path)),  # twice for one-below 'apps'
+  project_name  = os.path.basename (os.path.dirname (os.path.dirname (my_path))),
 )
 
 
+# TODO: old - remove
 def update_config2 (kv):
   global config
 
@@ -74,22 +91,36 @@ def update_config2 (kv):
 #    raise Exception ('Deprecated - use cached url instead')
 
 
+#### Django check, set up dictionary
+
+django = Dict()
+
 def django_present():
+  global django
+
   try:
     sys.path.append (config.project_path)
     sys.path.append (config.apps_path)
     os.environ.setdefault ('DJANGO_SETTINGS_MODULE', config.project_name + '.settings')  # 'eracks.settings')
-    import django
-    django.setup()
-    from django.conf import settings as django_settings
-    from django.apps import apps as django_apps
-    django_app_paths = [p for p in django_apps.get_app_paths()
-                        if p.startswith (apps_path) and not p.startswith (my_path)]
-    if trace: pprint (django_app_paths)
+    print 'ENVIRON', pformat (os.environ)
+    import django as dj
+    dj.setup()
+    from django.conf import settings
+    from django.apps import apps
+    app_paths = [p for p in apps.get_app_paths() if p.startswith (config.apps_path) and not p.startswith (my_path)]
+    if trace: pprint (app_paths)
+    django.update (
+      settings = settings,
+      apps = apps,
+      app_paths = app_paths,
+    )
     return True
   except:
     print 'Django not present.'
 
+
+
+#### Main Operations Classes
 
 class Operations (object):
   '''
@@ -103,7 +134,7 @@ class Operations (object):
     self.dct = value  # level-1 or root-level dict
     self.actions = [fn for fn in dir (self)
         if not fn.startswith ('_') and callable (self.__getattribute__ (fn))] # break out into classmethod
-    self.map_line = yaml_lines [node] if yaml_lines else 0  # future: pass in yamlops inst which owns lines
+    self.map_line = yaml_lines [node] if (yaml_lines and hasattr (yaml_lines, node)) else 0  # future: pass in yamlops inst which owns lines
     self.context = None
     if trace:
       print 'MAP_LINE:', self.map_line, node
@@ -163,7 +194,7 @@ class Operations (object):
       self.content = f.read()
       if trace: print fname, 'READ OK'
 
-  def write (self, context, fname):
+  def write (self, context, fname, overwrite=True):
     if fname is None:
       fname = self.fname
 
@@ -174,6 +205,10 @@ class Operations (object):
     else:
       pth = os.path.join (config.templates_path, fname)
       ensure_dirs (pth)
+
+    if os.path.exists (pth) and not overwrite:  # os.path.join (config.templates_path, fname)):
+      if trace: print 'Not overwritten:', fname
+      return
 
     content = context or self.content
 
@@ -256,7 +291,7 @@ class FileOperations (Operations):
 
   def symlink (self, dummy, dest_fname):
     dest_fname = Template (dest_fname).safe_substitute (config)
-    source_path = os.path.join (templates_path, self.root)
+    source_path = os.path.join (config.templates_path, self.root)
     if trace: print 'SYMLINK:', source_path, dest_fname
     # Don't blow away exisitng one if there - may have been done by hand due to need to be relative
     #if os.path.islink (dest_fname):
@@ -325,8 +360,8 @@ class HtmlTempletOperations (Operations):  # could be HtmlCompileOperations
     ext = fname.split ('.') [-1]
 
     if ext == 'minaml':  # TODO: jade, stylus, sass, less, md, etc, shpaml :-)
-      print templates_path, fname
-      self.minaml (None, open (os.path.join (templates_path, fname)).read())
+      print config.templates_path, fname
+      self.minaml (None, open (os.path.join (config.templates_path, fname)).read())
     else:
       raise Exception ('NYI')
 
@@ -683,7 +718,7 @@ class HtmlPyqueryOperations (Operations):
       #print 'http://codepeoples.com/tanimdesign.net/thsop-v-1.3/gray/' + e.attrib [data]
       print e.attrib.get (data, '(No attr)')
 
-  def _save (self, content, fname):
+  def _save_old (self, content, fname, overwrite=True):
     s = content
     # huge kluge:
     # workaround for lxml.etree serializer gratuitously escaping tag attrs which contain URLs
@@ -695,7 +730,13 @@ class HtmlPyqueryOperations (Operations):
          .replace ('%20', ' ') # even more dangerous...  perhaps should just url-unescape the whole str..
          # eg, {% url 'contact' %} - should put both types of quotes in repl, but then would double..
     self.content = s
-    self.write (s, fname)
+    self.write (s, fname, overwrite)
+
+  def _save (self, content, fname, overwrite=True):
+    from html5lib import serialize
+    s = serialize (content, tree="lxml")
+    self.content = s
+    self.write (s, fname, overwrite)
 
   def save (self, dselector, fname):
     #u''.join ([lxml.html.tostring (e, encoding=unicode) for e in self.d])
@@ -721,16 +762,39 @@ class HtmlPyqueryOperations (Operations):
 
   def save_template_once (self, dselector, fname):
     "Save partial template for later editing; don't overwrite!"
-    if os.path.exists (os.path.join (templates_path, fname)):
-      if trace: print 'Not overwritten:', fname
-      return
+    from html5lib import serialize
     ext = fname.lower().split ('.') [-1]
-    s = dselector.outerHtml()
+    #s = dselector.outerHtml()
+    s = serialize (dselector, tree="lxml")
     if ext == 'minaml':
       s = convert_to_shpaml (s)
+    elif ext == 'html':
+      pass # s = s
     else:
-      print 'NYI'
-    self._save (s, fname)
+      print 'NYI'  # TODO: compiled html template, yaml for obdject / declaration
+    if trace: print 'SAVING ONCE:', fname
+    self.write (s, fname, overwrite=False)
+
+  def render (self, dselector, template):
+    assert django_present(), 'Django Not Present'
+    from django.template import Template, RequestContext  # Context
+    #cp = django.settings.TEMPLATES [0] ['OPTIONS'] ['context_processors']
+    t = Template (template or dselector)
+    #c = RequestContext (None, config) #, processors=cp)
+    class C (object): pass
+    r = C()
+    r.META = {}
+    c = RequestContext (r, config) #, processors=cp)
+    dselector.html (t.render(c))
+
+  def python (self, dselector, pycode):
+    assert django_present(), 'Django Not Present'
+
+    with tmpstdout() as s:
+      exec pycode
+
+    print s.getvalue()
+    dselector.html (s.getvalue())
 
   def minaml (self, dselector, template_code):
     dselector.html (convert_text ('\n' + template_code))
@@ -825,9 +889,9 @@ if __name__ == '__main__':
   os.chdir (os.path.join (config.my_path, config.ops_path))
   #if trace: print os.path.join (my_path, ops_path), os.getcwd()
 
-  for arg in sys.argv [1:]:
+  for arg in sys.argv [1:] or ['themes.yaml']:
     YamlOperation (arg, None)()
-  else:
-    YamlOperation ('themes.yaml', None)()
+  #else:  nope - ignores POLS
+  #  YamlOperation ('themes.yaml', None)()
 
 

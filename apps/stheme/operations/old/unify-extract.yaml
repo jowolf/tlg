@@ -1,0 +1,35 @@
+####### UNIFY THEME - EXTRACT SECTIONS #######
+#
+# footer, etc
+
+#$theme_name/index.html:
+#  load: $theme_path/index.html
+
+# theme_path loads pyquery extract, which knows not to save
+$theme_path/index.html:
+  img#logo-footer:
+    attr:
+      src: /static/img/logo-cropped-104x56.png
+      alt: Libre Logo
+
+  div.wrapper > div.footer-v1 > div.footer > div > div > div:nth-child(1) > p:nth-child(2):
+    innerHtml: "{{ about1 }}"
+
+  div.wrapper > div.footer-v1 > div.footer > div > div > div:nth-child(1) > p:nth-child(3):
+    python: |
+      for i in range (50):
+        print i
+
+  div.wrapper > div.footer-v1 > div.footer > div > div > div:nth-child(2) > div > div > h2:
+    innerHtml: Column 2 Headline
+
+  div.wrapper > div.footer-v1 > div.footer > div > div > div:nth-child(3) > div > div > h2:
+    innerHtml: Column 3 Headline
+
+  div.wrapper > div.footer-v1 > div.footer > div > div > div:nth-child(4) > div > div > h2:
+    innerHtml: Column 4 Headline
+
+  .footer-v1:
+    render: False  # template or dselector
+    save_template_once: src/$theme_name/footer.minaml
+    #save_template_once: src/$theme_name/footer.html

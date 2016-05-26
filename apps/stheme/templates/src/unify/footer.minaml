@@ -1,0 +1,179 @@
+div.footer-v1
+    div.footer-v1
+        div.footer
+            div.container
+                div.row
+                    &lt;!-- About --&gt;
+                    div.col-md-3.md-margin-bottom-40
+                        a href=index.html
+                            > img#logo-footer.footer-logo src=/static/img/logo-cropped-104x56.png alt="Libre Logo"
+                        p
+                            About The Libre Group - dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.
+                            p
+                                0
+                                1
+                                2
+                                3
+                                4
+                                5
+                                6
+                                7
+                                8
+                                9
+                                10
+                                11
+                                12
+                                13
+                                14
+                                15
+                                16
+                                17
+                                18
+                                19
+                                20
+                                21
+                                22
+                                23
+                                24
+                                25
+                                26
+                                27
+                                28
+                                29
+                                30
+                                31
+                                32
+                                33
+                                34
+                                35
+                                36
+                                37
+                                38
+                                39
+                                40
+                                41
+                                42
+                                43
+                                44
+                                45
+                                46
+                                47
+                                48
+                                49
+                    &lt;!--/col-md-3-- 
+                    					&lt;!== End About --&gt;
+                    &lt;!-- Latest --&gt;
+                    div.col-md-3.md-margin-bottom-40
+                        div.posts
+                            div.headline
+                                h2 | Column 2 Headline
+                            ul.latest-list.list-unstyled
+                                li
+                                    a href=# | Incredible content
+                                    small | May 8, 2014
+                                li
+                                    a href=# | Best shoots
+                                    small | June 23, 2014
+                                li
+                                    a href=# | New Terms and Conditions
+                                    small | September 15, 2014
+                    &lt;!--/col-md-3-- 
+                    					&lt;!== End Latest --&gt;
+                    &lt;!-- Link List --&gt;
+                    div.col-md-3.md-margin-bottom-40
+                        div.headline
+                            h2 | Useful Links
+                        ul.link-list.list-unstyled
+                            li
+                                a href=# | About us
+                                i.fa.fa-angle-right
+                                    ::comment
+                                        empty
+                            li
+                                a href=# | Portfolio
+                                i.fa.fa-angle-right
+                                    ::comment
+                                        empty
+                            li
+                                a href=# | Latest jobs
+                                i.fa.fa-angle-right
+                                    ::comment
+                                        empty
+                            li
+                                a href=# | Community
+                                i.fa.fa-angle-right
+                                    ::comment
+                                        empty
+                            li
+                                a href=# | Contact us
+                                i.fa.fa-angle-right
+                                    ::comment
+                                        empty
+                    &lt;!--/col-md-3-- 
+                    					&lt;!== End Link List --&gt;
+                    &lt;!-- Address --&gt;
+                    div.col-md-3.md-margin-bottom-40.map-img
+                        div.headline
+                            h2 | Contact Us
+                        address.md-margin-bottom-40
+                            25, Lorem Lis Street, Orange
+                            > br
+                            California, US
+                            > br
+                            Phone: 800 123 3456
+                            > br
+                            Fax: 800 123 3456
+                            > br
+                            Email:
+                            a._BLANK_ href=mailto:info@anybiz.com | info@anybiz.com
+                    &lt;!--/col-md-3-- 
+                    					&lt;!== End Address --&gt;
+        &lt;!--/footer-- 
+        		&lt;div class=copyright&gt;
+        			&lt;div class=container&gt;
+        				&lt;div class=row&gt;
+        					&lt;div class=col-md-6&gt;
+        						&lt;p&gt;
+        							2016 © All Rights Reserved.
+        						   &lt;a href=#&gt;Privacy Policy&lt;/a&gt; | &lt;a href=#&gt;Terms of Service&lt;/a&gt;
+        						&lt;/p&gt;
+        					&lt;/div&gt;
+        					&lt;!== Social Links --&gt;
+        div.col-md-6
+            ul.list-inline.footer-socials
+                li
+                    a.tooltips data-placement=top title=_BLANK_ data-original-title=Facebook href=# data-toggle=tooltip
+                        i.fa.fa-facebook
+                            ::comment
+                                empty
+                li
+                    a.tooltips data-placement=top title=_BLANK_ data-original-title=Skype href=# data-toggle=tooltip
+                        i.fa.fa-skype
+                            ::comment
+                                empty
+                li
+                    a.tooltips data-placement=top title=_BLANK_ data-original-title="Google Plus" href=# data-toggle=tooltip
+                        i.fa.fa-google-plus
+                            ::comment
+                                empty
+                li
+                    a.tooltips data-placement=top title=_BLANK_ data-original-title=Linkedin href=# data-toggle=tooltip
+                        i.fa.fa-linkedin
+                            ::comment
+                                empty
+                li
+                    a.tooltips data-placement=top title=_BLANK_ data-original-title=Pinterest href=# data-toggle=tooltip
+                        i.fa.fa-pinterest
+                            ::comment
+                                empty
+                li
+                    a.tooltips data-placement=top title=_BLANK_ data-original-title=Twitter href=# data-toggle=tooltip
+                        i.fa.fa-twitter
+                            ::comment
+                                empty
+                li
+                    a.tooltips data-placement=top title=_BLANK_ data-original-title=Dribbble href=# data-toggle=tooltip
+                        i.fa.fa-dribbble
+                            ::comment
+                                empty
+        &lt;!-- End Social Links --&gt;

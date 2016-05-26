@@ -1,5 +1,113 @@
+5/11
+if_home slider else bcrumbs
+unify->app?
+
+
+5/9 d disable stheme -
+
+- installed apps
+- middleware
+- comment out templates mods with:
+  - template loader(s)
+  - app_dirs:true (was false)
+- move new installed_apps (with home/tempates) to front
+
+
+5/5, 5/6
+move base to root /templates (or multi-theme structure like tlg2)
+pause stheme
+make list of transformations in stheme/reamde
+
+Org founded year, org name, org Facebook, org Twitter, Etc
+Org blurb or Org description
+
+Menu structure
+org-tweets
+Org contacts or phone
+org location
+
+d Org about1, 2
+
+Check mezzanine login and user profile Pages, for replacement for uSerena
+
+d Download and check in unify 1.94
+
+idea: themes/ app, to allow switching (or host mappings) only, no xformations
+
+
+5/4/16
+stheme notes -
+operations are:
+- run once, to extract
+- run on every theme update
+- run on signal, of db change
+
+p ORG_ mezz options
+
+Still need way to test dev, prod versions of each theme, no?
+
+* need to save base.html somewhere and check in, *or* backport changes to the stheme/operations
+
+
+eRacks vision of the portable data center.
+Quickly deployable, portable / deliverable by truck or helicopter, can be deployed anywhere from a parking lot to a rooftop
+
+- Up to 18 internal racks for a 20' container
+- No water-cooling required
+- a fraction of the cost of competititive products
+- Apply power & go
+
+
+4/8
+Upd issues:
+shahzad: FLASH24, 48; redo old models -
+- floppies
+- drives under 1T
+- QUIET 1U
+
+Productor - Upwork
+
+Lenovo 900, LG Gram
+chromestick, chromebook chrubu etc
+
+plex, mythtv models
+
+PRs - fiverr
+
+try freelancer - project -
+
+
+3/5
+engine -
+  python - capture print, like sh or management commands
+  compile templates in place
+
+unify 1.9.1 merge & upload
+
+Thinking: Footer:
+- where do you want to edit it? On extract / save-once, in Minaml, html, obdject, or?
+- conceptuals: about1, about2, posts, links, Contact, copyright, social
+
+upwork, freelancer
+- social marketing
+- mailouts
+- repost lazarus or QT
+
+shahzad: FLASH24, 48; redo old models -
+- floppies
+- drives under 1T
+- QUIET 1U
+
+Lenovo 900?
+
+
+3/1
+footer - yuk - strip comments?  Extract better?
+
+
 2/29
-prepare, extract, compile
+prepare, p extract, compile
+
 
 2/28
 Synaptic is really in need -

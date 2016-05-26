@@ -64,7 +64,6 @@ register_setting (
 
 
 
-
 # You must also put them below if you want them to be usable in templates - see also
 # https://github.com/stephenmcd/cartridge/blob/master/cartridge/shop/defaults.py
 # https://groups.google.com/forum/#!topic/mezzanine-users/aVUCLKQyHcQ
@@ -81,3 +80,4 @@ register_setting(
       ),
     append=True,
 )
+

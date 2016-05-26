@@ -29,3 +29,9 @@ config:
     <!--[if IE 9]> <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %} class="ie9"> <![endif]-->
     <!--[if !IE]><!--> <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}> <!--<![endif]-->
     {% load pages_tags mezzanine_tags i18n staticfiles %}
+
+  about1: |
+    About The Libre Group - dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.
+
+  about2: |
+    About The Libre Group Too

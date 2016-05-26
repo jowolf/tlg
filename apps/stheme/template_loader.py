@@ -66,42 +66,18 @@ class Loader (AppDirLoader):
             try:
               if theme:
                 #yield safe_join(my_app_path, theme, template_name)  # avoid 'SuspiciousFileOperation'
-                yield os.path.join(my_app_path, theme, template_name)
+                # 4/23/16 JJW address directory trav vuln:
+                pth = os.path.normpath (os.path.join(my_app_path, theme, template_name))
+                if not pth.startswith (my_app_path):
+                  pth = os.path.join(my_app_path, default_theme, template_name)
+                yield pth  # os.path.join(my_app_path, theme, template_name)
               else:
                 #yield safe_join(my_app_path, template_name)  # ditto
                 yield os.path.join(my_app_path, template_name)
             except UnicodeDecodeError:
-                # The template dir name was a bytestring that wasn't valid UTF-8.
-                raise
+                # The template dir name was a bytestring that wasn't valid UTF-8. return default theme.
+                yield os.path.join(my_app_path, default_theme, template_name)
             except ValueError:
                 # The joined path was located outside of template_dir.
                 pass
 
-
-
-
-
-old='''
-            if not template_dirs:
-                template_dirs = app_template_dirs
-
-            if theme and theme in themes:
-                # look for stheme app dir
-                for i,d in enumerate (template_dirs):
-                    if u'stheme' in d:
-                        if not d.endswith (theme):
-                            template_dirs = list (template_dirs)
-                            #template_dirs [i] += '/' + theme
-                            template_dirs.insert (i, template_dirs [i] + '/' + theme)
-            else:
-                for i,d in enumerate (template_dirs):
-                    if u'stheme' in d:
-                        if d.split ('/') [-1] in themes:
-                            template_dirs = list (template_dirs)
-                            template_dirs.del (i)
-                            #template_dirs [i] = '/'.join (d.split ('/') [:-1])
-
-            if trace: import pprint; pprint.pprint (template_dirs)
-
-        return super (Loader, self).get_template_sources (template_name, template_dirs)
-'''

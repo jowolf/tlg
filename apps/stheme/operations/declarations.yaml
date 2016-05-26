@@ -978,6 +978,10 @@ comment:
 
 ### GENERIC FOOTER DECLARATION - all bootstrap themes ###
 
+#footer-v1:
+#  minaml: |
+#    % include 'src/unify/footer.html'
+
 comment:
  footer-main:
   merge_styles: |
