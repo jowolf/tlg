@@ -3,5 +3,8 @@
 *.db
 .DS_Store
 .coverage
-local_settings.py
+
+# no! JJW 6/5/16 HSU
+#local_settings.py
+
 /static
