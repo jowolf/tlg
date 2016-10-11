@@ -1,0 +1,3 @@
+[submodule "themes/unify"]
+	path = themes/unify
+	url = https://github.com/jowolf/unify

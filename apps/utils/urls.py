@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from django.conf.urls import url, patterns, include
+from django.conf.urls import url, include
+
+from apps.utils.views import show_urls
 
 
-urlpatterns = patterns('',
-    (r'^show_urls/(?P<app>.*)$', 'apps.utils.views.show_urls',),
-)
+urlpatterns = [
+    url (r'^show_urls/(?P<app>.*)$', show_urls,),
+  ]

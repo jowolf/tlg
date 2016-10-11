@@ -1,0 +1,16 @@
+10/10/16 JJW
+
+Just did:
+git submodule add https://github.com/jowolf/unify themes/unify
+
+Did not need to do:
+git submodule update --init --recursive
+
+But in the future may need to do:
+git submodule update --recursive
+
+New cloners will need to:
+git clone --recursive <project url>
+
+Source:
+https://github.com/blog/2104-working-with-submodules
