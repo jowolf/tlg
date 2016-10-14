@@ -20,6 +20,10 @@ That's it!
 
 TODO: integrate unify, orange, images/sites, tests.py in apps, wercker, split out stheme into theme swicher and yaml processor
 
+External migrations steps required 10/13:
+- move repo to home dir (no more mezz or meesanone - its now in conf/env) in all dev envos
+- redo virtualenv and check requirements
+
 
 Jan 2016
 --------
