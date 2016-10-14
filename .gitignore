@@ -8,3 +8,5 @@
 #local_settings.py
 
 /static
+env/
+/test_*

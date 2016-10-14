@@ -6,8 +6,8 @@ git submodule add https://github.com/jowolf/unify themes/unify
 Did not need to do:
 git submodule update --init --recursive
 
-But in the future may need to do:
-git submodule update --recursive
+But in the future may need to do if you already have the repo but not the submo:
+git submodule update --init --recursive
 
 New cloners will need to:
 git clone --recursive <project url>

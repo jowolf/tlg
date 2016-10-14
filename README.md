@@ -1,7 +1,28 @@
-The Libre Group web site 2016
-=============================
+TLG - The Libre Group web site 2016
+===================================
 
-With django's-theme engine (stheme app)
+Oct 2016
+--------
+
+Setup:
+
+- clone this repo (into tlg/ by default)
+- cd tlg
+- familiarize yourself
+- cd conf
+- virtualenv env
+- pip -r requirements.txt
+- cd ..
+- ./go.sh (activeates venv)
+- ./manage.py <whatever>
+
+That's it!
+
+
+Jan 2016
+--------
+
+With django's-theme engine (stheme app) 
 
 Todo:
 - modular settings - move or modify manage.py
