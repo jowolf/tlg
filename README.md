@@ -18,6 +18,8 @@ Setup:
 
 That's it!
 
+TODO: integrate unify, orange, images/sites, tests.py in apps, wercker, split out stheme into theme swicher and yaml processor
+
 
 Jan 2016
 --------
