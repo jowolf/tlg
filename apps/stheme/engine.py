@@ -718,7 +718,7 @@ class HtmlPyqueryOperations (Operations):
       #print 'http://codepeoples.com/tanimdesign.net/thsop-v-1.3/gray/' + e.attrib [data]
       print e.attrib.get (data, '(No attr)')
 
-  def _save_old (self, content, fname, overwrite=True):
+  def _save_old (self, content, fname):
     s = content
     # huge kluge:
     # workaround for lxml.etree serializer gratuitously escaping tag attrs which contain URLs
@@ -727,6 +727,7 @@ class HtmlPyqueryOperations (Operations):
          .replace ('7B7B', '{{').replace ('%7D%7D', '}}') \
          .replace ('%7B%%20', '{% ').replace ('%20%%7D', ' %}') \
          .replace ('%7B%', '{%').replace ('%%7D', '%}') \
+         .replace ('&quot;', '"') \
          .replace ('%20', ' ') # even more dangerous...  perhaps should just url-unescape the whole str..
          # eg, {% url 'contact' %} - should put both types of quotes in repl, but then would double..
     self.content = s

@@ -1,3 +1,12 @@
+10/16
+
+for bk of moving parallax items, over a busier (but beautiful!) slider photo:
+
+background-color: rgba(200,200,200,0.5);
+border: 20px solid rgba(200,200,200,.6);
+border-radius: 30px;
+
+
 10/10/16 JJW
 
 Just did:

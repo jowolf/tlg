@@ -28,6 +28,13 @@ DATABASES = {
     }
 }
 
+INSTALLED_APPS = (
+    'apps.home',
+  ) + INSTALLED_APPS
+
+TEMPLATES [0] ['OPTIONS'] ['context_processors'] += ['apps.home.context_processors.is_home',]
+
+
 ###################
 # DEPLOY SETTINGS #
 ###################
