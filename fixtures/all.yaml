@@ -1,0 +1,491 @@
+- model: auth.user
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$30000$aWX54fA2tAHE$glEuL9AFtedlsNuh63gtWkPLk+iwbUMWAItx1v8JG7M=
+    last_login: 2016-10-15 18:42:19.427174+00:00
+    is_superuser: true
+    username: joe
+    first_name: ''
+    last_name: ''
+    email: joe@eracks.com
+    is_staff: true
+    is_active: true
+    date_joined: 2016-02-05 03:42:58.974455+00:00
+    groups: []
+    user_permissions: []
+- model: sites.site
+  pk: 1
+  fields: {domain: '127.0.0.1:8000', name: Local dev server}
+- model: sites.site
+  pk: 2
+  fields: {domain: '127.0.1.1:8000', name: Local dev server 2}
+- model: sites.site
+  pk: 3
+  fields: {domain: jw.vc, name: 'Joe''s VC site, etc'}
+- model: sites.site
+  pk: 4
+  fields: {domain: libresystems.com, name: Libre Systems}
+- model: sites.site
+  pk: 5
+  fields: {domain: thelibregroup.com, name: The Libre Group}
+- model: sites.site
+  pk: 6
+  fields: {domain: librehosting.com, name: Libre Hosting}
+- model: sites.site
+  pk: 7
+  fields: {domain: openletters.to, name: Open Letters}
+- model: sites.site
+  pk: 8
+  fields: {domain: django-i.de, name: Django IDE}
+- model: conf.setting
+  pk: 1
+  fields:
+    site: ['127.0.0.1:8000']
+    name: GOOGLE_ANALYTICS_ID
+    value: ''
+- model: conf.setting
+  pk: 2
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ADMIN_MENU_COLLAPSED
+    value: 'False'
+- model: conf.setting
+  pk: 3
+  fields:
+    site: ['127.0.0.1:8000']
+    name: SEARCH_PER_PAGE
+    value: '10'
+- model: conf.setting
+  pk: 4
+  fields:
+    site: ['127.0.0.1:8000']
+    name: COMMENTS_NUM_LATEST
+    value: '5'
+- model: conf.setting
+  pk: 5
+  fields:
+    site: ['127.0.0.1:8000']
+    name: RICHTEXT_FILTER_LEVEL
+    value: '1'
+- model: conf.setting
+  pk: 6
+  fields:
+    site: ['127.0.0.1:8000']
+    name: TWITTER_CONSUMER_SECRET
+    value: ''
+- model: conf.setting
+  pk: 7
+  fields:
+    site: ['127.0.0.1:8000']
+    name: COMMENTS_UNAPPROVED_VISIBLE
+    value: 'True'
+- model: conf.setting
+  pk: 8
+  fields:
+    site: ['127.0.0.1:8000']
+    name: SITE_TAGLINE
+    value: Open source experts since 1999.
+- model: conf.setting
+  pk: 9
+  fields:
+    site: ['127.0.0.1:8000']
+    name: TWITTER_DEFAULT_QUERY_TYPE
+    value: search
+- model: conf.setting
+  pk: 10
+  fields:
+    site: ['127.0.0.1:8000']
+    name: COMMENTS_REMOVED_VISIBLE
+    value: 'True'
+- model: conf.setting
+  pk: 11
+  fields:
+    site: ['127.0.0.1:8000']
+    name: TWITTER_DEFAULT_NUM_TWEETS
+    value: '3'
+- model: conf.setting
+  pk: 12
+  fields:
+    site: ['127.0.0.1:8000']
+    name: BITLY_ACCESS_TOKEN
+    value: ''
+- model: conf.setting
+  pk: 13
+  fields:
+    site: ['127.0.0.1:8000']
+    name: SSL_ENABLED
+    value: 'False'
+- model: conf.setting
+  pk: 14
+  fields:
+    site: ['127.0.0.1:8000']
+    name: AKISMET_API_KEY
+    value: ''
+- model: conf.setting
+  pk: 15
+  fields:
+    site: ['127.0.0.1:8000']
+    name: COMMENTS_DEFAULT_APPROVED
+    value: 'True'
+- model: conf.setting
+  pk: 16
+  fields:
+    site: ['127.0.0.1:8000']
+    name: TWITTER_ACCESS_TOKEN_KEY
+    value: ''
+- model: conf.setting
+  pk: 17
+  fields:
+    site: ['127.0.0.1:8000']
+    name: TWITTER_DEFAULT_QUERY
+    value: from:stephen_mcd mezzanine
+- model: conf.setting
+  pk: 18
+  fields:
+    site: ['127.0.0.1:8000']
+    name: SITE_TITLE
+    value: <img src="/static/img/logo-cropped-104x56.png" alt="The Libre Group" title="The
+      Libre Group">
+- model: conf.setting
+  pk: 19
+  fields:
+    site: ['127.0.0.1:8000']
+    name: BLOG_POST_PER_PAGE
+    value: '5'
+- model: conf.setting
+  pk: 20
+  fields:
+    site: ['127.0.0.1:8000']
+    name: COMMENTS_NOTIFICATION_EMAILS
+    value: ''
+- model: conf.setting
+  pk: 21
+  fields:
+    site: ['127.0.0.1:8000']
+    name: COMMENTS_DISQUS_API_PUBLIC_KEY
+    value: ''
+- model: conf.setting
+  pk: 22
+  fields:
+    site: ['127.0.0.1:8000']
+    name: COMMENTS_DISQUS_API_SECRET_KEY
+    value: ''
+- model: conf.setting
+  pk: 23
+  fields:
+    site: ['127.0.0.1:8000']
+    name: TWITTER_CONSUMER_KEY
+    value: ''
+- model: conf.setting
+  pk: 24
+  fields:
+    site: ['127.0.0.1:8000']
+    name: COMMENTS_ACCOUNT_REQUIRED
+    value: 'False'
+- model: conf.setting
+  pk: 25
+  fields:
+    site: ['127.0.0.1:8000']
+    name: MAX_PAGING_LINKS
+    value: '10'
+- model: conf.setting
+  pk: 26
+  fields:
+    site: ['127.0.0.1:8000']
+    name: TWITTER_ACCESS_TOKEN_SECRET
+    value: ''
+- model: conf.setting
+  pk: 27
+  fields:
+    site: ['127.0.0.1:8000']
+    name: TAG_CLOUD_SIZES
+    value: '4'
+- model: conf.setting
+  pk: 28
+  fields:
+    site: ['127.0.0.1:8000']
+    name: COMMENTS_DISQUS_SHORTNAME
+    value: ''
+- model: conf.setting
+  pk: 29
+  fields:
+    site: ['127.0.0.1:8000']
+    name: SSL_FORCE_HOST
+    value: ''
+- model: conf.setting
+  pk: 30
+  fields:
+    site: ['127.0.0.1:8000']
+    name: RATINGS_ACCOUNT_REQUIRED
+    value: 'False'
+- model: conf.setting
+  pk: 71
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ORG_LOGO
+    value: <img src="/img/logo.png" alt="{{ settings.SITE_TITLE }}", title="{{ settings.SITE_TITLE
+      }}">
+- model: conf.setting
+  pk: 72
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ORG_THEME_COLOR
+    value: default
+- model: conf.setting
+  pk: 73
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ORG_ABOUT2
+    value: More about your nifty boffo Organization's wonderful and notable accolades
+      and laudable achievements here, too
+- model: conf.setting
+  pk: 74
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ORG_ABOUT1
+    value: About your nifty boffo Organization's accomplishments, strides, trials,
+      and tribulations goes here
+- model: conf.setting
+  pk: 75
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ORG_SLIDER_IMG
+    value: /img/datacenter.jpg
+- model: pages.page
+  pk: 1
+  fields:
+    keywords_string: ''
+    site: ['127.0.0.1:8000']
+    title: My Mezzanine Page
+    slug: my-mezzanine-page
+    _meta_title: ''
+    description: Hi There, this is my Mezzanine Page!
+    gen_description: true
+    created: 2016-02-05 17:59:21.819551+00:00
+    updated: 2016-02-05 17:59:21.819551+00:00
+    status: 2
+    publish_date: 2016-02-05 17:59:21.794573+00:00
+    expiry_date: null
+    short_url: null
+    in_sitemap: true
+    _order: 0
+    content_model: richtextpage
+    parent: null
+    in_menus: 1,2,3
+    titles: My Mezzanine Page
+    login_required: false
+- model: pages.page
+  pk: 2
+  fields:
+    keywords_string: ''
+    site: ['127.0.0.1:8000']
+    title: My Gallery
+    slug: my-gallery
+    _meta_title: ''
+    description: This is my example Gallery
+    gen_description: true
+    created: 2016-02-05 18:03:31.877041+00:00
+    updated: 2016-05-05 02:38:28.526086+00:00
+    status: 2
+    publish_date: 2016-02-05 18:03:31+00:00
+    expiry_date: null
+    short_url: null
+    in_sitemap: true
+    _order: 1
+    content_model: gallery
+    parent: null
+    in_menus: 1,2,3
+    titles: My Gallery
+    login_required: false
+- model: pages.richtextpage
+  pk: 1
+  fields: {content: '<p>Hi There, this is my Mezzanine Page!</p>
+
+      <p></p>
+
+      <p>..to add to the menus.</p>
+
+      <p></p>
+
+      <p>So there,</p>
+
+      <p>Joe</p>
+
+      <p></p>'}
+- model: galleries.gallery
+  pk: 2
+  fields: {content: '<p>This is my example Gallery</p>
+
+      <p></p>
+
+      <p>Within Mezzanine.</p>
+
+      <p></p>
+
+      <p>A top level menu.</p>
+
+      <p></p>
+
+      <p>j</p>', zip_import: ''}
+- model: galleries.galleryimage
+  pk: 1
+  fields: {_order: 0, gallery: 2, file: uploads/my-gallery/psn00015.jpg, description: This
+      is a more detailed description of Psn00015}
+- model: galleries.galleryimage
+  pk: 2
+  fields: {_order: 1, gallery: 2, file: uploads/my-gallery/psn00018.jpg, description: Psn00018}
+- model: galleries.galleryimage
+  pk: 3
+  fields: {_order: 2, gallery: 2, file: uploads/my-gallery/psn00019.jpg, description: Psn00019}
+- model: galleries.galleryimage
+  pk: 4
+  fields: {_order: 3, gallery: 2, file: uploads/my-gallery/psn00020.jpg, description: Psn00020}
+- model: galleries.galleryimage
+  pk: 5
+  fields: {_order: 4, gallery: 2, file: uploads/my-gallery/psn00021.jpg, description: Psn00021}
+- model: galleries.galleryimage
+  pk: 6
+  fields: {_order: 5, gallery: 2, file: uploads/my-gallery/psn00022.jpg, description: Psn00022}
+- model: galleries.galleryimage
+  pk: 7
+  fields: {_order: 6, gallery: 2, file: uploads/my-gallery/psn00023.jpg, description: Psn00023}
+- model: galleries.galleryimage
+  pk: 8
+  fields: {_order: 7, gallery: 2, file: uploads/my-gallery/psn00024.jpg, description: Psn00024}
+- model: galleries.galleryimage
+  pk: 9
+  fields: {_order: 8, gallery: 2, file: uploads/my-gallery/psn00025.jpg, description: Psn00025}
+- model: twitter.query
+  pk: 1
+  fields: {type: search, value: 'from:stephen_mcd mezzanine', interested: true}
+- model: admin.logentry
+  pk: 1
+  fields:
+    action_time: 2016-02-05 17:59:21.853487+00:00
+    user: [joe]
+    content_type: [pages, richtextpage]
+    object_id: '1'
+    object_repr: My Mezzanine Page
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 2
+  fields:
+    action_time: 2016-02-05 18:03:32.170542+00:00
+    user: [joe]
+    content_type: [galleries, gallery]
+    object_id: '2'
+    object_repr: My Gallery
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 3
+  fields:
+    action_time: 2016-02-05 18:05:38.237925+00:00
+    user: [joe]
+    content_type: [sites, site]
+    object_id: '1'
+    object_repr: 127.0.0.1:8000
+    action_flag: 2
+    change_message: Changed domain and name.
+- model: admin.logentry
+  pk: 4
+  fields:
+    action_time: 2016-04-28 02:07:45.126052+00:00
+    user: [joe]
+    content_type: [sites, site]
+    object_id: '2'
+    object_repr: 127.0.1.1:8000
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 5
+  fields:
+    action_time: 2016-04-28 02:08:15.396906+00:00
+    user: [joe]
+    content_type: [sites, site]
+    object_id: '3'
+    object_repr: jw.vc
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 6
+  fields:
+    action_time: 2016-04-28 02:08:37.994691+00:00
+    user: [joe]
+    content_type: [sites, site]
+    object_id: '4'
+    object_repr: libresystems.com
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 7
+  fields:
+    action_time: 2016-04-28 02:08:55.587532+00:00
+    user: [joe]
+    content_type: [sites, site]
+    object_id: '5'
+    object_repr: thelibregroup.com
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 8
+  fields:
+    action_time: 2016-04-28 02:09:44.932576+00:00
+    user: [joe]
+    content_type: [sites, site]
+    object_id: '6'
+    object_repr: librehosting.com
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 9
+  fields:
+    action_time: 2016-04-28 02:10:07.066956+00:00
+    user: [joe]
+    content_type: [sites, site]
+    object_id: '7'
+    object_repr: openletters.to
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 10
+  fields:
+    action_time: 2016-04-28 02:10:27.505353+00:00
+    user: [joe]
+    content_type: [sites, site]
+    object_id: '8'
+    object_repr: django-i.de
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 11
+  fields:
+    action_time: 2016-04-28 02:13:16.244164+00:00
+    user: [joe]
+    content_type: [redirects, redirect]
+    object_id: '1'
+    object_repr: nas ---> https://eracks.com/products/storage-servers-nas/
+    action_flag: 1
+    change_message: ''
+- model: admin.logentry
+  pk: 12
+  fields:
+    action_time: 2016-05-05 02:38:28.620274+00:00
+    user: [joe]
+    content_type: [galleries, gallery]
+    object_id: '2'
+    object_repr: My Gallery
+    action_flag: 2
+    change_message: Changed content and keywords. Changed file and description for
+      Image "This is a more detailed description of Psn00015". Changed file for Image
+      "Psn00018". Changed file for Image "Psn00019". Changed file for Image "Psn00020".
+      Changed file for Image "Psn00021". Changed file for Image "Psn00022". Changed
+      file for Image "Psn00023". Changed file for Image "Psn00024". Changed file for
+      Image "Psn00025".
+- model: redirects.redirect
+  pk: 1
+  fields:
+    site: [jw.vc]
+    old_path: nas
+    new_path: https://eracks.com/products/storage-servers-nas/

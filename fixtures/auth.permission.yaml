@@ -1,0 +1,440 @@
+- model: auth.permission
+  fields:
+    name: Can add permission
+    content_type: [auth, permission]
+    codename: add_permission
+- model: auth.permission
+  fields:
+    name: Can change permission
+    content_type: [auth, permission]
+    codename: change_permission
+- model: auth.permission
+  fields:
+    name: Can delete permission
+    content_type: [auth, permission]
+    codename: delete_permission
+- model: auth.permission
+  fields:
+    name: Can add group
+    content_type: [auth, group]
+    codename: add_group
+- model: auth.permission
+  fields:
+    name: Can change group
+    content_type: [auth, group]
+    codename: change_group
+- model: auth.permission
+  fields:
+    name: Can delete group
+    content_type: [auth, group]
+    codename: delete_group
+- model: auth.permission
+  fields:
+    name: Can add user
+    content_type: [auth, user]
+    codename: add_user
+- model: auth.permission
+  fields:
+    name: Can change user
+    content_type: [auth, user]
+    codename: change_user
+- model: auth.permission
+  fields:
+    name: Can delete user
+    content_type: [auth, user]
+    codename: delete_user
+- model: auth.permission
+  fields:
+    name: Can add content type
+    content_type: [contenttypes, contenttype]
+    codename: add_contenttype
+- model: auth.permission
+  fields:
+    name: Can change content type
+    content_type: [contenttypes, contenttype]
+    codename: change_contenttype
+- model: auth.permission
+  fields:
+    name: Can delete content type
+    content_type: [contenttypes, contenttype]
+    codename: delete_contenttype
+- model: auth.permission
+  fields:
+    name: Can add redirect
+    content_type: [redirects, redirect]
+    codename: add_redirect
+- model: auth.permission
+  fields:
+    name: Can change redirect
+    content_type: [redirects, redirect]
+    codename: change_redirect
+- model: auth.permission
+  fields:
+    name: Can delete redirect
+    content_type: [redirects, redirect]
+    codename: delete_redirect
+- model: auth.permission
+  fields:
+    name: Can add session
+    content_type: [sessions, session]
+    codename: add_session
+- model: auth.permission
+  fields:
+    name: Can change session
+    content_type: [sessions, session]
+    codename: change_session
+- model: auth.permission
+  fields:
+    name: Can delete session
+    content_type: [sessions, session]
+    codename: delete_session
+- model: auth.permission
+  fields:
+    name: Can add site
+    content_type: [sites, site]
+    codename: add_site
+- model: auth.permission
+  fields:
+    name: Can change site
+    content_type: [sites, site]
+    codename: change_site
+- model: auth.permission
+  fields:
+    name: Can delete site
+    content_type: [sites, site]
+    codename: delete_site
+- model: auth.permission
+  fields:
+    name: Can add Setting
+    content_type: [conf, setting]
+    codename: add_setting
+- model: auth.permission
+  fields:
+    name: Can change Setting
+    content_type: [conf, setting]
+    codename: change_setting
+- model: auth.permission
+  fields:
+    name: Can delete Setting
+    content_type: [conf, setting]
+    codename: delete_setting
+- model: auth.permission
+  fields:
+    name: Can add Site permission
+    content_type: [core, sitepermission]
+    codename: add_sitepermission
+- model: auth.permission
+  fields:
+    name: Can change Site permission
+    content_type: [core, sitepermission]
+    codename: change_sitepermission
+- model: auth.permission
+  fields:
+    name: Can delete Site permission
+    content_type: [core, sitepermission]
+    codename: delete_sitepermission
+- model: auth.permission
+  fields:
+    name: Can add Comment
+    content_type: [generic, threadedcomment]
+    codename: add_threadedcomment
+- model: auth.permission
+  fields:
+    name: Can change Comment
+    content_type: [generic, threadedcomment]
+    codename: change_threadedcomment
+- model: auth.permission
+  fields:
+    name: Can delete Comment
+    content_type: [generic, threadedcomment]
+    codename: delete_threadedcomment
+- model: auth.permission
+  fields:
+    name: Can add Keyword
+    content_type: [generic, keyword]
+    codename: add_keyword
+- model: auth.permission
+  fields:
+    name: Can change Keyword
+    content_type: [generic, keyword]
+    codename: change_keyword
+- model: auth.permission
+  fields:
+    name: Can delete Keyword
+    content_type: [generic, keyword]
+    codename: delete_keyword
+- model: auth.permission
+  fields:
+    name: Can add assigned keyword
+    content_type: [generic, assignedkeyword]
+    codename: add_assignedkeyword
+- model: auth.permission
+  fields:
+    name: Can change assigned keyword
+    content_type: [generic, assignedkeyword]
+    codename: change_assignedkeyword
+- model: auth.permission
+  fields:
+    name: Can delete assigned keyword
+    content_type: [generic, assignedkeyword]
+    codename: delete_assignedkeyword
+- model: auth.permission
+  fields:
+    name: Can add Rating
+    content_type: [generic, rating]
+    codename: add_rating
+- model: auth.permission
+  fields:
+    name: Can change Rating
+    content_type: [generic, rating]
+    codename: change_rating
+- model: auth.permission
+  fields:
+    name: Can delete Rating
+    content_type: [generic, rating]
+    codename: delete_rating
+- model: auth.permission
+  fields:
+    name: Can add Page
+    content_type: [pages, page]
+    codename: add_page
+- model: auth.permission
+  fields:
+    name: Can change Page
+    content_type: [pages, page]
+    codename: change_page
+- model: auth.permission
+  fields:
+    name: Can delete Page
+    content_type: [pages, page]
+    codename: delete_page
+- model: auth.permission
+  fields:
+    name: Can add Rich text page
+    content_type: [pages, richtextpage]
+    codename: add_richtextpage
+- model: auth.permission
+  fields:
+    name: Can change Rich text page
+    content_type: [pages, richtextpage]
+    codename: change_richtextpage
+- model: auth.permission
+  fields:
+    name: Can delete Rich text page
+    content_type: [pages, richtextpage]
+    codename: delete_richtextpage
+- model: auth.permission
+  fields:
+    name: Can add Link
+    content_type: [pages, link]
+    codename: add_link
+- model: auth.permission
+  fields:
+    name: Can change Link
+    content_type: [pages, link]
+    codename: change_link
+- model: auth.permission
+  fields:
+    name: Can delete Link
+    content_type: [pages, link]
+    codename: delete_link
+- model: auth.permission
+  fields:
+    name: Can add Blog post
+    content_type: [blog, blogpost]
+    codename: add_blogpost
+- model: auth.permission
+  fields:
+    name: Can change Blog post
+    content_type: [blog, blogpost]
+    codename: change_blogpost
+- model: auth.permission
+  fields:
+    name: Can delete Blog post
+    content_type: [blog, blogpost]
+    codename: delete_blogpost
+- model: auth.permission
+  fields:
+    name: Can add Blog Category
+    content_type: [blog, blogcategory]
+    codename: add_blogcategory
+- model: auth.permission
+  fields:
+    name: Can change Blog Category
+    content_type: [blog, blogcategory]
+    codename: change_blogcategory
+- model: auth.permission
+  fields:
+    name: Can delete Blog Category
+    content_type: [blog, blogcategory]
+    codename: delete_blogcategory
+- model: auth.permission
+  fields:
+    name: Can add Form
+    content_type: [forms, form]
+    codename: add_form
+- model: auth.permission
+  fields:
+    name: Can change Form
+    content_type: [forms, form]
+    codename: change_form
+- model: auth.permission
+  fields:
+    name: Can delete Form
+    content_type: [forms, form]
+    codename: delete_form
+- model: auth.permission
+  fields:
+    name: Can add Field
+    content_type: [forms, field]
+    codename: add_field
+- model: auth.permission
+  fields:
+    name: Can change Field
+    content_type: [forms, field]
+    codename: change_field
+- model: auth.permission
+  fields:
+    name: Can delete Field
+    content_type: [forms, field]
+    codename: delete_field
+- model: auth.permission
+  fields:
+    name: Can add Form entry
+    content_type: [forms, formentry]
+    codename: add_formentry
+- model: auth.permission
+  fields:
+    name: Can change Form entry
+    content_type: [forms, formentry]
+    codename: change_formentry
+- model: auth.permission
+  fields:
+    name: Can delete Form entry
+    content_type: [forms, formentry]
+    codename: delete_formentry
+- model: auth.permission
+  fields:
+    name: Can add Form field entry
+    content_type: [forms, fieldentry]
+    codename: add_fieldentry
+- model: auth.permission
+  fields:
+    name: Can change Form field entry
+    content_type: [forms, fieldentry]
+    codename: change_fieldentry
+- model: auth.permission
+  fields:
+    name: Can delete Form field entry
+    content_type: [forms, fieldentry]
+    codename: delete_fieldentry
+- model: auth.permission
+  fields:
+    name: Can add Gallery
+    content_type: [galleries, gallery]
+    codename: add_gallery
+- model: auth.permission
+  fields:
+    name: Can change Gallery
+    content_type: [galleries, gallery]
+    codename: change_gallery
+- model: auth.permission
+  fields:
+    name: Can delete Gallery
+    content_type: [galleries, gallery]
+    codename: delete_gallery
+- model: auth.permission
+  fields:
+    name: Can add Image
+    content_type: [galleries, galleryimage]
+    codename: add_galleryimage
+- model: auth.permission
+  fields:
+    name: Can change Image
+    content_type: [galleries, galleryimage]
+    codename: change_galleryimage
+- model: auth.permission
+  fields:
+    name: Can delete Image
+    content_type: [galleries, galleryimage]
+    codename: delete_galleryimage
+- model: auth.permission
+  fields:
+    name: Can add Twitter query
+    content_type: [twitter, query]
+    codename: add_query
+- model: auth.permission
+  fields:
+    name: Can change Twitter query
+    content_type: [twitter, query]
+    codename: change_query
+- model: auth.permission
+  fields:
+    name: Can delete Twitter query
+    content_type: [twitter, query]
+    codename: delete_query
+- model: auth.permission
+  fields:
+    name: Can add Tweet
+    content_type: [twitter, tweet]
+    codename: add_tweet
+- model: auth.permission
+  fields:
+    name: Can change Tweet
+    content_type: [twitter, tweet]
+    codename: change_tweet
+- model: auth.permission
+  fields:
+    name: Can delete Tweet
+    content_type: [twitter, tweet]
+    codename: delete_tweet
+- model: auth.permission
+  fields:
+    name: Can add log entry
+    content_type: [admin, logentry]
+    codename: add_logentry
+- model: auth.permission
+  fields:
+    name: Can change log entry
+    content_type: [admin, logentry]
+    codename: change_logentry
+- model: auth.permission
+  fields:
+    name: Can delete log entry
+    content_type: [admin, logentry]
+    codename: delete_logentry
+- model: auth.permission
+  fields:
+    name: Can add comment
+    content_type: [django_comments, comment]
+    codename: add_comment
+- model: auth.permission
+  fields:
+    name: Can change comment
+    content_type: [django_comments, comment]
+    codename: change_comment
+- model: auth.permission
+  fields:
+    name: Can delete comment
+    content_type: [django_comments, comment]
+    codename: delete_comment
+- model: auth.permission
+  fields:
+    name: Can moderate comments
+    content_type: [django_comments, comment]
+    codename: can_moderate
+- model: auth.permission
+  fields:
+    name: Can add comment flag
+    content_type: [django_comments, commentflag]
+    codename: add_commentflag
+- model: auth.permission
+  fields:
+    name: Can change comment flag
+    content_type: [django_comments, commentflag]
+    codename: change_commentflag
+- model: auth.permission
+  fields:
+    name: Can delete comment flag
+    content_type: [django_comments, commentflag]
+    codename: delete_commentflag

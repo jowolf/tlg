@@ -5,6 +5,8 @@ Mezzanine>=4.2.2
 html5lib==1.0b8
 oauthlib
 
+pyyaml
+
 # Optional mezz apps, imported if present:
 django-debug-toolbar
 django_extensions
