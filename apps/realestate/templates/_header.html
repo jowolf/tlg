@@ -21,8 +21,8 @@
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 topbar-block first">
                   <div class="topbar-block-in">
                     <ul class="list-unstyled">
-                      <li class="first-item"><span aria-hidden="true" class="icon-screen-smartphone icon"></span> Call Us</li>
-                      <li class="second-item">+469 548 521</li>
+                      <li class="first-item"><span aria-hidden="true" class="icon-screen-smartphone icon"></span> Phone Us</li>
+                      <li class="second-item">+{{ settings.ORG_PHONE }}</li>
                     </ul>
                   </div>
                 </div>
@@ -30,9 +30,13 @@
                 <div class="col-lg-3 hidden-md hidden-sm hidden-xs topbar-block">
                   <div class="topbar-block-in">
                     <ul class="list-unstyled">
+                      <li class="first-item"><span aria-hidden="true" class="icon-envelope icon"></span> Email us</li>
+                      <li class="second-item">{{ settings.ORG_EMAIL }}</li>
+                    </ul>
+                    <!-- ul class="list-unstyled">
                       <li class="first-item"><span aria-hidden="true" class="icon-clock icon"></span> Opening time</li>
                       <li class="second-item">Mon-Sat: 08.00 - 18.00</li>
-                    </ul>
+                    </ul -->
                   </div>
                 </div>
 
@@ -40,10 +44,6 @@
                   <div class="topbar-block-in">
                       {% block navbar_search_form %}{% search_form "all" %}{% endblock %}
                       {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
-                    <!-- ul class="list-unstyled">
-                      <li class="first-item"><span aria-hidden="true" class="icon-envelope icon"></span> Email us</li>
-                      <li class="second-item">market@info.com</li>
-                    </ul -->
                   </div>
                 </div>
 

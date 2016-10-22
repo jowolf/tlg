@@ -17,6 +17,22 @@ register_setting (
 )
 
 register_setting (
+    name="ORG_PHONE",
+    label="Organization Phone Number",
+    description="The phone number appears on the site for the organization / domain.",
+    editable=True,
+    default='1-800-555-1212',
+)
+
+register_setting (
+    name="ORG_EMAIL",
+    label="Organization eMail Address",
+    description="The eMail address that appears on the site for the organization / domain.",
+    editable=True,
+    default='info@example.org',
+)
+
+register_setting (
     name="ORG_THEME_COLOR",
     label="Organization Theme Color",
     description="The Theme Color that appears for the organization / domain.",
@@ -73,6 +89,8 @@ register_setting(
     editable=False,
     default=(
         "ORG_LOGO",
+        "ORG_PHONE",
+        "ORG_EMAIL",
         "ORG_THEME_COLOR",
         "ORG_ABOUT1",
         "ORG_ABOUT2",
