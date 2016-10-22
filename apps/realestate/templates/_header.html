@@ -1,3 +1,5 @@
+{% load pages_tags mezzanine_tags %}
+
   <!-- Header -->
   <nav class="header-v9 navbar navbar-default navbar-fixed-top" data-role="navigation">
     <div class="container-fluid no-side-padding bg-1">
@@ -6,7 +8,12 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-3 col-xs-4 page-scroll">
-              <a href="#start" class="logo"><img src="assets/img/logo-dark.png" alt="Logo"></a>
+              <a href="#start" class="logo"><img src="assets/img/logo-dark.png" alt="Logo">
+                {% block navbar_title %}
+                {% if settings.SITE_TITLE %}<!-- a class="navbar-brand" href="/" -->{{ settings.SITE_TITLE|safe }}<!-- /a -->{% endif %}
+                {% if settings.SITE_TAGLINE %}<p class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</p>{% endif %}
+                {% endblock %}
+              </a>
             </div>
 
             <div class="col-sm-9 col-xs-8">
@@ -31,10 +38,12 @@
 
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6 topbar-block">
                   <div class="topbar-block-in">
-                    <ul class="list-unstyled">
+                      {% block navbar_search_form %}{% search_form "all" %}{% endblock %}
+                      {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock%}
+                    <!-- ul class="list-unstyled">
                       <li class="first-item"><span aria-hidden="true" class="icon-envelope icon"></span> Email us</li>
                       <li class="second-item">market@info.com</li>
-                    </ul>
+                    </ul -->
                   </div>
                 </div>
 
