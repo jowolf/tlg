@@ -29,6 +29,7 @@ DATABASES = {
 }
 
 INSTALLED_APPS = (
+    'apps.realestate',
     'apps.home',
   ) + INSTALLED_APPS
 

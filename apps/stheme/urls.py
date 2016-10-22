@@ -2,9 +2,9 @@
 
 from django.conf.urls import url, include
 from django.conf import settings
-#from django.http import HttpResponse
 from django.views.static import serve
 
+print 'AHA'
 
 urlpatterns = [
     #url (r'^test2/(?P<path>.*)$',  serve, {'document_root': settings.STATIC_ROOT, 'show_indexes': True }),
