@@ -1,3 +1,11 @@
+10/22
+Colliding files in collectstatic:
+joe@mintstudio-rafaela:~/tlg > diff -w /home/joe/tlg/conf/env/lib/python2.7/site-packages/django/contrib/admin/static/admin/js/actions.js /home/joe/tlg/conf/env/lib/python2.7/site-packages/grappelli_safe/static/admin/js/actions.js
+
+They are similar, buit different.
+Look for strange behaviour in admin.
+
+
 10/16
 
 for bk of moving parallax items, over a busier (but beautiful!) slider photo:

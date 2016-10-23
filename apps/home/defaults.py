@@ -1,17 +1,25 @@
 from mezzanine.conf import register_setting
 
-#register_setting (
-#    name="SITE_LOGO",
-#    label="Site Logo",
-#    description="The Logo that appears with Site Title and Tagline.",
-#    editable=True,
-#    default='<img src="/img/logo.png" alt="{{ settings.SITE_TITLE }}", title="{{ settings.SITE_TITLE }}">',
-#)
+register_setting (
+    name="SITE_STYLES",
+    label="Site Styles",
+    description="Extra style tweaks included in the 'extra_css' block in the header (Copy/Paste to edit).",
+    editable=True,
+    #type="text",
+    default='''\
+    .footer-logo {
+      margin: 17px 0 20px;
+      background: white;
+      border: 10px solid azure;
+      border-radius: 10px;
+    }
+    ''',
+  )
 
 register_setting (
     name="ORG_LOGO",
     label="Organization Logo",
-    description="The Logo that appears for the organization / domain, along with the Site Title and Tagline.",
+    description="The Logo image that appears for the organization / domain. Use with the Site Title for alt & title.",
     editable=True,
     default='<img src="/img/logo.png" alt="{{ settings.SITE_TITLE }}", title="{{ settings.SITE_TITLE }}">',
 )
@@ -19,9 +27,17 @@ register_setting (
 register_setting (
     name="ORG_PHONE",
     label="Organization Phone Number",
-    description="The phone number appears on the site for the organization / domain.",
+    description="The phone number that appears on the site for the organization / domain - include the '+1'.",
     editable=True,
-    default='1-800-555-1212',
+    default='+1800-555-1212',
+)
+
+register_setting (
+    name="ORG_TEXTS",
+    label="Organization Texting Number",
+    description="The phone number for texting that appears on the site for the organization / domain - include the '+1'.",
+    editable=True,
+    default='+1800-555-1212',
 )
 
 register_setting (
@@ -30,6 +46,20 @@ register_setting (
     description="The eMail address that appears on the site for the organization / domain.",
     editable=True,
     default='info@example.org',
+)
+
+register_setting (
+    name="ORG_ADDRESS",
+    label="Organization Address Info",
+    description="Address info (Multiline) that appears in the footer and on the contact page (Copy/Paste to edit).",
+    editable=True,
+    default='''\
+    Los Gatos, Hayward
+    California, US
+    ''',
+    #Phone: +1-800-555-1212
+    #Texts: +1-800-555-1212
+    #eMail: info@example.org
 )
 
 register_setting (
@@ -88,9 +118,12 @@ register_setting(
     description="Sequence of setting names available within templates.",
     editable=False,
     default=(
+        "SITE_STYLES",
         "ORG_LOGO",
         "ORG_PHONE",
+        "ORG_TEXTS",
         "ORG_EMAIL",
+        "ORG_ADDRESS",
         "ORG_THEME_COLOR",
         "ORG_ABOUT1",
         "ORG_ABOUT2",

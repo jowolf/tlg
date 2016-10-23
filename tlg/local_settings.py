@@ -29,12 +29,15 @@ DATABASES = {
 }
 
 INSTALLED_APPS = (
-    'apps.realestate',
+    #'apps.realestate',
     'apps.home',
   ) + INSTALLED_APPS
 
 TEMPLATES [0] ['OPTIONS'] ['context_processors'] += ['apps.home.context_processors.is_home',]
 
+BLOG_URLS_USE_DATE = True
+BLOG_USE_FEATURED_IMAGE = True
+ADMIN_THUMB_SIZE = '36x36'
 
 ###################
 # DEPLOY SETTINGS #
