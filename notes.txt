@@ -5,9 +5,24 @@ joe@mintstudio-rafaela:~/tlg > diff -w /home/joe/tlg/conf/env/lib/python2.7/site
 They are similar, buit different.
 Look for strange behaviour in admin.
 
+TODO:
+- kill slider animations
+- slider feature integration - site or homepage models
+- partly-opaque bk behind features
+
+- fix the top-three menus - what? Theme color?
+
+- call to actions
+
+- row3
+- row4
+
+- clents / custs carousel
+
+- social media model & carousel
+
 
 10/16
-
 for bk of moving parallax items, over a busier (but beautiful!) slider photo:
 
 background-color: rgba(200,200,200,0.5);

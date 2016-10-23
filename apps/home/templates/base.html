@@ -4,181 +4,118 @@
 <!--[if !IE]><!--> <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}> <!--<![endif]-->
 {% load pages_tags mezzanine_tags i18n staticfiles %}
 <head>
-    <title>{% firstof page_title title settings.SITE_TITLE "The Last Libre Group" %}</title>
+  <title>{% firstof page_title title settings.SITE_TITLE "The Last Libre Group" %}</title>
 
-    {# This base.html is based on Unify feature_header_default_fixed.html - JJW #}
+  {# This base.html is based on Unify feature_header_default_fixed.html - JJW #}
 
-    <!-- Meta -->
-    <meta charset=utf-8>
-    <meta name=viewport content="width=device-width, initial-scale=1.0">
-    <meta name=description content="{% firstof meta_description description 'Open Source expertise, knowledge, business models, consulting, and services since 1999' %}">
-    <meta name=author content="{% firstof meta_author author 'The Libre Group' %}">
+  <!-- Meta -->
+  <meta charset=utf-8>
+  <meta name=viewport content="width=device-width, initial-scale=1.0">
+  <meta name=description content="{% firstof meta_description description 'Open Source expertise, knowledge, business models, consulting, and services since 1999' %}">
+  <meta name=author content="{% firstof meta_author author 'The Libre Group' %}">
 
-    <meta name=title content="{% firstof meta_title title 'The Libre Group' %}">
-    <meta name=keywords content="{% firstof meta_keywords keywords 'Open Source, Red Hat, Ubuntu, Linux Mint, Debian, Black Duck, Ohloh, Open Core, Consulting, managed services' %}">
-    <meta name=google-site-verification content=4QorVb8Z51YbHLZ5hPfk3TQJjblIY43ByE6qFw2-dLU>
-    <meta name=msvalidate.01 content=E830B9E86F26F425F9F7800DA21086EC>
-    <meta name=DC.title content="Line server, AMD opteron rack server, Storage servers, NAS server, Open source systems, Cloud server">
-    <meta name=geo.region content=US-CA>
-    <meta name=geo.placename content="Los Gatos">
-    <meta name=geo.position content=37.235808;-121.962375>
-    <meta name=ICBM content=37.235808;-121.962375>
-    <meta name=robots content=noodp,noydir>
+  <meta name=title content="{% firstof meta_title title 'The Libre Group' %}">
+  <meta name=keywords content="{% firstof meta_keywords keywords 'Open Source, Red Hat, Ubuntu, Linux Mint, Debian, Black Duck, Ohloh, Open Core, Consulting, managed services' %}">
+  <meta name=google-site-verification content=4QorVb8Z51YbHLZ5hPfk3TQJjblIY43ByE6qFw2-dLU>
+  <meta name=msvalidate.01 content=E830B9E86F26F425F9F7800DA21086EC>
+  <meta name=DC.title content="Line server, AMD opteron rack server, Storage servers, NAS server, Open source systems, Cloud server">
+  <meta name=geo.region content=US-CA>
+  <meta name=geo.placename content="Los Gatos">
+  <meta name=geo.position content=37.235808;-121.962375>
+  <meta name=ICBM content=37.235808;-121.962375>
+  <meta name=robots content=noodp,noydir>
 
-    <!-- Favicon -->
-    <link href=favicon.ico rel="shortcut icon">
+  <!-- Favicon -->
+  <link href=favicon.ico rel="shortcut icon">
 
-    <!-- Web Fonts -->
+  <!-- Web Fonts -->
+  <link type=text/css href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin" rel=stylesheet>
 
-    {% compress css %}
-    <link type=text/css href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin" rel=stylesheet>
+  {% compress css %}
 
-    <!-- CSS Global Compulsory -->
-    <link href=/unify/plugins/bootstrap/css/bootstrap.min.css rel=stylesheet>
-    <link href=/unify/css/style.css rel=stylesheet>
+  <!-- CSS Global Compulsory -->
+  <link href=/unify/plugins/bootstrap/css/bootstrap.min.css rel=stylesheet>
+  <link href=/unify/css/style.css rel=stylesheet>
 
-    <!-- CSS Header and Footer -->
-    <link href=/unify/css/headers/header-default.css rel=stylesheet>
-    <link href=/unify/css/footers/footer-v1.css rel=stylesheet>
+  <!-- CSS Header and Footer -->
+  <link href=/unify/css/headers/header-default.css rel=stylesheet>
+  <link href=/unify/css/footers/footer-v1.css rel=stylesheet>
 
-    <!-- CSS Implementing Plugins -->
-    <link href=/unify/plugins/animate.css rel=stylesheet>
-    <link href=/unify/plugins/line-icons/line-icons.css rel=stylesheet>
-    <link href=/unify/plugins/font-awesome/css/font-awesome.min.css rel=stylesheet>
+  <!-- CSS Implementing Plugins -->
+  <link href=/unify/plugins/animate.css rel=stylesheet>
+  <link href=/unify/plugins/line-icons/line-icons.css rel=stylesheet>
+  <link href=/unify/plugins/font-awesome/css/font-awesome.min.css rel=stylesheet>
 
-    {% if is_home %}
-    <link href=/unify/plugins/parallax-slider/css/parallax-slider.css rel=stylesheet>
-    <style>
-      .da-slider { background: transparent url({% firstof settings.ORG_SLIDER_IMG|safe '../img/bg.jpg' %}) repeat 0% 0%; }
-    </style>
-    {% endif %}
+  {% if is_home %}
+  <link href=/unify/plugins/parallax-slider/css/parallax-slider.css rel=stylesheet>
+  <style>
+    .da-slider { background: transparent url({% firstof settings.ORG_SLIDER_IMG|safe '../img/bg.jpg' %}) repeat 0% 0%; }
+  </style>
+  {% endif %}
 
-    <link href=/unify/plugins/owl-carousel/owl-carousel/owl.carousel.css rel=stylesheet>
+  <link href=/unify/plugins/owl-carousel/owl-carousel/owl.carousel.css rel=stylesheet>
 
-    <!-- CSS Theme -->
-    <link href=/unify/css/theme-colors/{{ settings.ORG_THEME_COLOR }}.css rel=stylesheet id=style_color>
-    <link href=/unify/css/theme-skins/dark.css rel=stylesheet>
+  <!-- CSS Theme -->
+  <link href=/unify/css/theme-colors/{{ settings.ORG_THEME_COLOR }}.css rel=stylesheet id=style_color>
+  <link href=/unify/css/theme-skins/dark.css rel=stylesheet>
 
-    <!-- CSS Customization -->
-    <link href=/unify/css/custom.css rel=stylesheet>
+  <!-- CSS Customization -->
+  <link href=/unify/css/custom.css rel=stylesheet>
 
-    {% block extra_css %}
-    <!-- block extra_css -->
-    <style>
-    {{ settings.SITE_STYLES }}
-    </style>
-    {% endblock %}
+  {% block extra_css %}
+  <!-- block extra_css -->
+  <style>
+  {{ settings.SITE_STYLES }}
+  </style>
+  {% endblock %}
 
-    <!-- Appended styles -->
-    <style>
-    .header .logo img { margin: 0; display: inline-block; }
-    .header .logo .navbar-text { float: right; font-size: medium; font-style: italic; margin-top: 18px; }
-    .header-fixed-shrink .logo .navbar-text { margin-top: 60px; }
-    .header-fixed-shrink .logo img { margin-top: 35px; }
-    .header .navbar-brand { padding: 10px 0; }
-    .header-fixed .header.header-sticky, .header-fixed .header.header-fixed-shrink { transition: None; }
-    {% if is_home %}
-    {% endif %}
-    </style>
+  <!-- Appended styles -->
+  <style>
+  .header .logo img { margin: 0; display: inline-block; }
+  .header .logo .navbar-text { float: right; font-size: medium; font-style: italic; margin-top: 18px; }
+  .header-fixed-shrink .logo .navbar-text { margin-top: 60px; }
+  .header-fixed-shrink .logo img { margin-top: 35px; }
+  .header .navbar-brand { padding: 10px 0; }
+  .header-fixed .header.header-sticky, .header-fixed .header.header-fixed-shrink { transition: None; }
+  {% if is_home %}
+  {% endif %}
+  </style>
 
-    {% endcompress %}
+  {% endcompress %}
 
-    {% block head_bottom %} <!-- block head_bottom (after compress) -->  {% endblock head_bottom %}
+  {% block head_bottom %} <!-- block head_bottom (after compress) -->  {% endblock head_bottom %}
 
 <body class="header-fixed header-fixed-space-default" id="{% block body_id %}body{% endblock %}">
 {{ google_analytics }}
 
 
 <div class=wrapper>
-    <!--=== Header ===-->
-    <div class="header header-sticky">
-        <div class=container>
-            <!-- Logo -->
-            {% block navbar_title %}
-            <a href="/" class="logo navbar-brand">
-              <img src="{{ settings.ORG_LOGO }}" alt="{{ settings.SITE_TITLE }}" title="{{ settings.SITE_TITLE }}">
-              {% if settings.SITE_TAGLINE %}<span class="navbar-text visible-lg">{{ settings.SITE_TAGLINE }}</span>{% endif %}
-            </a>
-            {% endblock %}
-            <!-- End Logo -->
 
-            <!-- Topbar -->
-            <div class=topbar>
-                <ul class="loginbar pull-right">
-                    <li class=hoverSelector>
-                        <i class="fa fa-globe"></i>
-                        <a>Languages</a>
-                        <ul class="languages hoverSelectorBlock">
-                            <li class=active>
-                                <a href=#>English <i class="fa fa-check"></i></a>
-                            </li>
-                            <li><a href=#>Spanish</a></li>
-                            <li><a href=#>Russian</a></li>
-                            <li><a href=#>German</a></li>
-                        </ul>
-                    </li>
-                    <li class=topbar-devider></li>
-                    <li><a href=page_faq.html>Help</a></li>
-                    <li class=topbar-devider></li>
-                    <li><a href=page_login.html>Login</a></li>
-                </ul>
-            </div>
-            <!-- End Topbar -->
+  {% include "_header.html" %}
 
-            <!-- Toggle get grouped for better mobile display -->
-            <button type=button data-target=.navbar-responsive-collapse data-toggle=collapse class=navbar-toggle>
-                <span class=sr-only>Toggle navigation</span>
-                <span class="fa fa-bars"></span>
-            </button>
-            <!-- End Toggle -->
-        </div><!--/end container-->
+  {# Breadcrumbs and Slider #}
+  {% if is_home %}
+  {% include '_slider.html' %}
+  {% else %}
+  {% include '_breadcrumbs.html' %}
+  {% endif %}
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
-            <div class=container>
-                <ul class="nav navbar-nav">
-                {% block navbar_dropdown_menu %}{% page_menu "_mainmenu.html" %}{% endblock%}
-                  <li class=dropdown>
-                  <i class="search fa fa-search search-btn"></i>
-                    <div class="search-open">
-                      <div class="input-group animated fadeInDown">
-                      <!--
-                          <input type="text" class="form-control" placeholder="Search">
-                          <span class="input-group-btn">
-                                  <button class="btn-u" type="button">Go</button>
-                          </span>
-                      -->
-                      {% block navbar_search_form %}{% search_form "all" %}{% endblock %}
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-            </div><!--/end container-->
-        </div><!--/navbar-collapse-->
-    </div>
-    <!--=== End Header ===-->
+  {# messages #}
+  {% nevercache %}
+  {% if messages %}
+  <div class="container messages">
+  {% for message in messages %}
+  <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      {{ message }}
+  </div>
+  {% endfor %}
+  </div>
+  {% endif %}
+  {% endnevercache %}
 
-    {# messages #}
-    {% nevercache %}
-    {% if messages %}
-    <div class="container messages">
-    {% for message in messages %}
-    <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        {{ message }}
-    </div>
-    {% endfor %}
-    </div>
-    {% endif %}
-    {% endnevercache %}
 
-    {# Breadcrumbs and Slider #}
-    {% if is_home %}
-    {% include '_slider.html' %}
-    {% else %}
-    {% include '_breadcrumbs.html' %}
-    {% endif %}
-
+  {# HERE - This is really the "Call to action" #}
     <!--=== Purchase Block ===-->
     <div class=purchase>
         <div class=container>
@@ -195,6 +132,7 @@
     </div><!--/row-->
     <!-- End Purchase Block -->
 
+    {# HERE - move to content block, either _home_content or inh template #}
     <!--=== Content Part ===-->
     <div class="container content-sm">
         <!-- Service Blocks -->

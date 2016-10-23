@@ -1,26 +1,28 @@
-<!--=== Slider ===-->
-<div class=slider-inner>
+  <!--=== Slider ===-->
+  <div class=slider-inner>
     <div class=da-slider id=da-slider>
+      {% for slide in "slides"|make_list %}
         <div class=da-slide>
-            <h2><i>CLEAN &amp; FRESH</i> <br> <i>FULLY RESPONSIVE</i> <br> <i>DESIGN</i></h2>
-            <p><i>Lorem ipsum dolor amet</i> <br> <i>tempor incididunt ut</i> <br> <i>veniam omnis </i></p>
-            <div class=da-img><img class=img-responsive alt="" src=/unify/plugins/parallax-slider/img/1.png></div>
+          <h2><i>CLEAN &amp; FRESH</i> <br> <i>FULLY RESPONSIVE</i> <br> <i>DESIGN</i></h2>
+          <p><i>Lorem ipsum dolor amet</i> <br> <i>tempor incididunt ut</i> <br> <i>veniam omnis </i></p>
+          <div class=da-img><img class=img-responsive alt="" src=/unify/plugins/parallax-slider/img/1.png></div>
         </div>
-        <div class=da-slide>
-            <h2><i>RESPONSIVE VIDEO</i> <br> <i>SUPPORT AND</i> <br> <i>MANY MORE</i></h2>
-            <p><i>Lorem ipsum dolor amet</i> <br> <i>tempor incididunt ut</i></p>
-            <div class=da-img>
-                <iframe webkitallowfullscreen="" src=http://player.vimeo.com/video/47911018 allowfullscreen="" frameborder=0 width=530 mozallowfullscreen="" height=300></iframe>
-            </div>
-        </div>
-        <div class=da-slide>
-            <h2><i>USING BEST WEB</i> <br> <i>SOLUTIONS WITH</i> <br> <i>HTML5/CSS3</i></h2>
-            <p><i>Lorem ipsum dolor amet</i> <br> <i>tempor incididunt ut</i> <br> <i>veniam omnis </i></p>
-            <div class=da-img><img alt=image01 src=/unify/plugins/parallax-slider/img/html5andcss3.png></div>
-        </div>
-        <div class=da-arrows>
-            <span class=da-arrows-prev></span>
-            <span class=da-arrows-next></span>
-        </div>
+      {% endfor %}
+      <div class=da-slide>
+          <h2><i>RESPONSIVE VIDEO</i> <br> <i>SUPPORT AND</i> <br> <i>MANY MORE</i></h2>
+          <p><i>Lorem ipsum dolor amet</i> <br> <i>tempor incididunt ut</i></p>
+          <div class=da-img>
+              <iframe webkitallowfullscreen="" src=http://player.vimeo.com/video/47911018 allowfullscreen="" frameborder=0 width=530 mozallowfullscreen="" height=300></iframe>
+          </div>
+      </div>
+      <div class=da-slide>
+          <h2><i>USING BEST WEB</i> <br> <i>SOLUTIONS WITH</i> <br> <i>HTML5/CSS3</i></h2>
+          <p><i>Lorem ipsum dolor amet</i> <br> <i>tempor incididunt ut</i> <br> <i>veniam omnis </i></p>
+          <div class=da-img><img alt=image01 src=/unify/plugins/parallax-slider/img/html5andcss3.png></div>
+      </div>
+      <div class=da-arrows>
+          <span class=da-arrows-prev></span>
+          <span class=da-arrows-next></span>
+      </div>
     </div>
-</div><!--/slider-->
+  </div><!--/slider-->
