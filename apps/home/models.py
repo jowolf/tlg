@@ -48,6 +48,8 @@ class ImageBlurb (Orderable):
 
 """ examples
 
+maybe slide should have an h2, etc, in addition to link, tagline
+
 class Slide (Orderable):
     '''
     A slide in a slider connected to a HomePage
