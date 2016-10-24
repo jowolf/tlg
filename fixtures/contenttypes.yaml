@@ -56,3 +56,7 @@
   fields: {app_label: django_comments, model: comment}
 - model: contenttypes.contenttype
   fields: {app_label: django_comments, model: commentflag}
+- model: contenttypes.contenttype
+  fields: {app_label: home, model: imageblurb}
+- model: contenttypes.contenttype
+  fields: {app_label: home, model: homepage}

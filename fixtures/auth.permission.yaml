@@ -438,3 +438,33 @@
     name: Can delete comment flag
     content_type: [django_comments, commentflag]
     codename: delete_commentflag
+- model: auth.permission
+  fields:
+    name: Can add image blurb
+    content_type: [home, imageblurb]
+    codename: add_imageblurb
+- model: auth.permission
+  fields:
+    name: Can change image blurb
+    content_type: [home, imageblurb]
+    codename: change_imageblurb
+- model: auth.permission
+  fields:
+    name: Can delete image blurb
+    content_type: [home, imageblurb]
+    codename: delete_imageblurb
+- model: auth.permission
+  fields:
+    name: Can add Home page
+    content_type: [home, homepage]
+    codename: add_homepage
+- model: auth.permission
+  fields:
+    name: Can change Home page
+    content_type: [home, homepage]
+    codename: change_homepage
+- model: auth.permission
+  fields:
+    name: Can delete Home page
+    content_type: [home, homepage]
+    codename: delete_homepage

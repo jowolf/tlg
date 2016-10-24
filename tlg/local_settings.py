@@ -16,7 +16,7 @@ DATABASES = {
         # Ends with "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
         "ENGINE": "django.db.backends.sqlite3",
         # DB name or path to database file if using sqlite3.
-        "NAME": "dev.db",
+        "NAME": "tlg.db",
         # Not used with sqlite3.
         "USER": "",
         # Not used with sqlite3.
@@ -35,7 +35,8 @@ INSTALLED_APPS = (
 
 TEMPLATES [0] ['OPTIONS'] ['context_processors'] += ['apps.home.context_processors.is_home',]
 
-BLOG_URLS_USE_DATE = True
+#BLOG_URLS_USE_DATE = True
+BLOG_URLS_DATE_FORMAT = 'month'
 BLOG_USE_FEATURED_IMAGE = True
 ADMIN_THUMB_SIZE = '36x36'
 

@@ -1,8 +1,13 @@
+- model: home.imageblurb
+  pk: 1
+  fields: {_order: 0, homepage: 3, image: uploads/images/aaron_and_roses_020517_15s.jpg,
+    title: Aaron and Roses, content: This is the ImageBlurb content, link: 'http://thekiddo.com',
+    usage: row-of-three}
 - model: auth.user
   pk: 1
   fields:
     password: pbkdf2_sha256$30000$aWX54fA2tAHE$glEuL9AFtedlsNuh63gtWkPLk+iwbUMWAItx1v8JG7M=
-    last_login: 2016-10-15 18:42:19.427174+00:00
+    last_login: 2016-10-23 17:49:23.179016+00:00
     is_superuser: true
     username: joe
     first_name: ''
@@ -11,6 +16,21 @@
     is_staff: true
     is_active: true
     date_joined: 2016-02-05 03:42:58.974455+00:00
+    groups: []
+    user_permissions: []
+- model: auth.user
+  pk: 4
+  fields:
+    password: '!RvNRF00ZX5fl8POSIVByTzUPog6Afp7bxYsxarFB'
+    last_login: null
+    is_superuser: true
+    username: testit
+    first_name: ''
+    last_name: ''
+    email: test@thelibregroup.com
+    is_staff: true
+    is_active: true
+    date_joined: 2016-10-23 17:49:32.590196+00:00
     groups: []
     user_permissions: []
 - model: sites.site
@@ -144,8 +164,7 @@
   fields:
     site: ['127.0.0.1:8000']
     name: SITE_TITLE
-    value: <img src="/static/img/logo-cropped-104x56.png" alt="The Libre Group" title="The
-      Libre Group">
+    value: The Libre Group
 - model: conf.setting
   pk: 19
   fields:
@@ -223,8 +242,7 @@
   fields:
     site: ['127.0.0.1:8000']
     name: ORG_LOGO
-    value: <img src="/img/logo.png" alt="{{ settings.SITE_TITLE }}", title="{{ settings.SITE_TITLE
-      }}">
+    value: /img/logo-cropped-104x56.png
 - model: conf.setting
   pk: 72
   fields:
@@ -251,6 +269,50 @@
     site: ['127.0.0.1:8000']
     name: ORG_SLIDER_IMG
     value: /img/datacenter.jpg
+- model: conf.setting
+  pk: 76
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ORG_EMAIL
+    value: info@thelibregroup.com
+- model: conf.setting
+  pk: 77
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ORG_PHONE
+    value: +1408-455-0010
+- model: conf.setting
+  pk: 79
+  fields:
+    site: ['127.0.0.1:8000']
+    name: SITE_STYLES
+    value: '.footer-logo {      background: white;      border: 10px solid aliceblue;      border-radius:
+      5px;    }'
+- model: conf.setting
+  pk: 80
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ORG_TEXTS
+    value: +1408-455-0010
+- model: conf.setting
+  pk: 81
+  fields:
+    site: ['127.0.0.1:8000']
+    name: ORG_ADDRESS
+    value: Los Gatos, Hayward California, US
+- model: generic.keyword
+  pk: 1
+  fields:
+    site: ['127.0.0.1:8000']
+    title: home nifty boffo
+    slug: home-nifty-boffo
+- model: generic.assignedkeyword
+  pk: 1
+  fields:
+    _order: 0
+    keyword: 1
+    content_type: [home, homepage]
+    object_pk: 3
 - model: pages.page
   pk: 1
   fields:
@@ -268,7 +330,7 @@
     expiry_date: null
     short_url: null
     in_sitemap: true
-    _order: 0
+    _order: 1
     content_model: richtextpage
     parent: null
     in_menus: 1,2,3
@@ -291,11 +353,34 @@
     expiry_date: null
     short_url: null
     in_sitemap: true
-    _order: 1
+    _order: 2
     content_model: gallery
     parent: null
     in_menus: 1,2,3
     titles: My Gallery
+    login_required: false
+- model: pages.page
+  pk: 3
+  fields:
+    keywords_string: home nifty boffo
+    site: ['127.0.0.1:8000']
+    title: My Home Page
+    slug: /
+    _meta_title: My Home Page
+    description: Some content for the home page.
+    gen_description: true
+    created: 2016-10-23 02:47:17.463759+00:00
+    updated: 2016-10-23 02:55:19.879917+00:00
+    status: 2
+    publish_date: 2016-10-23 02:47:17+00:00
+    expiry_date: null
+    short_url: null
+    in_sitemap: true
+    _order: 0
+    content_model: homepage
+    parent: null
+    in_menus: 1,2,3
+    titles: My Home Page
     login_required: false
 - model: pages.richtextpage
   pk: 1
@@ -312,6 +397,78 @@
       <p>Joe</p>
 
       <p></p>'}
+- model: blog.blogpost
+  pk: 1
+  fields:
+    comments_count: 0
+    keywords_string: ''
+    rating_count: 0
+    rating_sum: 0
+    rating_average: 0.0
+    site: ['127.0.0.1:8000']
+    title: My first post
+    slug: my-first-post
+    _meta_title: ''
+    description: Never forget Robin Williams' famous "Absurd, yet Flaccid" line.
+    gen_description: true
+    created: 2016-10-23 04:00:27.350428+00:00
+    updated: 2016-10-23 04:16:43.552697+00:00
+    status: 2
+    publish_date: 2016-10-23 04:00:27+00:00
+    expiry_date: null
+    short_url: null
+    in_sitemap: true
+    content: '<p>Never forget Robin Williams'' famous "Absurd, yet Flaccid" line.</p>
+
+      <p></p>'
+    user: [joe]
+    allow_comments: true
+    featured_image: uploads/blog/001008-2_16.jpg
+    categories: [1, 2]
+    related_posts: []
+- model: blog.blogpost
+  pk: 2
+  fields:
+    comments_count: 0
+    keywords_string: ''
+    rating_count: 0
+    rating_sum: 0
+    rating_average: 0.0
+    site: ['127.0.0.1:8000']
+    title: My Second Post
+    slug: my-second-post
+    _meta_title: ''
+    description: This one, though, is just Absurd.
+    gen_description: true
+    created: 2016-10-23 04:01:11.340782+00:00
+    updated: 2016-10-23 04:24:38.766312+00:00
+    status: 2
+    publish_date: 2016-10-23 04:01:11+00:00
+    expiry_date: null
+    short_url: null
+    in_sitemap: true
+    content: '<p>This one, though, is just Absurd.</p>
+
+      <p></p>
+
+      <p>To make it so, "Donald Trump".</p>'
+    user: [joe]
+    allow_comments: true
+    featured_image: uploads/blog/010516_22.jpg
+    categories: [1]
+    related_posts: []
+- model: blog.blogcategory
+  pk: 1
+  fields:
+    site: ['127.0.0.1:8000']
+    title: Absurd
+    slug: absurd
+- model: blog.blogcategory
+  pk: 2
+  fields:
+    site: ['127.0.0.1:8000']
+    title: Flaccid
+    slug: flaccid
 - model: galleries.gallery
   pk: 2
   fields: {content: '<p>This is my example Gallery</p>
@@ -483,9 +640,95 @@
       Changed file for Image "Psn00021". Changed file for Image "Psn00022". Changed
       file for Image "Psn00023". Changed file for Image "Psn00024". Changed file for
       Image "Psn00025".
+- model: admin.logentry
+  pk: 13
+  fields:
+    action_time: 2016-10-23 02:47:17.526226+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '3'
+    object_repr: My Mezzanine Page / My Home Page
+    action_flag: 1
+    change_message: '[{"added": {}}, {"added": {"object": "ImageBlurb object", "name":
+      "image blurb"}}]'
+- model: admin.logentry
+  pk: 14
+  fields:
+    action_time: 2016-10-23 02:55:19.931008+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '3'
+    object_repr: My Home Page
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["_meta_title", "slug", "keywords"]}}]'
+- model: admin.logentry
+  pk: 15
+  fields:
+    action_time: 2016-10-23 03:59:37.525058+00:00
+    user: [joe]
+    content_type: [blog, blogcategory]
+    object_id: '1'
+    object_repr: Absurd
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 16
+  fields:
+    action_time: 2016-10-23 03:59:46.379791+00:00
+    user: [joe]
+    content_type: [blog, blogcategory]
+    object_id: '2'
+    object_repr: Flaccid
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 17
+  fields:
+    action_time: 2016-10-23 04:00:27.437587+00:00
+    user: [joe]
+    content_type: [blog, blogpost]
+    object_id: '1'
+    object_repr: My first post
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 18
+  fields:
+    action_time: 2016-10-23 04:01:11.390991+00:00
+    user: [joe]
+    content_type: [blog, blogpost]
+    object_id: '2'
+    object_repr: My Second Post
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 19
+  fields:
+    action_time: 2016-10-23 04:16:43.604904+00:00
+    user: [joe]
+    content_type: [blog, blogpost]
+    object_id: '1'
+    object_repr: My first post
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["featured_image", "content", "keywords"]}}]'
+- model: admin.logentry
+  pk: 20
+  fields:
+    action_time: 2016-10-23 04:24:38.850531+00:00
+    user: [joe]
+    content_type: [blog, blogpost]
+    object_id: '2'
+    object_repr: My Second Post
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["featured_image", "content", "keywords"]}}]'
 - model: redirects.redirect
   pk: 1
   fields:
     site: [jw.vc]
     old_path: nas
     new_path: https://eracks.com/products/storage-servers-nas/
+- model: home.homepage
+  pk: 3
+  fields: {content: <p>Some content for the home page.</p>, heading: The Heading,
+    subheading: The Subheading, featured_works_heading: Featured Works, content_heading: About
+      us!, latest_posts_heading: Latest Posts}
