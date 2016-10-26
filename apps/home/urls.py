@@ -8,6 +8,7 @@ from django.views.static import serve
 
 urlpatterns = [
     url (r'^img/(?P<path>.*)$',     serve, {'document_root': settings.STATIC_ROOT + '/img',   'show_indexes': True }),
+    url (r'^css/(?P<path>.*)$',     serve, {'document_root': settings.STATIC_ROOT + '/css',   'show_indexes': True }),
     url (r'^unify/(?P<path>.*)$',   serve, {'document_root': settings.STATIC_ROOT + '/unify', 'show_indexes': True }),
     #url (r'^static2/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT, 'show_indexes': True }),
   ]

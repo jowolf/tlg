@@ -1,0 +1,111 @@
+/* Custom css to modify Unify theme, home app, tlg, 10/25/16 JJW */
+
+-webkit-keyframes toLeftAnim1{
+  0%{ left: 10%;  opacity: 1; }
+  30%{ left: 15%;  opacity: 1; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-webkit-keyframes toLeftAnim2{
+  0%{ left: 10%;  opacity: 1; }
+  30%{ left: 15%;  opacity: 1; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-webkit-keyframes toLeftAnim3{
+  0%{ left: 10%;  opacity: 1; }
+  99%{ left: 10%; opacity: 0; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-webkit-keyframes toLeftAnim4{
+  0%{ left: 60%;  opacity: 1; }
+  40%{ left: 70%;  opacity: 1; }
+  90%{ left: 0%;  opacity: 0; }
+  100%{ left: -50%; opacity: 0; }
+}
+
+@-moz-keyframes toLeftAnim1{
+  0%{ left: 10%;  opacity: 1; }
+  30%{ left: 15%;  opacity: 1; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-moz-keyframes toLeftAnim2{
+  0%{ left: 10%;  opacity: 1; }
+  30%{ left: 15%;  opacity: 1; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-moz-keyframes toLeftAnim3{
+  0%{ left: 10%;  opacity: 1; }
+  99%{ left: 10%; opacity: 0; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-moz-keyframes toLeftAnim4{
+  0%{ left: 60%;  opacity: 1; }
+  40%{ left: 70%;  opacity: 1; }
+  90%{ left: 0%;  opacity: 0; }
+  100%{ left: -50%; opacity: 0; }
+}
+
+@-o-keyframes toLeftAnim1{
+  0%{ left: 10%;  opacity: 1; }
+  30%{ left: 15%;  opacity: 1; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-o-keyframes toLeftAnim2{
+  0%{ left: 10%;  opacity: 1; }
+  30%{ left: 15%;  opacity: 1; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-o-keyframes toLeftAnim3{
+  0%{ left: 10%;  opacity: 1; }
+  99%{ left: 10%; opacity: 0; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-o-keyframes toLeftAnim4{
+  0%{ left: 60%;  opacity: 1; }
+  40%{ left: 70%;  opacity: 1; }
+  90%{ left: 0%;  opacity: 0; }
+  100%{ left: -50%; opacity: 0; }
+}
+
+@-ms-keyframes toLeftAnim1{
+  0%{ left: 10%;  opacity: 1; }
+  30%{ left: 15%;  opacity: 1; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-ms-keyframes toLeftAnim2{
+  0%{ left: 10%;  opacity: 1; }
+  30%{ left: 15%;  opacity: 1; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-ms-keyframes toLeftAnim3{
+  0%{ left: 10%;  opacity: 1; }
+  99%{ left: 10%; opacity: 0; }
+  100%{ left: -50%; opacity: 0; }
+}
+@-ms-keyframes toLeftAnim4{
+  0%{ left: 60%;  opacity: 1; }
+  40%{ left: 70%;  opacity: 1; }
+  90%{ left: 0%;  opacity: 0; }
+  100%{ left: -50%; opacity: 0; }
+}
+
+@keyframes toLeftAnim1{
+  0%{ left: 10%;  opacity: 1; }
+  /*30%{ left: 15%;  opacity: 1; }*/
+  100%{ left: -50%; opacity: 0; }
+}
+@keyframes toLeftAnim2{
+  0%{ left: 10%;  opacity: 1; }
+  /*30%{ left: 15%;  opacity: 1; }*/
+  100%{ left: -50%; opacity: 0; }
+}
+@keyframes toLeftAnim3{
+  0%{ left: 10%;  opacity: 1; }
+  /*99%{ left: 10%; opacity: 0; }*/
+  100%{ left: -50%; opacity: 0; }
+}
+@keyframes toLeftAnim4{
+  0%{ left: 60%;  opacity: 1; }
+  /*40%{ left: 70%;  opacity: 1; }*/
+  /*90%{ left: 0%;  opacity: 0; }*/
+  100%{ left: -50%; opacity: 0; }
+}
