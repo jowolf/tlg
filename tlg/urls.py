@@ -70,7 +70,7 @@ urlpatterns += [
 
 #### JJW
 
-    #url("^", include("apps.realestate.urls")),
+    url("^", include("apps.realestate.urls")),
     url("^", include("apps.home.urls")),
     url("^", include("apps.utils.urls")),
 

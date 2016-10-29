@@ -29,11 +29,17 @@ DATABASES = {
 }
 
 INSTALLED_APPS = (
-    #'apps.realestate',
+    'apps.realestate',
     'apps.home',
   ) + INSTALLED_APPS
 
 TEMPLATES [0] ['OPTIONS'] ['context_processors'] += ['apps.home.context_processors.is_home',]
+
+HOST_THEMES = [
+    ('127.0.0.1:8000', 'home'),
+    ('127.0.1.1:8000', 'realestate'),
+]
+
 
 #BLOG_URLS_USE_DATE = True
 BLOG_URLS_DATE_FORMAT = 'month'

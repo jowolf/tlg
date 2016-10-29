@@ -38,12 +38,29 @@ class ImageBlurb (Orderable):
     '''
     homepage = models.ForeignKey (HomePage, related_name="blurbs")
     image = FileField (verbose_name = _("Image"),
-        upload_to = upload_to ("theme.ImageBlurb.icon", "images"),
+        upload_to = upload_to ("theme.ImageBlurb.image", "images"),
         format = "Image", max_length = 255)
     title = models.CharField (max_length = 200)
     content = models.TextField()
     link = models.CharField ( max_length = 2000, blank = True, help_text="Optional, if provided clicking the blurb will go here.")
     usage = models.CharField (max_length = 20, choices = usages)
+
+
+# might be able to combine this with blurb at some pointer
+
+class Slide (Orderable):
+    '''
+    A slide in a slider connected to a HomePage
+    '''
+    homepage = models.ForeignKey (HomePage, related_name="slides")
+
+    image = FileField (verbose_name =_("Image"),
+        upload_to = upload_to ("theme.Slide.image", "slider"),
+        format = "Image", max_length = 255, null = True, blank = True)
+    title = models.CharField (max_length = 200)  # Heading or H2
+    description = models.TextField()    # description or p
+    html = models.TextField()    # alt to image
+    link = models.CharField ( max_length = 2000, blank = True, help_text="Optional, if provided clicking the image or blurb will go here.")
 
 
 """ examples
