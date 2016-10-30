@@ -1,0 +1,23 @@
+{# NOPE! Django 1.10 feature, Not supported yet by Mezz 4.2.2:  extends "../base.html" #}
+
+NFG - does NOT work - 
+
+- using the ../base.html errors ourt because the path is pre-pended twice, and 
+
+- without it, eg plain base.html, it picks up the first one, NOT the one in this app
+
+{% extends "../base.html" %}
+
+So instead, we will:
+
+- put everything fo rthe one-pager in pages/index.html, as indicated here:
+
+http://mezzanine.jupo.org/docs/multi-tenancy.html?highlight=multi%20tenancy
+
+and, if inheritace is needed for the home page, we will use the approach outlined there, and call it smth ewlse, eg:
+
+realestate_base.html or realestate/base.html.
+
+Sigh.
+
+JJW 10/29/16

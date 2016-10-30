@@ -29,15 +29,15 @@ DATABASES = {
 }
 
 INSTALLED_APPS = (
-    'apps.realestate',
     'apps.home',
+    'apps.realestate',
   ) + INSTALLED_APPS
 
 TEMPLATES [0] ['OPTIONS'] ['context_processors'] += ['apps.home.context_processors.is_home',]
 
 HOST_THEMES = [
-    ('127.0.0.1:8000', 'home'),
-    ('127.0.1.1:8000', 'realestate'),
+    ('127.0.0.1:8000', 'apps.home'),
+    ('127.0.1.1:8000', 'apps.realestate'),
 ]
 
 
