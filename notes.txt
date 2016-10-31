@@ -1,3 +1,16 @@
+10/29
+remove is_home in favor of home page template
+
+photos / images for realestate
+logo for sheldon oaks
+logo for bevridge
+
+ ^
+^ ^
+
+but overlapping
+
+
 10/22
 Colliding files in collectstatic:
 joe@mintstudio-rafaela:~/tlg > diff -w /home/joe/tlg/conf/env/lib/python2.7/site-packages/django/contrib/admin/static/admin/js/actions.js /home/joe/tlg/conf/env/lib/python2.7/site-packages/grappelli_safe/static/admin/js/actions.js
