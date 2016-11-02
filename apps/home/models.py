@@ -59,8 +59,8 @@ class Slide (Orderable):
         format = "Image", max_length = 255, null = True, blank = True)
     title = models.CharField (max_length = 200)  # Heading or H2
     description = models.TextField()    # description or p
-    html = models.TextField()    # alt to image
-    link = models.CharField ( max_length = 2000, blank = True, help_text="Optional, if provided clicking the image or blurb will go here.")
+    html = models.TextField (blank=True, help_text="Alternative to Image field - eg, Video embed, etc")
+    link = models.CharField (max_length = 2000, blank = True, help_text="Optional, if provided clicking the image or blurb will go here.")
 
 
 """ examples

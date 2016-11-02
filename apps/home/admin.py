@@ -4,16 +4,19 @@ from django.contrib import admin
 from mezzanine.core.admin import TabularDynamicInlineAdmin  # BaseTranslationModelAdmin
 from mezzanine.pages.admin import PageAdmin
 
-from .models import ImageBlurb, HomePage
+from .models import ImageBlurb, Slide, HomePage
 
 #class SlideInline(TabularDynamicInlineAdmin):
 #  model = Slide
 
-class ImageBlurbInline(TabularDynamicInlineAdmin):
+class ImageBlurbInline (TabularDynamicInlineAdmin):
   model = ImageBlurb
 
-class HomePageAdmin(PageAdmin):
-  inlines = (ImageBlurbInline,)  # (SlideInline, IconBlurbline)
+class SlideInline (TabularDynamicInlineAdmin):
+  model = Slide
+
+class HomePageAdmin (PageAdmin):
+  inlines = (SlideInline, ImageBlurbInline,)  # (SlideInline, IconBlurbline)
 
 admin.site.register(HomePage, HomePageAdmin)
 #admin.site.register(Portfolio, PageAdmin)
