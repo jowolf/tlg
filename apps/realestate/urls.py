@@ -12,4 +12,6 @@ urlpatterns = [
     #url (r'^unify/(?P<path>.*)$',   serve, {'document_root': settings.STATIC_ROOT + '/unify', 'show_indexes': True }),
     url (r'^onepage/(?P<path>.*)$',   serve, {'document_root': settings.STATIC_ROOT + '/onepage', 'show_indexes': True }),
     url (r'^realestate/(?P<path>.*)$',   serve, {'document_root': settings.STATIC_ROOT + '/realestate', 'show_indexes': True }),
+    # slider aka _promo
+    url (r'^slider/(?P<path>.*)$',    serve, {'document_root': settings.STATIC_ROOT + '/slider',   'show_indexes': True }),
   ]
