@@ -13,6 +13,7 @@ Setup:
 - (or use --recursive arg on above clone)
 - cd conf
 - virtualenv env
+- activate the venv (Important!) . env/bin/activate or use ./go.sh from tlg/
 - pip -r requirements.txt
 - cd ..
 - ./go.sh (activeates venv)
