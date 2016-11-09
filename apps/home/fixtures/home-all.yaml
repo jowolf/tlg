@@ -1,1 +1,27 @@
-[]
+- model: home.homepage
+  pk: 3
+  fields: {content: <p>Some content for the home page.</p>, heading: The Heading,
+    subheading: The Subheading, featured_works_heading: Featured Works, content_heading: About
+      us!, latest_posts_heading: Latest Posts}
+- model: home.homepage
+  pk: 1
+  fields: {content: <p>my hp</p>, heading: heading, subheading: subhead, featured_works_heading: Featured
+      Works, content_heading: About us!, latest_posts_heading: Latest Posts}
+- model: home.imageblurb
+  pk: 1
+  fields: {_order: 0, homepage: 3, image: uploads/images/aaron_and_roses_020517_15s.jpg,
+    title: Aaron and Roses, content: This is the ImageBlurb content, link: 'http://thekiddo.com',
+    usage: row-of-three}
+- model: home.slide
+  pk: 1
+  fields: {_order: 0, homepage: 3, image: uploads/slider/flash48_front_black_bg.png,
+    title: Mezzanine Hosting, description: We offer turnkey ready-to-rock Mezzanine
+      hosting - Have your site up in 10 minutes!, html: '', link: ''}
+- model: home.slide
+  pk: 2
+  fields: {_order: 0, homepage: 5, image: realestate/slider/2012-12-07 09.42.55.jpg,
+    title: test slide, description: my test slide desc, html: '', link: ''}
+- model: home.slide
+  pk: 3
+  fields: {_order: 1, homepage: 5, image: realestate/slider/2012-09-18 09.37.03.jpg,
+    title: Vasona, description: So there, html: '', link: ''}
