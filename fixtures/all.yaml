@@ -3,11 +3,24 @@
   fields: {_order: 0, homepage: 3, image: uploads/images/aaron_and_roses_020517_15s.jpg,
     title: Aaron and Roses, content: This is the ImageBlurb content, link: 'http://thekiddo.com',
     usage: row-of-three}
+- model: home.slide
+  pk: 1
+  fields: {_order: 0, homepage: 3, image: uploads/slider/flash48_front_black_bg.png,
+    title: Mezzanine Hosting, description: We offer turnkey ready-to-rock Mezzanine
+      hosting - Have your site up in 10 minutes!, html: '', link: ''}
+- model: home.slide
+  pk: 2
+  fields: {_order: 0, homepage: 5, image: realestate/slider/2012-12-07 09.42.55.jpg,
+    title: test slide, description: my test slide desc, html: '', link: ''}
+- model: home.slide
+  pk: 3
+  fields: {_order: 1, homepage: 5, image: realestate/slider/2012-09-18 09.37.03.jpg,
+    title: Vasona, description: So there, html: '', link: ''}
 - model: auth.user
   pk: 1
   fields:
     password: pbkdf2_sha256$30000$aWX54fA2tAHE$glEuL9AFtedlsNuh63gtWkPLk+iwbUMWAItx1v8JG7M=
-    last_login: 2016-10-23 17:49:23.179016+00:00
+    last_login: 2016-10-24 04:31:34.462618+00:00
     is_superuser: true
     username: joe
     first_name: ''
@@ -300,19 +313,6 @@
     site: ['127.0.0.1:8000']
     name: ORG_ADDRESS
     value: Los Gatos, Hayward California, US
-- model: generic.keyword
-  pk: 1
-  fields:
-    site: ['127.0.0.1:8000']
-    title: home nifty boffo
-    slug: home-nifty-boffo
-- model: generic.assignedkeyword
-  pk: 1
-  fields:
-    _order: 0
-    keyword: 1
-    content_type: [home, homepage]
-    object_pk: 3
 - model: pages.page
   pk: 1
   fields:
@@ -362,7 +362,7 @@
 - model: pages.page
   pk: 3
   fields:
-    keywords_string: home nifty boffo
+    keywords_string: ''
     site: ['127.0.0.1:8000']
     title: My Home Page
     slug: /
@@ -370,7 +370,7 @@
     description: Some content for the home page.
     gen_description: true
     created: 2016-10-23 02:47:17.463759+00:00
-    updated: 2016-10-23 02:55:19.879917+00:00
+    updated: 2016-11-07 18:28:45.190438+00:00
     status: 2
     publish_date: 2016-10-23 02:47:17+00:00
     expiry_date: null
@@ -721,6 +721,133 @@
     object_repr: My Second Post
     action_flag: 2
     change_message: '[{"changed": {"fields": ["featured_image", "content", "keywords"]}}]'
+- model: admin.logentry
+  pk: 21
+  fields:
+    action_time: 2016-10-29 06:55:31.434777+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '4'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 22
+  fields:
+    action_time: 2016-10-29 06:59:31.840359+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '5'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 1
+    change_message: '[{"added": {}}]'
+- model: admin.logentry
+  pk: 23
+  fields:
+    action_time: 2016-10-29 07:00:51.141933+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '5'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["content", "slug", "keywords"]}}]'
+- model: admin.logentry
+  pk: 24
+  fields:
+    action_time: 2016-10-29 20:35:52.877947+00:00
+    user: [joe]
+    content_type: [pages, page]
+    object_id: '4'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 3
+    change_message: ''
+- model: admin.logentry
+  pk: 25
+  fields:
+    action_time: 2016-11-01 05:32:38.528675+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '3'
+    object_repr: My Home Page
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["keywords"]}}, {"added": {"object":
+      "Slide object", "name": "slide"}}]'
+- model: admin.logentry
+  pk: 26
+  fields:
+    action_time: 2016-11-06 22:28:23.909185+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '5'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["content", "keywords"]}}, {"added":
+      {"object": "Slide object", "name": "slide"}}]'
+- model: admin.logentry
+  pk: 27
+  fields:
+    action_time: 2016-11-07 03:53:29.878091+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '5'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["content", "keywords"]}}, {"changed":
+      {"fields": ["image"], "object": "Slide object", "name": "slide"}}]'
+- model: admin.logentry
+  pk: 28
+  fields:
+    action_time: 2016-11-07 03:53:51.378488+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '5'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["content", "keywords"]}}]'
+- model: admin.logentry
+  pk: 29
+  fields:
+    action_time: 2016-11-07 03:55:00.831661+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '5'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["content", "keywords"]}}, {"added":
+      {"object": "Slide object", "name": "slide"}}]'
+- model: admin.logentry
+  pk: 30
+  fields:
+    action_time: 2016-11-07 18:28:45.427565+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '3'
+    object_repr: My Home Page
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["keywords"]}}, {"changed": {"fields":
+      ["description"], "object": "Slide object", "name": "slide"}}]'
+- model: admin.logentry
+  pk: 31
+  fields:
+    action_time: 2016-11-08 06:05:29.055309+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '5'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["content", "keywords"]}}]'
+- model: admin.logentry
+  pk: 32
+  fields:
+    action_time: 2016-11-08 06:15:12.940948+00:00
+    user: [joe]
+    content_type: [home, homepage]
+    object_id: '5'
+    object_repr: Sheldon Oaks Estates
+    action_flag: 2
+    change_message: '[{"changed": {"fields": ["content", "keywords"]}}, {"changed":
+      {"fields": ["image"], "object": "Slide object", "name": "slide"}}, {"changed":
+      {"fields": ["image"], "object": "Slide object", "name": "slide"}}]'
 - model: redirects.redirect
   pk: 1
   fields:
@@ -732,3 +859,7 @@
   fields: {content: <p>Some content for the home page.</p>, heading: The Heading,
     subheading: The Subheading, featured_works_heading: Featured Works, content_heading: About
       us!, latest_posts_heading: Latest Posts}
+- model: home.homepage
+  pk: 1
+  fields: {content: <p>my hp</p>, heading: heading, subheading: subhead, featured_works_heading: Featured
+      Works, content_heading: About us!, latest_posts_heading: Latest Posts}

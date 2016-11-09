@@ -1,20 +1,5 @@
 - model: auth.permission
   fields:
-    name: Can add permission
-    content_type: [auth, permission]
-    codename: add_permission
-- model: auth.permission
-  fields:
-    name: Can change permission
-    content_type: [auth, permission]
-    codename: change_permission
-- model: auth.permission
-  fields:
-    name: Can delete permission
-    content_type: [auth, permission]
-    codename: delete_permission
-- model: auth.permission
-  fields:
     name: Can add group
     content_type: [auth, group]
     codename: add_group
@@ -28,6 +13,21 @@
     name: Can delete group
     content_type: [auth, group]
     codename: delete_group
+- model: auth.permission
+  fields:
+    name: Can add permission
+    content_type: [auth, permission]
+    codename: add_permission
+- model: auth.permission
+  fields:
+    name: Can change permission
+    content_type: [auth, permission]
+    codename: change_permission
+- model: auth.permission
+  fields:
+    name: Can delete permission
+    content_type: [auth, permission]
+    codename: delete_permission
 - model: auth.permission
   fields:
     name: Can add user
@@ -135,34 +135,19 @@
     codename: delete_sitepermission
 - model: auth.permission
   fields:
-    name: Can add Comment
-    content_type: [generic, threadedcomment]
-    codename: add_threadedcomment
+    name: Can add Rating
+    content_type: [generic, rating]
+    codename: add_rating
 - model: auth.permission
   fields:
-    name: Can change Comment
-    content_type: [generic, threadedcomment]
-    codename: change_threadedcomment
+    name: Can change Rating
+    content_type: [generic, rating]
+    codename: change_rating
 - model: auth.permission
   fields:
-    name: Can delete Comment
-    content_type: [generic, threadedcomment]
-    codename: delete_threadedcomment
-- model: auth.permission
-  fields:
-    name: Can add Keyword
-    content_type: [generic, keyword]
-    codename: add_keyword
-- model: auth.permission
-  fields:
-    name: Can change Keyword
-    content_type: [generic, keyword]
-    codename: change_keyword
-- model: auth.permission
-  fields:
-    name: Can delete Keyword
-    content_type: [generic, keyword]
-    codename: delete_keyword
+    name: Can delete Rating
+    content_type: [generic, rating]
+    codename: delete_rating
 - model: auth.permission
   fields:
     name: Can add assigned keyword
@@ -180,19 +165,34 @@
     codename: delete_assignedkeyword
 - model: auth.permission
   fields:
-    name: Can add Rating
-    content_type: [generic, rating]
-    codename: add_rating
+    name: Can add Keyword
+    content_type: [generic, keyword]
+    codename: add_keyword
 - model: auth.permission
   fields:
-    name: Can change Rating
-    content_type: [generic, rating]
-    codename: change_rating
+    name: Can change Keyword
+    content_type: [generic, keyword]
+    codename: change_keyword
 - model: auth.permission
   fields:
-    name: Can delete Rating
-    content_type: [generic, rating]
-    codename: delete_rating
+    name: Can delete Keyword
+    content_type: [generic, keyword]
+    codename: delete_keyword
+- model: auth.permission
+  fields:
+    name: Can add Comment
+    content_type: [generic, threadedcomment]
+    codename: add_threadedcomment
+- model: auth.permission
+  fields:
+    name: Can change Comment
+    content_type: [generic, threadedcomment]
+    codename: change_threadedcomment
+- model: auth.permission
+  fields:
+    name: Can delete Comment
+    content_type: [generic, threadedcomment]
+    codename: delete_threadedcomment
 - model: auth.permission
   fields:
     name: Can add Page
@@ -240,21 +240,6 @@
     codename: delete_link
 - model: auth.permission
   fields:
-    name: Can add Blog post
-    content_type: [blog, blogpost]
-    codename: add_blogpost
-- model: auth.permission
-  fields:
-    name: Can change Blog post
-    content_type: [blog, blogpost]
-    codename: change_blogpost
-- model: auth.permission
-  fields:
-    name: Can delete Blog post
-    content_type: [blog, blogpost]
-    codename: delete_blogpost
-- model: auth.permission
-  fields:
     name: Can add Blog Category
     content_type: [blog, blogcategory]
     codename: add_blogcategory
@@ -270,34 +255,19 @@
     codename: delete_blogcategory
 - model: auth.permission
   fields:
-    name: Can add Form
-    content_type: [forms, form]
-    codename: add_form
+    name: Can add Blog post
+    content_type: [blog, blogpost]
+    codename: add_blogpost
 - model: auth.permission
   fields:
-    name: Can change Form
-    content_type: [forms, form]
-    codename: change_form
+    name: Can change Blog post
+    content_type: [blog, blogpost]
+    codename: change_blogpost
 - model: auth.permission
   fields:
-    name: Can delete Form
-    content_type: [forms, form]
-    codename: delete_form
-- model: auth.permission
-  fields:
-    name: Can add Field
-    content_type: [forms, field]
-    codename: add_field
-- model: auth.permission
-  fields:
-    name: Can change Field
-    content_type: [forms, field]
-    codename: change_field
-- model: auth.permission
-  fields:
-    name: Can delete Field
-    content_type: [forms, field]
-    codename: delete_field
+    name: Can delete Blog post
+    content_type: [blog, blogpost]
+    codename: delete_blogpost
 - model: auth.permission
   fields:
     name: Can add Form entry
@@ -330,19 +300,34 @@
     codename: delete_fieldentry
 - model: auth.permission
   fields:
-    name: Can add Gallery
-    content_type: [galleries, gallery]
-    codename: add_gallery
+    name: Can add Field
+    content_type: [forms, field]
+    codename: add_field
 - model: auth.permission
   fields:
-    name: Can change Gallery
-    content_type: [galleries, gallery]
-    codename: change_gallery
+    name: Can change Field
+    content_type: [forms, field]
+    codename: change_field
 - model: auth.permission
   fields:
-    name: Can delete Gallery
-    content_type: [galleries, gallery]
-    codename: delete_gallery
+    name: Can delete Field
+    content_type: [forms, field]
+    codename: delete_field
+- model: auth.permission
+  fields:
+    name: Can add Form
+    content_type: [forms, form]
+    codename: add_form
+- model: auth.permission
+  fields:
+    name: Can change Form
+    content_type: [forms, form]
+    codename: change_form
+- model: auth.permission
+  fields:
+    name: Can delete Form
+    content_type: [forms, form]
+    codename: delete_form
 - model: auth.permission
   fields:
     name: Can add Image
@@ -358,6 +343,21 @@
     name: Can delete Image
     content_type: [galleries, galleryimage]
     codename: delete_galleryimage
+- model: auth.permission
+  fields:
+    name: Can add Gallery
+    content_type: [galleries, gallery]
+    codename: add_gallery
+- model: auth.permission
+  fields:
+    name: Can change Gallery
+    content_type: [galleries, gallery]
+    codename: change_gallery
+- model: auth.permission
+  fields:
+    name: Can delete Gallery
+    content_type: [galleries, gallery]
+    codename: delete_gallery
 - model: auth.permission
   fields:
     name: Can add Twitter query
@@ -405,6 +405,21 @@
     codename: delete_logentry
 - model: auth.permission
   fields:
+    name: Can add comment flag
+    content_type: [django_comments, commentflag]
+    codename: add_commentflag
+- model: auth.permission
+  fields:
+    name: Can change comment flag
+    content_type: [django_comments, commentflag]
+    codename: change_commentflag
+- model: auth.permission
+  fields:
+    name: Can delete comment flag
+    content_type: [django_comments, commentflag]
+    codename: delete_commentflag
+- model: auth.permission
+  fields:
     name: Can add comment
     content_type: [django_comments, comment]
     codename: add_comment
@@ -423,21 +438,6 @@
     name: Can moderate comments
     content_type: [django_comments, comment]
     codename: can_moderate
-- model: auth.permission
-  fields:
-    name: Can add comment flag
-    content_type: [django_comments, commentflag]
-    codename: add_commentflag
-- model: auth.permission
-  fields:
-    name: Can change comment flag
-    content_type: [django_comments, commentflag]
-    codename: change_commentflag
-- model: auth.permission
-  fields:
-    name: Can delete comment flag
-    content_type: [django_comments, commentflag]
-    codename: delete_commentflag
 - model: auth.permission
   fields:
     name: Can add image blurb
@@ -468,3 +468,18 @@
     name: Can delete Home page
     content_type: [home, homepage]
     codename: delete_homepage
+- model: auth.permission
+  fields:
+    name: Can add slide
+    content_type: [home, slide]
+    codename: add_slide
+- model: auth.permission
+  fields:
+    name: Can change slide
+    content_type: [home, slide]
+    codename: change_slide
+- model: auth.permission
+  fields:
+    name: Can delete slide
+    content_type: [home, slide]
+    codename: delete_slide
