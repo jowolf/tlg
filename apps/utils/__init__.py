@@ -5,7 +5,7 @@ from django.contrib.sites.models import Site
 from mezzanine.conf import settings
 from mezzanine.utils.sites import current_site_id
 
-trace = 0
+trace = 1
 
 
 def host_theme_media_path():  # (instance, filename):
