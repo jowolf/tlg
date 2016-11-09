@@ -10,9 +10,15 @@
       {% endfor %}
       {% for slide in page.homepage.slides.all %}
         <div class=da-slide>
-          <h2><a href="{{ slide.link }}">{{ slide.title }}</a></h2>
-          <p><a href="{{ slide.link }}">{{ slide.description }}</a></p>
-          <div class=da-img><a href="{{ slide.link }}">{% firstof slide.html slide.image %}</a></div>
+          <h2><i><a href="{{ slide.link }}">{{ slide.title }}</a></i></h2>
+          <p><i><a href="{{ slide.link }}">{{ slide.description }}</a></i></p>
+          <div class=da-img>
+            {% if slide.html %}
+              {{ slide.html }}
+            {% else %}
+              <a href="{{ slide.link }}"><img src="/static/media/{{ slide.image }}"></a>
+            {% endif %}
+          </div>
         </div>
       {% endfor %}
       <div class=da-slide>
