@@ -1,3 +1,5 @@
+#import os
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -6,6 +8,7 @@ from mezzanine.core.models import RichText, Orderable, Slugged
 from mezzanine.pages.models import Page
 from mezzanine.utils.models import upload_to
 
+from apps.utils import host_theme_media_path
 
 class HomePage (Page, RichText):
     '''
@@ -32,13 +35,19 @@ usages = (
     ('parallax-bottom','parallax-bottom'),
 )
 
+# See docs in apps.utils.host_theme_media_path
+
+blurb_path = host_theme_media_path
+blurb_path.suffix = 'blurb'
+
 class ImageBlurb (Orderable):
     '''
     Content snippet with title, image, link, and usage - on a HomePage
     '''
     homepage = models.ForeignKey (HomePage, related_name="blurbs")
     image = FileField (verbose_name = _("Image"),
-        upload_to = upload_to ("theme.ImageBlurb.image", "images"),
+        #upload_to = upload_to ("theme.ImageBlurb.image", "images"),
+        upload_to = blurb_path,
         format = "Image", max_length = 255)
     title = models.CharField (max_length = 200)
     content = models.TextField()
@@ -46,7 +55,12 @@ class ImageBlurb (Orderable):
     usage = models.CharField (max_length = 20, choices = usages)
 
 
-# might be able to combine this with blurb at some pointer
+# See docs in apps.utils.host_theme_media_path
+
+slider_path = host_theme_media_path
+slider_path.suffix = 'slider'
+
+# Might be able to combine this with blurb at some point
 
 class Slide (Orderable):
     '''
@@ -55,7 +69,9 @@ class Slide (Orderable):
     homepage = models.ForeignKey (HomePage, related_name="slides")
 
     image = FileField (verbose_name =_("Image"),
-        upload_to = upload_to ("theme.Slide.image", "slider"),
+        #upload_to = upload_to ("theme.Slide.image", "slider"),
+        #upload_to = os.path.join (host_theme_name(), "slider"),
+        upload_to = slider_path,
         format = "Image", max_length = 255, null = True, blank = True)
     title = models.CharField (max_length = 200)  # Heading or H2
     description = models.TextField()    # description or p

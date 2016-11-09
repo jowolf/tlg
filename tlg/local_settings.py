@@ -40,11 +40,21 @@ HOST_THEMES = [
     ('127.0.1.1:8000', 'apps.realestate'),
 ]
 
+#UPLOAD_TO_HANDLERS = {
+#    'apps.home.Slide.image': 'theme.defaults.upload_path_file',
+# ..but it's the same for realestate, so can't use this :-(
+#    'galleries.Gallery.zip_import': 'theme.defaults.upload_path_zip_import',
+#   }
 
 #BLOG_URLS_USE_DATE = True
 BLOG_URLS_DATE_FORMAT = 'month'
 BLOG_USE_FEATURED_IMAGE = True
 ADMIN_THUMB_SIZE = '36x36'
+
+#FILEBROWSER_MEDIA_ROOT = STATIC_ROOT
+FILEBROWSER_DIRECTORY = ''
+#FILEBROWSER_PATH_FILEBROWSER_MEDIA = STATIC_ROOT + '/filebrowser'
+#MEDIA_LIBRARY_PER_SITE = True
 
 ###################
 # DEPLOY SETTINGS #

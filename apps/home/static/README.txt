@@ -1,6 +1,6 @@
 # To create relative symlinks here:
 
-ln -s ../../../themes/unify/HTML/assets/ unify
+ln -s ../../../themes/unify/HTML/assets/ unify-assets
 
 # Don't forget to:
 
