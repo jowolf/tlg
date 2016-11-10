@@ -23,15 +23,34 @@ a:hover {
 
 
 .btn-u.btn-u-burgundy {
-	background: #715766;
+    background: #715766;
 }
+
 .btn-u.btn-u-burgundy:hover,
 .btn-u.btn-u-burgundy:focus,
 .btn-u.btn-u-burgundy:active,
 .btn-u.btn-u-burgundy.active,
 .open .dropdown-toggle.btn-u.btn-u-burgundy {
-	background: #46353f;
+    background: #46353f;
 }
+
 .btn-u.btn-u-split-burgundy.dropdown-toggle {
-	border-left: solid 1px #46353f;
+    border-left: solid 1px #46353f;
+}
+
+
+.ms-slide .ms-layer, .ms-fixed-layers .ms-layer, .ms-overlay-layers .ms-layer {
+    background: rgba(128, 128, 128, 0.7);
+    color: white;
+    border-radius: 7px;
+    width: 250px;
+}
+
+.ms-promo-real_estate-price, .ms-promo-real_estate-place {
+  padding: 20px;
+}
+
+.ms-promo-real_estate-description {
+  text-align: center;
+  padding-bottom: 20px;
 }

@@ -37,8 +37,9 @@ usages = (
 
 # See docs in apps.utils.host_theme_media_path
 
-blurb_path = host_theme_media_path
-blurb_path.suffix = 'blurb'
+#blurb_path = host_theme_media_path
+#blurb_path.suffix = 'blurb'
+def blurb_path(): return host_theme_media_path ('blurb')
 
 class ImageBlurb (Orderable):
     '''
@@ -57,8 +58,9 @@ class ImageBlurb (Orderable):
 
 # See docs in apps.utils.host_theme_media_path
 
-slider_path = host_theme_media_path
-slider_path.suffix = 'slider'
+#slider_path = host_theme_media_path
+#slider_path.suffix = 'slider'
+def slider_path(): return host_theme_media_path ('slider')
 
 # Might be able to combine this with blurb at some point
 

@@ -5,10 +5,10 @@ from django.contrib.sites.models import Site
 from mezzanine.conf import settings
 from mezzanine.utils.sites import current_site_id
 
-trace = 1
+trace = 0
 
 
-def host_theme_media_path():  # (instance, filename):
+def host_theme_media_path (suffix):  # (instance, filename):
     """
     Returns the name of the theme associated with the given host,
       suffixed by a string (typically a field name) - called by
@@ -34,6 +34,14 @@ def host_theme_media_path():  # (instance, filename):
             verbose_name =_("Image"),
             upload_to = slider_path,  # NOTE: no parens!
             format = "Image", max_length = 255, null = True, blank = True)
+
+    UPDATE: attrs don't work, and it uses the last one set at module load time, the fn references are not first-class objects, only refs.
+
+    Just use a one-line call in the model, and pass is a suffix, eg:
+
+    def slider_path(): return host_theme_media_path ('slider')
+
+    QED. KISS principle.
     """
 
     # Nope.  need to use attr
@@ -41,7 +49,7 @@ def host_theme_media_path():  # (instance, filename):
 
     #suffix = instance.__class__.__name__.tolower()
     #suffix = host_theme_media_path.__name__.split ('_') [-1]
-    suffix = host_theme_media_path.suffix
+    #suffix = host_theme_media_path.suffix
     if trace: print 'SUFFIX', suffix
 
     # Set domain to None, which we'll then query for in the first

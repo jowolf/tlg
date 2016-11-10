@@ -1,3 +1,6 @@
+11/9
+promos.js mods not working (center the box) - pull it, or center with css, or right-justify it
+
 10/29
 remove is_home in favor of home page template
 
