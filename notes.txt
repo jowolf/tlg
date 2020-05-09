@@ -1,3 +1,15 @@
+11/14
+jw.vc - regular slider p i desc tag padding is FUBAR - play with:
+
+.da-slide p i { padding: 
+
+in inspect mode.  Need actual padding to work as xpected, and add space aound all the text,
+not add spurious spaces only at the beginning.
+
+Also, linebreaks and linebreaksbr do NOT work either as expected or as documented. 
+
+
+
 11/9
 promos.js mods not working (center the box) - pull it, or center with css, or right-justify it
 

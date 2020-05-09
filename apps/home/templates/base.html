@@ -84,10 +84,11 @@
   {% endcompress %}
 
   {% block head_bottom %} <!-- block head_bottom (after compress) -->  {% endblock head_bottom %}
+</head>
+
 
 <body class="header-fixed header-fixed-space-default" id="{% block body_id %}body{% endblock %}">
 {{ google_analytics }}
-
 
 <div class=wrapper>
 
@@ -115,14 +116,14 @@
   {% endnevercache %}
 
 
-  {# HERE - This is really the "Call to action" #}
+  {# HERE TODO - move to call-to-action #}
     <!--=== Purchase Block ===-->
     <div class=purchase>
         <div class=container>
             <div class=row>
                 <div class="col-md-9 animated fadeInLeft">
-                    <span>Unify is a clean and fully responsive incredible Template.</span>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi  vehicula sem ut volutpat. Ut non libero magna fusce condimentum eleifend enim a feugiat corrupti quos.</p>
+                    <span>{{ page.homepage.call_to_action.title }}</span>
+                    <p>{{ page.homepage.call_to_action.content }}</p>
                 </div>
                 <div class="col-md-3 btn-buy animated fadeInRight">
                     <a href=# class="btn-u btn-u-lg"><i class="fa fa-cloud-download"></i> Download Now</a>
@@ -137,7 +138,22 @@
     <div class="container content-sm">
         <!-- Service Blocks -->
         <div class="row margin-bottom-30">
+
+            {# HERE TODO - possibly move to row-of-three template #}
+
+            {% for blurb in page.homepage.row_of_three %}
             <div class=col-md-4>
+                <div class=service>
+                    <i class="fa {% firstof blurb.html "fa-compress" %} service-icon"></i>
+                    <div class=desc>
+                        <h4>{{ blurb.title }}</h4>
+                        <p>{{ blurb.content }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- div class=col-md-4>
                 <div class=service>
                     <i class="fa fa-compress service-icon"></i>
                     <div class=desc>
@@ -163,27 +179,35 @@
                         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus etiam sem...</p>
                     </div>
                 </div>
-            </div>
+            </div -->
         </div>
         <!-- End Service Blokcs -->
 
-        <!-- Recent Works -->
-        <div class=headline><h2>Recent Works</h2></div>
+                <!-- Recent Works -->
+        <div class=headline><h2>{{ page.homepage.featured_works_heading }}</h2></div>
         <div class="row margin-bottom-20">
+
+          {# HERE TODO - possibly move to row-of-four template #}
+
+          {% for blurb in page.homepage.row_of_four %}
+
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnails thumbnail-style thumbnail-kenburn">
                     <div class=thumbnail-img>
                         <div class=overflow-hidden>
-                            <img class=img-responsive alt="" src=/unify-assets/img/main/img1.jpg>
+                            <img class=img-responsive alt="{{ blurb.title }}" src="/static/media/{{ blurb.image }}">
                         </div>
-                        <a href=# class="btn-more hover-effect">read more +</a>
+                        <a href="{{ blurb.link }}" class="btn-more hover-effect">read more +</a>
                     </div>
                     <div class=caption>
-                        <h3><a href=# class=hover-effect>Project One</a></h3>
-                        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem.</p>
+                        <h3><a href="{{ blurb.link }}" class=hover-effect>{{ blurb.title }}</a></h3>
+                        <p>{{ blurb.content }}porta sem.</p>
                     </div>
                 </div>
             </div>
+
+            {% endfor %}
+
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnails thumbnail-style thumbnail-kenburn">
                     <div class=thumbnail-img>
@@ -296,9 +320,13 @@
         <!-- Owl Clients v1 -->
         <div class=headline><h2>Our Clients</h2></div>
         <div class=owl-clients-v1>
+          {% for blurb in page.homepage.client_icon_list %}
             <div class=item>
-                <img alt="" src=/unify-assets/img/clients4/1.png>
+                {% if blurb.link %}<a href="{{ blurb.link }}">{% endif %}
+                <img alt="{{ blurb.content }}" title="{{ blurb.title }}" src="/static/media/{{ blurb.image }}">
+                {% if blurb.link %}</a>{% endif %}
             </div>
+          {% endfor %}
             <div class=item>
                 <img alt="" src=/unify-assets/img/clients4/2.png>
             </div>

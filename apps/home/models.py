@@ -14,12 +14,24 @@ class HomePage (Page, RichText):
     '''
     A page class for the data in the home page
     '''
-    heading = models.CharField (    max_length=200, help_text="The heading under the icon blurbs")
-    subheading = models.CharField ( max_length=200, help_text="The subheading just below the heading")
-    featured_works_heading = models.CharField ( max_length=200, default="Featured Works")
-    #featured_portfolio = models.ForeignKey("Portfolio", blank=True, null=True, help_text="If selected items from this portfolio will be featured on the home page.")
-    content_heading = models.CharField (        max_length=200, default="About us!")
-    latest_posts_heading = models.CharField (   max_length=200, default="Latest Posts")
+    heading                 = models.CharField ( max_length=200, help_text="The heading under the icon blurbs")
+    subheading              = models.CharField ( max_length=200, help_text="The subheading just below the heading")
+    featured_works_heading  = models.CharField ( max_length=200, default="Featured Works")
+    #featured_portfolio     = models.ForeignKey("Portfolio", blank=True, null=True, help_text="If selected items from this portfolio will be featured on the home page.")
+    content_heading         = models.CharField ( max_length=200, default="About us!")
+    latest_posts_heading    = models.CharField ( max_length=200, default="Latest Posts")
+
+    def call_to_action (self):
+        return self.blurbs.filter (usage = 'call-to-action') [0]
+
+    def row_of_three (self):
+        return self.blurbs.filter (usage = 'row-of-three')
+
+    def row_of_four (self):
+        return self.blurbs.filter (usage = 'row-of-four')
+
+    def client_icon_list (self):
+        return self.blurbs.filter (usage = 'client-icon-list')
 
     class Meta:
         verbose_name = _("Home page")
@@ -27,9 +39,11 @@ class HomePage (Page, RichText):
 
 usages = (
     ('slider', 'slider'),
+    ('call-to-action', 'call-to-action'),
     ('row-of-three','row-of-three'),
     ('row-of-four','row-of-four'),
-    ('two-plus-one','two-lus-one'),
+    ('two-plus-one','two-plus-one'),
+    ('client-icon-list', 'client-icon-list'),
     ('slider-overlay-left','slider-overlay-left'),
     ('slider-overlay-right','slider-overlay-right'),
     ('parallax-bottom','parallax-bottom'),
@@ -52,9 +66,12 @@ class ImageBlurb (Orderable):
         format = "Image", max_length = 255)
     title = models.CharField (max_length = 200)
     content = models.TextField()
+    html = models.TextField (blank=True, help_text="Extra html or alternative to Image field - eg, maps embed, FA Icon, subscribe form, download / contact button, etc")
     link = models.CharField ( max_length = 2000, blank = True, help_text="Optional, if provided clicking the blurb will go here.")
-    usage = models.CharField (max_length = 20, choices = usages)
+    usage = models.CharField ( max_length = 20, choices = usages)
 
+# Maybe ActionBlurb? with action text / form to put on a button and show the form for - JJW 11/15/16
+# row-of-three: title content icon-class (metadata)
 
 # See docs in apps.utils.host_theme_media_path
 
@@ -77,7 +94,7 @@ class Slide (Orderable):
         format = "Image", max_length = 255, null = True, blank = True)
     title = models.CharField (max_length = 200)  # Heading or H2
     description = models.TextField()    # description or p
-    html = models.TextField (blank=True, help_text="Alternative to Image field - eg, Video embed, etc")
+    html = models.TextField (blank=True, help_text="Alternative to Image field - eg, Video embed, etc") # could use similar idea for FA icon
     link = models.CharField (max_length = 2000, blank = True, help_text="Optional, if provided clicking the image or blurb will go here.")
 
 
